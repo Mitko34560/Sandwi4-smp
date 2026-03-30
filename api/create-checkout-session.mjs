@@ -3,6 +3,7 @@ import {
   createStripeCheckoutSession,
   inferOrigin,
   json,
+  normalizeBaseUrl,
   readJson
 } from "../lib/stripe.mjs";
 
@@ -29,7 +30,9 @@ export default async function handler(req, res) {
       return;
     }
 
-    const origin = process.env.SITE_URL || inferOrigin(req);
+    const origin = process.env.SITE_URL
+      ? normalizeBaseUrl(process.env.SITE_URL)
+      : inferOrigin(req);
     const session = await createStripeCheckoutSession({
       secretKey,
       origin,
