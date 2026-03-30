@@ -1,0 +1,9 @@
+{
+  "name": "sandwi4-smp-site",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server.mjs"
+  }
+}
