@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Кандидатстване | Sandwi4 SMP</title>
+  <meta name="description" content="Кандидатствай за staff позиция в Sandwi4 SMP.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="apply">
+  <div class="page-shell inner-page-shell">
+    <header class="inner-hero">
+      <nav class="topbar inner-topbar">
+        <a class="brand" href="/index.html">
+          <span class="brand-mark">S4</span>
+          <span class="brand-copy">
+            <strong>Sandwi4 SMP</strong>
+            <span>Кандидатстване</span>
+          </span>
+        </a>
+
+        <div class="nav-links">
+          <a href="/index.html">Начало</a>
+          <a href="/index.html#news">Новини</a>
+          <a href="/admin.html">Админ панел</a>
+        </div>
+      </nav>
+
+      <div class="inner-hero-copy reveal">
+        <p class="eyebrow">Staff Application</p>
+        <h1 class="inner-title">Кандидатствай за екипа</h1>
+        <p class="lead">
+          Попълни формата и кандидатурата ти ще отиде директно в админ панела, където да бъде разгледана.
+        </p>
+      </div>
+    </header>
+
+    <main class="section">
+      <div class="form-layout reveal">
+        <section class="form-card">
+          <div class="section-heading">
+            <p class="eyebrow">Форма</p>
+            <h2>Изпрати кандидатура</h2>
+          </div>
+
+          <div class="checkout-message" id="application-message" hidden></div>
+
+          <form id="application-form" class="staff-form">
+            <label>
+              Minecraft username
+              <input type="text" name="minecraftUsername" required minlength="3" maxlength="16" placeholder="Пример: Toon_King">
+            </label>
+
+            <label>
+              Discord username
+              <input type="text" name="discordUsername" required placeholder="Пример: mitko34560">
+            </label>
+
+            <label>
+              Кандидатстваш за
+              <select name="position" required>
+                <option value="">Избери позиция</option>
+                <option value="Helper">Helper</option>
+                <option value="Moderator">Moderator</option>
+                <option value="Admin">Admin</option>
+                <option value="Builder">Builder</option>
+              </select>
+            </label>
+
+            <div class="form-two-columns">
+              <label>
+                Възраст
+                <input type="number" name="age" min="10" max="99" required placeholder="16">
+              </label>
+
+              <label>
+                Часова зона / държава
+                <input type="text" name="timezone" required placeholder="Bulgaria / UTC+2">
+              </label>
+            </div>
+
+            <label>
+              Опит със staff позиции
+              <textarea name="experience" rows="5" required placeholder="Опиши къде си бил staff и какво си правил."></textarea>
+            </label>
+
+            <label>
+              Защо искаш да си част от екипа?
+              <textarea name="motivation" rows="6" required placeholder="Разкажи как можеш да помогнеш на Sandwi4 SMP."></textarea>
+            </label>
+
+            <label>
+              Колко често можеш да помагаш?
+              <textarea name="availability" rows="4" required placeholder="Например: всеки ден след 18:00, уикендите и т.н."></textarea>
+            </label>
+
+            <button type="submit" class="primary-button full-width">Изпрати кандидатура</button>
+          </form>
+        </section>
+
+        <aside class="form-side-card">
+          <span class="role-tag">Важно</span>
+          <h3>Какво търсим</h3>
+          <ul class="check-list">
+            <li>Спокойно и уважително отношение към играчите</li>
+            <li>Активност в Discord и на сървъра</li>
+            <li>Желание да помагаш и да пазиш добрата атмосфера</li>
+            <li>Честни и ясни отговори във формата</li>
+          </ul>
+          <p>След изпращане кандидатурата ще се пази в панела и може да бъде разгледана от екипа.</p>
+        </aside>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <p>Sandwi4 SMP • Staff Applications</p>
+      <p><a href="/index.html">Обратно към началото</a></p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

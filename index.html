@@ -6,11 +6,11 @@
   <title>Sandwi4 SMP | Minecraft Survival Server</title>
   <meta
     name="description"
-    content="Sandwi4 SMP е Minecraft survival сървър за приятели, приключения и забавление. Влез в Discord и се присъедини към сървъра."
+    content="Sandwi4 SMP е Minecraft survival сървър за приятели, приключения и забавление. Влез в Discord, кандидатствай за екипа и следи новините."
   >
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body data-page="home">
   <div class="page-shell">
     <header class="hero" id="top">
       <div class="hero-backdrop" aria-hidden="true">
@@ -20,7 +20,7 @@
       </div>
 
       <nav class="topbar">
-        <a class="brand" href="#top" aria-label="Sandwi4 SMP начало">
+        <a class="brand" href="/index.html" aria-label="Sandwi4 SMP начало">
           <span class="brand-mark">S4</span>
           <span class="brand-copy">
             <strong>Sandwi4 SMP</strong>
@@ -30,7 +30,9 @@
 
         <div class="nav-links">
           <a href="#about">За сървъра</a>
+          <a href="#news">Новини</a>
           <a href="#team">Екип</a>
+          <a href="/apply.html">Кандидатствай</a>
           <a href="#donate">Donate</a>
           <a class="nav-discord" href="https://discord.com/invite/PU8Vztfqd3" target="_blank" rel="noreferrer">Discord</a>
         </div>
@@ -49,15 +51,15 @@
             <button class="primary-button" id="copy-ip" data-ip="Sandwi4SMP.aternos.me:28916">
               Копирай IP
             </button>
-            <a class="secondary-button" href="https://discord.com/invite/PU8Vztfqd3" target="_blank" rel="noreferrer">
-              Влез в Discord
+            <a class="secondary-button" href="/apply.html">
+              Кандидатствай за екипа
             </a>
           </div>
 
           <div class="stat-row">
             <article class="stat-card">
               <span class="stat-label">Address</span>
-              <strong>Sandwi4SMP.aternos.me</strong>
+              <strong>Sandwi4SMP.aternos.me:28916</strong>
             </article>
             <article class="stat-card">
               <span class="stat-label">Software</span>
@@ -127,14 +129,30 @@
 
           <article class="feature-card">
             <span class="feature-index">02</span>
-            <h3>Оптимизиран gameplay</h3>
-            <p>PaperMC дава стабилност и плавна игра, за да се фокусираш върху приключението, а не върху лаг.</p>
+            <h3>Кандидатури за екипа</h3>
+            <p>Добавих отделна страница, през която играчите могат да кандидатстват за staff позиции.</p>
           </article>
 
           <article class="feature-card">
             <span class="feature-index">03</span>
-            <h3>Лесно влизане</h3>
-            <p>Копираш IP адреса, влизаш в Discord и си готов да започнеш своето survival развитие.</p>
+            <h3>Новини и актуализации</h3>
+            <p>Сайтът вече има новинарска секция, за да информираш играчите за ивенти, ъпдейти и промени.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section reveal" id="news">
+        <div class="section-heading">
+          <p class="eyebrow">Новини</p>
+          <h2>Последни съобщения от сървъра</h2>
+          <p class="section-note">Тези новини се управляват от админ панела.</p>
+        </div>
+
+        <div class="news-grid" id="news-list">
+          <article class="news-card loading-card">
+            <span class="role-tag">Зареждане</span>
+            <h3>Зареждаме последните новини...</h3>
+            <p>След малко тук ще се покажат публикуваните съобщения от админ панела.</p>
           </article>
         </div>
       </section>
@@ -183,11 +201,25 @@
         </div>
       </section>
 
+      <section class="section reveal">
+        <div class="join-card split-callout">
+          <div>
+            <p class="eyebrow">Staff</p>
+            <h2>Искаш ли да станеш част от екипа?</h2>
+            <p>Създадох отделна страница за кандидатстване, където играчите могат да попълнят форма за staff позиция.</p>
+          </div>
+          <div class="hero-actions compact-actions">
+            <a class="primary-button" href="/apply.html">Отвори кандидатстване</a>
+            <a class="secondary-button" href="/admin.html">Админ панел</a>
+          </div>
+        </div>
+      </section>
+
       <section class="section reveal" id="donate">
         <div class="section-heading">
           <p class="eyebrow">Donate</p>
           <h2>Рангове</h2>
-          <p class="section-note">Плащанията се обработват сигурно през Stripe Checkout</p>
+          <p class="section-note">Плащанията се обработват сигурно през Stripe Checkout.</p>
         </div>
 
         <div class="checkout-message" id="checkout-message" hidden></div>
@@ -244,30 +276,12 @@
           </article>
         </div>
       </section>
-
-      <section class="section join-section reveal">
-        <div class="join-card">
-          <p class="eyebrow">Присъедини се</p>
-          <h2>Готов ли си за следващото survival приключение?</h2>
-          <p>
-            Влез в Discord сървъра, вземи IP адреса и започни своето място в света на Sandwi4 SMP.
-          </p>
-
-          <div class="hero-actions">
-            <a class="primary-button" href="https://discord.com/invite/PU8Vztfqd3" target="_blank" rel="noreferrer">
-              Отвори Discord
-            </a>
-            <button class="secondary-button" id="copy-ip-bottom" data-ip="Sandwi4SMP.aternos.me:28916">
-              Копирай IP адреса
-            </button>
-          </div>
-        </div>
-      </section>
     </main>
 
     <footer class="footer">
       <p>Sandwi4 SMP • Minecraft Survival Server</p>
       <p>Address: Sandwi4SMP.aternos.me:28916</p>
+      <p><a href="/admin.html">Админ панел</a></p>
     </footer>
   </div>
 
