@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="bg">
 <head>
@@ -116,3 +117,123 @@
   <script src="script.js"></script>
 </body>
 </html>
+=======
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Админ Панел | Sandwi4 SMP</title>
+  <meta name="description" content="Админ панел за новини и кандидатури в Sandwi4 SMP.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="admin">
+  <div class="page-shell inner-page-shell">
+    <header class="inner-hero admin-hero">
+      <nav class="topbar inner-topbar">
+        <a class="brand" href="/index.html">
+          <span class="brand-mark">S4</span>
+          <span class="brand-copy">
+            <strong>Sandwi4 SMP</strong>
+            <span>Admin Panel</span>
+          </span>
+        </a>
+
+        <div class="nav-links">
+          <a href="/index.html">Начало</a>
+          <a href="/apply.html">Кандидатстване</a>
+        </div>
+      </nav>
+
+      <div class="inner-hero-copy reveal">
+        <p class="eyebrow">Private Panel</p>
+        <h1 class="inner-title">Админ панел</h1>
+        <p class="lead">Публикувай новини и преглеждай всички изпратени кандидатури.</p>
+      </div>
+    </header>
+
+    <main class="section">
+      <section class="admin-login-panel reveal" id="admin-login-panel">
+        <div class="form-card narrow-card">
+          <div class="section-heading">
+            <p class="eyebrow">Login</p>
+            <h2>Вход в панела</h2>
+          </div>
+          <div class="checkout-message" id="admin-login-message" hidden></div>
+          <form id="admin-login-form" class="staff-form">
+            <label>
+              Admin password
+              <input type="password" name="password" required placeholder="Въведи паролата за панела">
+            </label>
+            <button type="submit" class="primary-button full-width">Влез</button>
+          </form>
+        </div>
+      </section>
+
+      <section class="admin-dashboard reveal" id="admin-dashboard" hidden>
+        <div class="admin-toolbar">
+          <div>
+            <p class="eyebrow">Dashboard</p>
+            <h2>Управление на новини и кандидатури</h2>
+          </div>
+          <button class="secondary-button" id="admin-logout">Изход</button>
+        </div>
+
+        <div class="checkout-message" id="admin-panel-message" hidden></div>
+
+        <div class="admin-grid">
+          <section class="form-card">
+            <div class="section-heading">
+              <p class="eyebrow">Новина</p>
+              <h2>Публикувай нова новина</h2>
+            </div>
+
+            <form id="news-form" class="staff-form">
+              <label>
+                Заглавие
+                <input type="text" name="title" required maxlength="120" placeholder="Например: Нов ивент тази събота">
+              </label>
+
+              <label>
+                Кратък етикет
+                <input type="text" name="tag" maxlength="32" placeholder="Update / Event / Maintenance">
+              </label>
+
+              <label>
+                Съдържание
+                <textarea name="body" rows="6" required placeholder="Напиши новината тук..."></textarea>
+              </label>
+
+              <label class="checkbox-row">
+                <input type="checkbox" name="pinned">
+                <span>Закачи новината най-отгоре</span>
+              </label>
+
+              <button type="submit" class="primary-button full-width">Публикувай новина</button>
+            </form>
+
+            <div class="admin-list" id="admin-news-list"></div>
+          </section>
+
+          <section class="form-card">
+            <div class="section-heading">
+              <p class="eyebrow">Кандидатури</p>
+              <h2>Прегледай изпратените форми</h2>
+            </div>
+
+            <div class="admin-list" id="admin-applications-list"></div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>Sandwi4 SMP • Private Admin Panel</p>
+      <p><a href="/index.html">Обратно към сайта</a></p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+>>>>>>> effb365 (Add applications page and admin panel)
