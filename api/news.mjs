@@ -29,7 +29,7 @@ export default async function handler(req, res) {
     res.setHeader("Allow", "GET, POST, DELETE");
     json(res, 405, { error: "Method not allowed." });
   } catch (error) {
-    json(res, 400, {
+    json(res, error?.statusCode || 400, {
       error: error instanceof Error ? error.message : "Unexpected server error."
     });
   }

@@ -498,6 +498,154 @@ async function fetchAdminJson(url, options = {}, overridePassword = "") {
   return payload;
 }
 
+function bindAdminPanel() {
+  const loginPanel = document.getElementById("admin-login-panel");
+  const dashboard = document.getElementById("admin-dashboard");
+  const loginForm = document.getElementById("admin-login-form");
+  const loginMessage = document.getElementById("admin-login-message");
+  const panelMessage = document.getElementById("admin-panel-message");
+  const logoutButton = document.getElementById("admin-logout");
+  const newsForm = document.getElementById("news-form");
+
+  const setAuthenticatedState = (isAuthenticated) => {
+    if (loginPanel) {
+      loginPanel.hidden = isAuthenticated;
+    }
+    if (dashboard) {
+      dashboard.hidden = !isAuthenticated;
+    }
+  };
+
+  const showDashboard = async (password) => {
+    sessionStorage.setItem(ADMIN_STORAGE_KEY, password);
+    setAuthenticatedState(true);
+    await Promise.all([loadAdminNews(), loadAdminApplications()]);
+  };
+
+  const storedPassword = sessionStorage.getItem(ADMIN_STORAGE_KEY);
+  if (storedPassword) {
+    verifyAdminPassword(storedPassword)
+      .then(() => showDashboard(storedPassword))
+      .catch((error) => {
+        sessionStorage.removeItem(ADMIN_STORAGE_KEY);
+        setAuthenticatedState(false);
+        showMessage(
+          loginMessage,
+          error instanceof Error ? error.message : "Неуспешно зареждане на панела.",
+          "error"
+        );
+      });
+  } else {
+    setAuthenticatedState(false);
+  }
+
+  if (loginForm && loginMessage) {
+    loginForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const formData = new FormData(loginForm);
+      const password = String(formData.get("password") || "");
+      const submitButton = loginForm.querySelector("button[type='submit']");
+      const originalText = submitButton ? submitButton.textContent : "";
+
+      if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.textContent = "Проверка...";
+      }
+
+      try {
+        await verifyAdminPassword(password);
+        await showDashboard(password);
+        showMessage(loginMessage, "Успешен вход.", "success");
+      } catch (error) {
+        sessionStorage.removeItem(ADMIN_STORAGE_KEY);
+        setAuthenticatedState(false);
+        showMessage(
+          loginMessage,
+          error instanceof Error ? error.message : "Невалидна парола.",
+          "error"
+        );
+      } finally {
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.textContent = originalText;
+        }
+      }
+    });
+  }
+
+  if (logoutButton) {
+    logoutButton.addEventListener("click", () => {
+      sessionStorage.removeItem(ADMIN_STORAGE_KEY);
+      window.location.reload();
+    });
+  }
+
+  if (newsForm && panelMessage) {
+    newsForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const formData = new FormData(newsForm);
+      const body = {
+        title: formData.get("title"),
+        tag: formData.get("tag"),
+        body: formData.get("body"),
+        pinned: formData.get("pinned") === "on"
+      };
+
+      try {
+        await fetchAdminJson(
+          "/api/news",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(body)
+          }
+        );
+
+        newsForm.reset();
+        showMessage(panelMessage, "Новината беше публикувана.", "success");
+        await loadAdminNews();
+        if (page === "home") {
+          await loadNewsFeed();
+        }
+      } catch (error) {
+        showMessage(
+          panelMessage,
+          error instanceof Error ? error.message : "Неуспешно публикуване на новината.",
+          "error"
+        );
+      }
+    });
+  }
+}
+
+async function fetchAdminJson(url, options = {}, overridePassword = "") {
+  const password = overridePassword || sessionStorage.getItem(ADMIN_STORAGE_KEY) || "";
+  const response = await fetch(url, {
+    ...options,
+    headers: {
+      ...(options.headers || {}),
+      "x-admin-password": password
+    }
+  });
+  const payload = await response.json();
+
+  if (response.status === 401) {
+    sessionStorage.removeItem(ADMIN_STORAGE_KEY);
+  }
+
+  if (!response.ok) {
+    throw new Error(payload.error || "Неуспешна заявка към админ API.");
+  }
+
+  return payload;
+}
+
+async function verifyAdminPassword(password) {
+  await fetchAdminJson("/api/admin-auth", { method: "GET" }, password);
+}
+
 function labelForStatus(status) {
   if (status === "accepted") {
     return "Приета";
