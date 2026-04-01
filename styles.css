@@ -420,6 +420,271 @@ h1 {
   padding: 34px clamp(20px, 5vw, 60px) 20px;
 }
 
+.inner-page-shell {
+  min-height: 100vh;
+}
+
+.inner-hero {
+  padding: 24px clamp(20px, 5vw, 60px) 8px;
+}
+
+.inner-topbar {
+  margin-bottom: 42px;
+}
+
+.inner-hero-copy {
+  max-width: 920px;
+}
+
+.inner-title {
+  font-size: clamp(2.8rem, 9vw, 5.8rem);
+  line-height: 0.95;
+  text-transform: uppercase;
+  text-shadow:
+    0 5px 0 rgba(255, 122, 24, 0.45),
+    0 20px 30px rgba(0, 0, 0, 0.28);
+}
+
+.form-layout,
+.admin-grid,
+.news-grid {
+  display: grid;
+  gap: 20px;
+}
+
+.form-layout {
+  grid-template-columns: minmax(0, 1.3fr) minmax(280px, 0.7fr);
+  align-items: start;
+}
+
+.admin-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 24px;
+}
+
+.news-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 28px;
+}
+
+.form-card,
+.form-side-card,
+.admin-card,
+.news-card,
+.narrow-card {
+  border-radius: 28px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(14px);
+}
+
+.form-card,
+.form-side-card,
+.news-card {
+  padding: 24px;
+}
+
+.narrow-card {
+  max-width: 560px;
+}
+
+.form-side-card {
+  position: sticky;
+  top: 24px;
+}
+
+.staff-form {
+  display: grid;
+  gap: 16px;
+  margin-top: 22px;
+}
+
+.staff-form label {
+  display: grid;
+  gap: 10px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.staff-form input,
+.staff-form select,
+.staff-form textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text);
+  font: inherit;
+  resize: vertical;
+  outline: none;
+}
+
+.staff-form input::placeholder,
+.staff-form textarea::placeholder {
+  color: rgba(247, 247, 239, 0.52);
+}
+
+.staff-form input:focus,
+.staff-form select:focus,
+.staff-form textarea:focus {
+  border-color: rgba(86, 225, 255, 0.5);
+  box-shadow: 0 0 0 4px rgba(86, 225, 255, 0.08);
+}
+
+.form-two-columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.checkbox-row {
+  display: flex !important;
+  align-items: center;
+  gap: 12px;
+}
+
+.checkbox-row input {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+}
+
+.check-list {
+  display: grid;
+  gap: 12px;
+  margin: 18px 0;
+  padding-left: 18px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.split-callout {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.compact-actions {
+  margin-top: 0;
+}
+
+.admin-login-panel {
+  display: grid;
+  justify-content: start;
+}
+
+.admin-dashboard[hidden] {
+  display: none;
+}
+
+.admin-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 20px;
+}
+
+.admin-list {
+  display: grid;
+  gap: 14px;
+  margin-top: 24px;
+}
+
+.admin-card {
+  padding: 18px 20px;
+}
+
+.admin-card h3,
+.news-card h3 {
+  margin-top: 12px;
+}
+
+.admin-card p,
+.news-card p,
+.form-side-card p {
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.admin-card small,
+.news-card small {
+  color: rgba(247, 247, 239, 0.58);
+}
+
+.admin-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.admin-empty {
+  padding: 20px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--muted);
+}
+
+.ghost-button {
+  min-height: 40px;
+  padding: 10px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.status-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.status-pending {
+  background: rgba(255, 191, 71, 0.14);
+  color: #ffd37a;
+}
+
+.status-reviewed {
+  background: rgba(86, 225, 255, 0.14);
+  color: #98efff;
+}
+
+.status-accepted {
+  background: rgba(126, 217, 87, 0.16);
+  color: #bdf4a9;
+}
+
+.status-rejected {
+  background: rgba(255, 94, 91, 0.14);
+  color: #ffb2b0;
+}
+
+.pinned-card {
+  background:
+    radial-gradient(circle at top right, rgba(255, 191, 71, 0.08), transparent 22%),
+    var(--card-strong);
+}
+
 .section-heading {
   max-width: 700px;
 }
@@ -677,7 +942,10 @@ h1 {
   .hero-content,
   .feature-grid,
   .team-grid,
-  .pricing-grid {
+  .pricing-grid,
+  .news-grid,
+  .admin-grid,
+  .form-layout {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -696,6 +964,10 @@ h1 {
   .feature-grid,
   .team-grid,
   .pricing-grid,
+  .news-grid,
+  .admin-grid,
+  .form-layout,
+  .form-two-columns,
   .stat-row,
   .panel-list div,
   .footer {
@@ -730,11 +1002,25 @@ h1 {
     font-size: clamp(3rem, 18vw, 4.4rem);
   }
 
+  .inner-title {
+    font-size: clamp(2.3rem, 15vw, 4rem);
+  }
+
+  .split-callout,
+  .admin-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
   .server-panel,
   .feature-card,
   .team-card,
   .price-card,
-  .join-card {
+  .join-card,
+  .form-card,
+  .form-side-card,
+  .news-card,
+  .admin-card {
     border-radius: 24px;
   }
 }
