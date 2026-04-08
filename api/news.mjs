@@ -27,10 +27,10 @@ export default async function handler(req, res) {
     }
 
     res.setHeader("Allow", "GET, POST, DELETE");
-    json(res, 405, { error: "Method not allowed." });
+    json(res, 405, { error: "Метод не поддерживается." });
   } catch (error) {
     json(res, error?.statusCode || 400, {
-      error: error instanceof Error ? error.message : "Unexpected server error."
+      error: error instanceof Error ? error.message : "Непредвиденная ошибка сервера."
     });
   }
 }
@@ -42,7 +42,7 @@ function readJson(req) {
     req.on("data", (chunk) => {
       raw += chunk;
       if (raw.length > 1_000_000) {
-        reject(new Error("Request body too large."));
+        reject(new Error("Тело запроса слишком большое."));
       }
     });
 
@@ -50,7 +50,7 @@ function readJson(req) {
       try {
         resolve(raw ? JSON.parse(raw) : {});
       } catch {
-        reject(new Error("Invalid JSON body."));
+        reject(new Error("Некорректный JSON в теле запроса."));
       }
     });
 

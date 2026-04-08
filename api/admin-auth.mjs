@@ -5,7 +5,7 @@ export default async function handler(req, res) {
   try {
     if (req.method !== "GET") {
       res.setHeader("Allow", "GET");
-      json(res, 405, { error: "Method not allowed." });
+      json(res, 405, { error: "Метод не поддерживается." });
       return;
     }
 
@@ -13,7 +13,7 @@ export default async function handler(req, res) {
     json(res, 200, { ok: true });
   } catch (error) {
     json(res, error?.statusCode || 400, {
-      error: error instanceof Error ? error.message : "Unexpected server error."
+      error: error instanceof Error ? error.message : "Непредвиденная ошибка сервера."
     });
   }
 }

@@ -15,7 +15,7 @@ export const config = {
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     res.setHeader("Allow", "POST");
-    json(res, 405, { error: "Method not allowed." });
+    json(res, 405, { error: "Метод не поддерживается." });
     return;
   }
 
@@ -23,7 +23,7 @@ export default async function handler(req, res) {
     const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET || "";
     if (!webhookSecret) {
       json(res, 500, {
-        error: "Stripe webhook secret is missing. Add STRIPE_WEBHOOK_SECRET in Vercel."
+        error: "Отсутствует секрет webhook Stripe. Добавь STRIPE_WEBHOOK_SECRET в Vercel."
       });
       return;
     }
@@ -71,7 +71,7 @@ export default async function handler(req, res) {
     json(res, 200, { received: true });
   } catch (error) {
     json(res, 500, {
-      error: error instanceof Error ? error.message : "Unexpected server error."
+      error: error instanceof Error ? error.message : "Непредвиденная ошибка сервера."
     });
   }
 }
