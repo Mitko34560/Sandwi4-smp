@@ -27,10 +27,10 @@ export default async function handler(req, res) {
     }
 
     res.setHeader("Allow", "GET, POST, DELETE");
-    json(res, 405, { error: "Метод не поддерживается." });
+    json(res, 405, { error: "Методът не се поддържа." });
   } catch (error) {
     json(res, error?.statusCode || 400, {
-      error: error instanceof Error ? error.message : "Непредвиденная ошибка сервера."
+      error: error instanceof Error ? error.message : "Възникна неочаквана сървърна грешка."
     });
   }
 }
@@ -42,7 +42,7 @@ function readJson(req) {
     req.on("data", (chunk) => {
       raw += chunk;
       if (raw.length > 1_000_000) {
-        reject(new Error("Тело запроса слишком большое."));
+        reject(new Error("Тялото на заявката е твърде голямо."));
       }
     });
 
@@ -50,7 +50,7 @@ function readJson(req) {
       try {
         resolve(raw ? JSON.parse(raw) : {});
       } catch {
-        reject(new Error("Некорректный JSON в теле запроса."));
+        reject(new Error("Невалиден JSON в тялото на заявката."));
       }
     });
 

@@ -60,9 +60,9 @@ function bindCopyButtons() {
           throw new Error("Clipboard unavailable");
         }
 
-        button.textContent = "IP скопирован";
+        button.textContent = "IP копиран";
       } catch {
-        button.textContent = "Скопируй IP вручную";
+        button.textContent = "Копирай IP ръчно";
       }
 
       window.setTimeout(() => {
@@ -79,8 +79,8 @@ function bindCheckoutButtons() {
       const originalText = button.textContent;
 
       button.disabled = true;
-      button.textContent = "Переход...";
-      showMessage(checkoutMessage, "Создаём защищённую Stripe Checkout-сессию...", "");
+      button.textContent = "Пренасочване...";
+      showMessage(checkoutMessage, "Създаваме защитена Stripe Checkout сесия...", "");
 
       try {
         const response = await fetch("/api/create-checkout-session", {
@@ -94,14 +94,14 @@ function bindCheckoutButtons() {
         const payload = await response.json();
 
         if (!response.ok || !payload.url) {
-          throw new Error(payload.error || "Не удалось создать Checkout-сессию.");
+          throw new Error(payload.error || "Неуспешно създаване на Checkout сесия.");
         }
 
         window.location.href = payload.url;
       } catch (error) {
         showMessage(
           checkoutMessage,
-          error instanceof Error ? error.message : "Произошла ошибка при соединении со Stripe.",
+          error instanceof Error ? error.message : "Възникна грешка при връзката със Stripe.",
           "error"
         );
         button.disabled = false;
@@ -141,14 +141,14 @@ function bindCheckoutStateMessage() {
   if (checkoutState === "success") {
     showMessage(
       checkoutMessage,
-      "Платёж прошёл успешно. Спасибо за поддержку Sandwi4 SMP.",
+      "Плащането мина успешно. Благодарим ти за подкрепата към Sandwi4 SMP.",
       "success"
     );
     window.history.replaceState({}, document.title, window.location.pathname + window.location.hash);
   } else if (checkoutState === "cancel") {
     showMessage(
       checkoutMessage,
-      "Платёж был отменён или прерван. Ты можешь попробовать снова в любое время.",
+      "Плащането беше отменено или прекъснато. Можеш да опиташ отново по всяко време.",
       "error"
     );
     window.history.replaceState({}, document.title, window.location.pathname + window.location.hash);
@@ -166,15 +166,15 @@ async function loadNewsFeed() {
     const payload = await response.json();
 
     if (!response.ok) {
-      throw new Error(payload.error || "Не удалось загрузить новости.");
+      throw new Error(payload.error || "Новините не можаха да бъдат заредени.");
     }
 
     if (!payload.news.length) {
       newsList.innerHTML = `
         <article class="news-card">
-          <span class="role-tag">Новостей нет</span>
-          <h3>Пока ещё нет опубликованных новостей.</h3>
-          <p>Когда ты опубликуешь первую новость из админ-панели, она появится здесь.</p>
+          <span class="role-tag">Няма новини</span>
+          <h3>Все още няма публикувани новини.</h3>
+          <p>Когато публикуваш първата новина от админ панела, тя ще се появи тук.</p>
         </article>
       `;
       return;
@@ -184,7 +184,7 @@ async function loadNewsFeed() {
       .map(
         (item) => `
           <article class="news-card${item.pinned ? " pinned-card" : ""}">
-            <span class="role-tag">${escapeHtml(item.tag || "Новость")}</span>
+            <span class="role-tag">${escapeHtml(item.tag || "Новина")}</span>
             <h3>${escapeHtml(item.title)}</h3>
             <p>${escapeHtml(item.body)}</p>
             <small>${formatDate(item.createdAt)}</small>
@@ -195,9 +195,9 @@ async function loadNewsFeed() {
   } catch (error) {
     newsList.innerHTML = `
       <article class="news-card">
-        <span class="role-tag">Ошибка</span>
-        <h3>Не удалось загрузить новости.</h3>
-        <p>${escapeHtml(error instanceof Error ? error.message : "Попробуй ещё раз позже.")}</p>
+        <span class="role-tag">Грешка</span>
+        <h3>Новините не можаха да бъдат заредени.</h3>
+        <p>${escapeHtml(error instanceof Error ? error.message : "Опитай отново по-късно.")}</p>
       </article>
     `;
   }
@@ -219,8 +219,8 @@ function bindApplicationForm() {
     const originalText = button.textContent;
 
     button.disabled = true;
-    button.textContent = "Отправка...";
-    showMessage(message, "Отправляем заявку...", "");
+    button.textContent = "Изпращане...";
+    showMessage(message, "Изпращаме заявката...", "");
 
     try {
       const response = await fetch("/api/applications", {
@@ -233,15 +233,15 @@ function bindApplicationForm() {
 
       const payload = await response.json();
       if (!response.ok) {
-        throw new Error(payload.error || "Не удалось отправить заявку.");
+        throw new Error(payload.error || "Заявката не можа да бъде изпратена.");
       }
 
       form.reset();
-      showMessage(message, "Заявка успешно отправлена.", "success");
+      showMessage(message, "Заявката е изпратена успешно.", "success");
     } catch (error) {
       showMessage(
         message,
-        error instanceof Error ? error.message : "Во время отправки произошла ошибка.",
+        error instanceof Error ? error.message : "Възникна грешка при изпращането.",
         "error"
       );
     } finally {
@@ -261,7 +261,7 @@ async function loadAdminNews() {
   const news = payload.news || [];
 
   if (!news.length) {
-    list.innerHTML = `<div class="admin-empty">Пока ещё нет опубликованных новостей.</div>`;
+    list.innerHTML = `<div class="admin-empty">Все още няма публикувани новини.</div>`;
     return;
   }
 
@@ -270,12 +270,12 @@ async function loadAdminNews() {
       (item) => `
         <article class="admin-card">
           <div class="admin-card-head">
-            <span class="role-tag">${escapeHtml(item.tag || "Новость")}</span>
-            <button class="ghost-button" data-delete-news="${item.id}">Удалить</button>
+            <span class="role-tag">${escapeHtml(item.tag || "Новина")}</span>
+            <button class="ghost-button" data-delete-news="${item.id}">Изтрий</button>
           </div>
           <h3>${escapeHtml(item.title)}</h3>
           <p>${escapeHtml(item.body)}</p>
-          <small>${formatDate(item.createdAt)}${item.pinned ? " • Закреплена" : ""}</small>
+          <small>${formatDate(item.createdAt)}${item.pinned ? " • Закачена" : ""}</small>
         </article>
       `
     )
@@ -299,7 +299,7 @@ async function loadAdminNews() {
         const panelMessage = document.getElementById("admin-panel-message");
         showMessage(
           panelMessage,
-          error instanceof Error ? error.message : "Не удалось удалить новость.",
+          error instanceof Error ? error.message : "Новината не можа да бъде изтрита.",
           "error"
         );
       }
@@ -317,7 +317,7 @@ async function loadAdminApplications() {
   const applications = payload.applications || [];
 
   if (!applications.length) {
-    list.innerHTML = `<div class="admin-empty">Пока ещё нет заявок.</div>`;
+    list.innerHTML = `<div class="admin-empty">Все още няма заявки.</div>`;
     return;
   }
 
@@ -330,15 +330,15 @@ async function loadAdminApplications() {
             <span class="status-pill status-${escapeHtml(item.status)}">${labelForStatus(item.status)}</span>
           </div>
           <h3>${escapeHtml(item.minecraftUsername)} • ${escapeHtml(item.discordUsername)}</h3>
-          <p><strong>Возраст:</strong> ${escapeHtml(item.age)} • <strong>Часовой пояс:</strong> ${escapeHtml(item.timezone)}</p>
-          <p><strong>Опыт:</strong> ${escapeHtml(item.experience)}</p>
+          <p><strong>Възраст:</strong> ${escapeHtml(item.age)} • <strong>Часова зона:</strong> ${escapeHtml(item.timezone)}</p>
+          <p><strong>Опит:</strong> ${escapeHtml(item.experience)}</p>
           <p><strong>Мотивация:</strong> ${escapeHtml(item.motivation)}</p>
-          <p><strong>Активность:</strong> ${escapeHtml(item.availability)}</p>
+          <p><strong>Активност:</strong> ${escapeHtml(item.availability)}</p>
           <small>${formatDate(item.submittedAt)}</small>
           <div class="status-actions">
-            <button class="ghost-button" data-status-action="${item.id}" data-status-value="reviewed">Рассмотрена</button>
-            <button class="ghost-button" data-status-action="${item.id}" data-status-value="accepted">Принята</button>
-            <button class="ghost-button" data-status-action="${item.id}" data-status-value="rejected">Отклонена</button>
+            <button class="ghost-button" data-status-action="${item.id}" data-status-value="reviewed">Прегледана</button>
+            <button class="ghost-button" data-status-action="${item.id}" data-status-value="accepted">Приета</button>
+            <button class="ghost-button" data-status-action="${item.id}" data-status-value="rejected">Отхвърлена</button>
           </div>
         </article>
       `
@@ -366,7 +366,7 @@ async function loadAdminApplications() {
         const panelMessage = document.getElementById("admin-panel-message");
         showMessage(
           panelMessage,
-          error instanceof Error ? error.message : "Не удалось изменить статус.",
+          error instanceof Error ? error.message : "Статусът не можа да бъде променен.",
           "error"
         );
       }
@@ -407,7 +407,7 @@ function bindAdminPanel() {
         setAuthenticatedState(false);
         showMessage(
           loginMessage,
-          error instanceof Error ? error.message : "Не удалось загрузить панель.",
+          error instanceof Error ? error.message : "Панелът не можа да бъде зареден.",
           "error"
         );
       });
@@ -431,13 +431,13 @@ function bindAdminPanel() {
       try {
         await verifyAdminPassword(password);
         await showDashboard(password);
-        showMessage(loginMessage, "Вход выполнен успешно.", "success");
+        showMessage(loginMessage, "Влизането е успешно.", "success");
       } catch (error) {
         sessionStorage.removeItem(ADMIN_STORAGE_KEY);
         setAuthenticatedState(false);
         showMessage(
           loginMessage,
-          error instanceof Error ? error.message : "Неверный пароль.",
+          error instanceof Error ? error.message : "Невалидна парола.",
           "error"
         );
       } finally {
@@ -480,7 +480,7 @@ function bindAdminPanel() {
         );
 
         newsForm.reset();
-        showMessage(panelMessage, "Новость опубликована.", "success");
+        showMessage(panelMessage, "Новината е публикувана.", "success");
         await loadAdminNews();
         if (page === "home") {
           await loadNewsFeed();
@@ -488,7 +488,7 @@ function bindAdminPanel() {
       } catch (error) {
         showMessage(
           panelMessage,
-          error instanceof Error ? error.message : "Не удалось опубликовать новость.",
+          error instanceof Error ? error.message : "Новината не можа да бъде публикувана.",
           "error"
         );
       }
@@ -512,7 +512,7 @@ async function fetchAdminJson(url, options = {}, overridePassword = "") {
   }
 
   if (!response.ok) {
-    throw new Error(payload.error || "Неудачный запрос к admin API.");
+    throw new Error(payload.error || "Неуспешна заявка към админ API.");
   }
 
   return payload;
@@ -524,23 +524,23 @@ async function verifyAdminPassword(password) {
 
 function labelForStatus(status) {
   if (status === "accepted") {
-    return "Принята";
+    return "Приета";
   }
 
   if (status === "rejected") {
-    return "Отклонена";
+    return "Отхвърлена";
   }
 
   if (status === "reviewed") {
-    return "Рассмотрена";
+    return "Прегледана";
   }
 
-  return "Ожидает";
+  return "Изчаква";
 }
 
 function labelForPosition(position) {
   if (position === "Helper") {
-    return "Помощник";
+    return "Хелпер";
   }
 
   if (position === "Moderator") {
@@ -548,11 +548,11 @@ function labelForPosition(position) {
   }
 
   if (position === "Admin") {
-    return "Админ";
+    return "Администратор";
   }
 
   if (position === "Builder") {
-    return "Строитель";
+    return "Строител";
   }
 
   return position;
@@ -588,7 +588,7 @@ function showMessage(node, message, tone = "") {
 
 function formatDate(value) {
   try {
-    return new Date(value).toLocaleString("ru-RU", {
+    return new Date(value).toLocaleString("bg-BG", {
       dateStyle: "medium",
       timeStyle: "short"
     });

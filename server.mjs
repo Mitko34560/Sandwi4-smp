@@ -19,14 +19,14 @@ const DATA_DIR = path.join(__dirname, "data");
 const PURCHASES_FILE = path.join(DATA_DIR, "purchases.json");
 
 const PRODUCTS = {
-  SUPREME: { name: "SUPREME", amount: 3999, description: "Sandwi4 SMP donate rank SUPREME" },
-  LEGEND: { name: "LEGEND", amount: 2999, description: "Sandwi4 SMP donate rank LEGEND" },
-  "TITAN+": { name: "TITAN+", amount: 2499, description: "Sandwi4 SMP donate rank TITAN+" },
-  TITAN: { name: "TITAN", amount: 1999, description: "Sandwi4 SMP donate rank TITAN" },
-  "MVP+": { name: "MVP+", amount: 1599, description: "Sandwi4 SMP donate rank MVP+" },
-  MVP: { name: "MVP", amount: 1199, description: "Sandwi4 SMP donate rank MVP" },
-  "VIP+": { name: "VIP+", amount: 799, description: "Sandwi4 SMP donate rank VIP+" },
-  VIP: { name: "VIP", amount: 499, description: "Sandwi4 SMP donate rank VIP" }
+  SUPREME: { name: "SUPREME", amount: 3999, description: "Ранг SUPREME за Sandwi4 SMP" },
+  LEGEND: { name: "LEGEND", amount: 2999, description: "Ранг LEGEND за Sandwi4 SMP" },
+  "TITAN+": { name: "TITAN+", amount: 2499, description: "Ранг TITAN+ за Sandwi4 SMP" },
+  TITAN: { name: "TITAN", amount: 1999, description: "Ранг TITAN за Sandwi4 SMP" },
+  "MVP+": { name: "MVP+", amount: 1599, description: "Ранг MVP+ за Sandwi4 SMP" },
+  MVP: { name: "MVP", amount: 1199, description: "Ранг MVP за Sandwi4 SMP" },
+  "VIP+": { name: "VIP+", amount: 799, description: "Ранг VIP+ за Sandwi4 SMP" },
+  VIP: { name: "VIP", amount: 499, description: "Ранг VIP за Sandwi4 SMP" }
 };
 
 const CONTENT_TYPES = {
@@ -48,7 +48,7 @@ const server = createServer(async (req, res) => {
 
     if (req.method === "POST" && url.pathname === "/api/create-checkout-session") {
       if (!STRIPE_SECRET_KEY) {
-        json(res, 500, { error: "Отсутствует секретный ключ Stripe. Добавь STRIPE_SECRET_KEY в .env." });
+        json(res, 500, { error: "Липсва секретният ключ за Stripe. Добави STRIPE_SECRET_KEY в .env." });
         return;
       }
 
@@ -57,7 +57,7 @@ const server = createServer(async (req, res) => {
       const product = PRODUCTS[rank];
 
       if (!product) {
-        json(res, 400, { error: "Выбран недопустимый ранг." });
+        json(res, 400, { error: "Избраният ранг е невалиден." });
         return;
       }
 
@@ -74,7 +74,7 @@ const server = createServer(async (req, res) => {
 
     if (req.method === "POST" && url.pathname === "/api/stripe-webhook") {
       if (!STRIPE_WEBHOOK_SECRET) {
-        json(res, 500, { error: "Отсутствует секрет webhook Stripe. Добавь STRIPE_WEBHOOK_SECRET в .env." });
+        json(res, 500, { error: "Липсва webhook секретът за Stripe. Добави STRIPE_WEBHOOK_SECRET в .env." });
         return;
       }
 
@@ -101,7 +101,7 @@ const server = createServer(async (req, res) => {
     await serveStatic(req, res, url.pathname);
   } catch (error) {
     json(res, 500, {
-      error: error instanceof Error ? error.message : "Непредвиденная ошибка сервера."
+      error: error instanceof Error ? error.message : "Възникна неочаквана сървърна грешка."
     });
   }
 });
@@ -116,7 +116,7 @@ async function serveStatic(req, res, pathname) {
 
   if (!resolvedPath.startsWith(__dirname) || !existsSync(resolvedPath)) {
     res.writeHead(404, { "Content-Type": "text/plain; charset=utf-8" });
-    res.end("Не найдено");
+    res.end("Не е намерено");
     return;
   }
 
@@ -148,7 +148,7 @@ function readJson(req) {
     req.on("data", (chunk) => {
       raw += chunk;
       if (raw.length > 1_000_000) {
-        reject(new Error("Тело запроса слишком большое."));
+        reject(new Error("Тялото на заявката е твърде голямо."));
       }
     });
 
@@ -156,7 +156,7 @@ function readJson(req) {
       try {
         resolve(raw ? JSON.parse(raw) : {});
       } catch {
-        reject(new Error("Некорректный JSON в теле запроса."));
+        reject(new Error("Невалиден JSON в тялото на заявката."));
       }
     });
 
@@ -174,7 +174,7 @@ function readRawBody(req) {
       total += chunk.length;
 
       if (total > 1_000_000) {
-        reject(new Error("Тело запроса слишком большое."));
+        reject(new Error("Тялото на заявката е твърде голямо."));
       }
     });
 
@@ -262,7 +262,7 @@ function createStripeCheckoutSession({ secretKey, origin, product }) {
             return;
           }
 
-          const message = parsed?.error?.message || "Запрос к Stripe завершился ошибкой.";
+          const message = parsed?.error?.message || "Заявката към Stripe завърши с грешка.";
           reject(new Error(message));
         });
       }
@@ -276,7 +276,7 @@ function createStripeCheckoutSession({ secretKey, origin, product }) {
 
 function verifyStripeSignature({ payload, signature, secret }) {
   if (!signature) {
-    throw new Error("Отсутствует заголовок Stripe-Signature.");
+    throw new Error("Липсва заглавка Stripe-Signature.");
   }
 
   const elements = signature.split(",").map((part) => part.trim());
@@ -286,12 +286,12 @@ function verifyStripeSignature({ payload, signature, secret }) {
     .map((part) => part.slice(3));
 
   if (!timestamp || signatures.length === 0) {
-    throw new Error("Некорректный формат подписи Stripe.");
+    throw new Error("Невалиден формат на Stripe подписа.");
   }
 
   const ageInSeconds = Math.floor(Date.now() / 1000) - Number(timestamp);
   if (!Number.isFinite(ageInSeconds) || Math.abs(ageInSeconds) > 300) {
-    throw new Error("Временная метка подписи Stripe вне допустимого диапазона.");
+    throw new Error("Времевият печат на Stripe подписа е извън допустимия диапазон.");
   }
 
   const signedPayload = `${timestamp}.${payload}`;
@@ -303,7 +303,7 @@ function verifyStripeSignature({ payload, signature, secret }) {
   const isValid = signatures.some((candidate) => safeCompare(expectedSignature, candidate));
 
   if (!isValid) {
-    throw new Error("Не удалось проверить подпись Stripe.");
+    throw new Error("Подписът на Stripe не можа да бъде потвърден.");
   }
 }
 
@@ -328,7 +328,7 @@ async function handleStripeEvent(event) {
 
   const session = event.data?.object;
   if (!session?.id) {
-    throw new Error("В событии Stripe отсутствует checkout session.");
+    throw new Error("В Stripe събитието липсва checkout session.");
   }
 
   const purchases = await readPurchases();

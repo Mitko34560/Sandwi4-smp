@@ -10,14 +10,14 @@ import {
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     res.setHeader("Allow", "POST");
-    json(res, 405, { error: "Метод не поддерживается." });
+    json(res, 405, { error: "Методът не се поддържа." });
     return;
   }
 
   try {
     const secretKey = process.env.STRIPE_SECRET_KEY || "";
     if (!secretKey) {
-      json(res, 500, { error: "Отсутствует секретный ключ Stripe. Добавь STRIPE_SECRET_KEY в Vercel." });
+      json(res, 500, { error: "Липсва секретният ключ за Stripe. Добави STRIPE_SECRET_KEY във Vercel." });
       return;
     }
 
@@ -26,7 +26,7 @@ export default async function handler(req, res) {
     const product = PRODUCTS[rank];
 
     if (!product) {
-      json(res, 400, { error: "Выбран недопустимый ранг." });
+      json(res, 400, { error: "Избраният ранг е невалиден." });
       return;
     }
 
@@ -42,7 +42,7 @@ export default async function handler(req, res) {
     json(res, 200, { url: session.url });
   } catch (error) {
     json(res, 500, {
-      error: error instanceof Error ? error.message : "Непредвиденная ошибка сервера."
+      error: error instanceof Error ? error.message : "Възникна неочаквана сървърна грешка."
     });
   }
 }
