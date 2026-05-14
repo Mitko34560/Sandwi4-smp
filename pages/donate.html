@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate - Sandwi4 SMP</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">
+                <span class="logo-text">Sandwi4</span>
+                <span class="logo-smp">SMP</span>
+            </div>
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item">
+                    <a href="../index.html" class="nav-link" data-page="home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="about.html" class="nav-link" data-page="about">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="rules.html" class="nav-link" data-page="rules">Rules</a>
+                </li>
+                <li class="nav-item">
+                    <a href="team.html" class="nav-link" data-page="team">Team</a>
+                </li>
+                <li class="nav-item">
+                    <a href="donate.html" class="nav-link active" data-page="donate">Donate</a>
+                </li>
+                <li class="nav-item">
+                    <a href="contacts.html" class="nav-link" data-page="contacts">Contacts</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="page-container">
+            <div class="page-header">
+                <h1>Support Our Server</h1>
+                <p>Donation packages with exclusive perks</p>
+            </div>
+
+            <div class="donate-section">
+                <h2>Exclusive Privileges</h2>
+                <div class="packages-grid" id="packagesGrid"></div>
+            </div>
+
+            <div class="about-section" style="margin-top: 4rem;">
+                <h2>How Your Donation Helps</h2>
+                <p>When you donate to Sandwi4 SMP, you directly support the infrastructure that keeps our server running. Your contribution helps us:</p>
+                <ul>
+                    <li>Maintain reliable server hardware and hosting</li>
+                    <li>Fund security and anti-cheat systems</li>
+                    <li>Support staff who moderate and manage the community</li>
+                    <li>Develop new features and improvements</li>
+                    <li>Create and run exciting events for the community</li>
+                    <li>Keep backups and ensure data safety</li>
+                </ul>
+                <p style="margin-top: 1.5rem; color: #6dd700; font-weight: 600;">Important: Donations do not provide gameplay advantages. All privileges are cosmetic or convenience-based only.</p>
+            </div>
+
+            <div class="about-section">
+                <h2>Payment Methods</h2>
+                <p>We accept various payment methods for your convenience:</p>
+                <ul>
+                    <li>PayPal</li>
+                    <li>Credit/Debit Cards (Visa, MasterCard, American Express)</li>
+                    <li>Google Pay</li>
+                    <li>Apple Pay</li>
+                </ul>
+                <p style="margin-top: 1.5rem;">All transactions are secure and processed by trusted payment providers. You'll receive your in-game rewards immediately after payment confirmation.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Sandwi4 SMP</h4>
+                <p>A premium Minecraft SMP community</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="rules.html">Rules</a>
+                <a href="team.html">Team</a>
+                <a href="donate.html">Donate</a>
+                <a href="contacts.html">Contacts</a>
+            </div>
+            <div class="footer-section">
+                <h4>Community</h4>
+                <p>Discord: sandwi4.gg</p>
+                <p>Email: admin@sandwi4.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024-2026 Sandwi4 SMP. All rights reserved. Minecraft is a trademark of Mojang Studios.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const donationData = JSON.parse(localStorage.getItem('donationData')) || [
+                { id: 1, name: 'Supporter', price: '$4.99', features: ['Custom Prefix', '10 Days VIP', 'Vote Rewards'], popular: false },
+                { id: 2, name: 'VIP', price: '$9.99', features: ['Custom Prefix', 'Priority Queue', '30 Days VIP', 'Exclusive Items', 'Monthly Rewards'], popular: true },
+                { id: 3, name: 'Premium', price: '$24.99', features: ['All VIP Features', 'Custom Skin', 'Admin Shop Access', 'Lifetime VIP', 'Special Cosmetics'] }
+            ];
+
+            const container = document.getElementById('packagesGrid');
+            container.innerHTML = donationData.map((pkg, index) => `
+                <div class="package-card ${pkg.popular ? 'featured' : ''}" style="animation-delay: ${index * 0.1}s;">
+                    ${pkg.popular ? '<div class="package-badge">Most Popular</div>' : ''}
+                    <div class="package-name">${pkg.name}</div>
+                    <div class="package-price">${pkg.price}<small>/month</small></div>
+                    <div class="package-description">All features included</div>
+                    <ul class="package-features">
+                        ${pkg.features.map(feature => `<li>${feature}</li>`).join('')}
+                    </ul>
+                    <button class="package-button" onclick="purchasePackage('${pkg.name}')">Purchase Now</button>
+                </div>
+            `).join('');
+        });
+
+        function purchasePackage(packageName) {
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.textContent = `Thank you! You're being redirected to payment for ${packageName}...`;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.remove();
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

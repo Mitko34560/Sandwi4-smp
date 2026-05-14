@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Sandwi4 SMP</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="admin-wrapper">
+        <div class="admin-container">
+            <!-- LOGIN FORM -->
+            <div id="adminLoginForm" class="admin-login">
+                <h1>Admin Panel</h1>
+                <form onsubmit="adminLogin(event)">
+                    <div class="form-group">
+                        <label for="adminUsername">Username</label>
+                        <input type="text" id="adminUsername" placeholder="Enter username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="adminPassword">Password</label>
+                        <input type="password" id="adminPassword" placeholder="Enter password" required>
+                    </div>
+                    <button type="submit" style="width: 100%; padding: 0.9rem; background: linear-gradient(135deg, #1aa700, #2dd700); border: none; border-radius: 8px; color: white; font-weight: 700; cursor: pointer; transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 1px;">Login</button>
+                </form>
+            </div>
+
+            <!-- DASHBOARD -->
+            <div id="adminDashboard" style="display: none;">
+                <div class="admin-header">
+                    <h1>Admin Dashboard</h1>
+                    <button class="admin-logout" onclick="adminLogout()">Logout</button>
+                </div>
+
+                <!-- NAVIGATION TABS -->
+                <div class="admin-nav">
+                    <button class="admin-nav-btn active" data-section="news">News</button>
+                    <button class="admin-nav-btn" data-section="server">Server</button>
+                    <button class="admin-nav-btn" data-section="team">Team</button>
+                    <button class="admin-nav-btn" data-section="rules">Rules</button>
+                    <button class="admin-nav-btn" data-section="donations">Donations</button>
+                </div>
+
+                <!-- NEWS SECTION -->
+                <div id="news" class="admin-section active">
+                    <div id="newsContent"></div>
+                </div>
+
+                <!-- SERVER SECTION -->
+                <div id="server" class="admin-section">
+                    <div id="serverContent"></div>
+                </div>
+
+                <!-- TEAM SECTION -->
+                <div id="team" class="admin-section">
+                    <div id="teamContent"></div>
+                </div>
+
+                <!-- RULES SECTION -->
+                <div id="rules" class="admin-section">
+                    <div id="rulesContent"></div>
+                </div>
+
+                <!-- DONATIONS SECTION -->
+                <div id="donations" class="admin-section">
+                    <div id="donationsContent"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

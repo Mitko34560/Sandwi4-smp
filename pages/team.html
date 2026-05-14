@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team - Sandwi4 SMP</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">
+                <span class="logo-text">Sandwi4</span>
+                <span class="logo-smp">SMP</span>
+            </div>
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item">
+                    <a href="../index.html" class="nav-link" data-page="home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="about.html" class="nav-link" data-page="about">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="rules.html" class="nav-link" data-page="rules">Rules</a>
+                </li>
+                <li class="nav-item">
+                    <a href="team.html" class="nav-link active" data-page="team">Team</a>
+                </li>
+                <li class="nav-item">
+                    <a href="donate.html" class="nav-link" data-page="donate">Donate</a>
+                </li>
+                <li class="nav-item">
+                    <a href="contacts.html" class="nav-link" data-page="contacts">Contacts</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="page-container">
+            <div class="page-header">
+                <h1>Our Team</h1>
+                <p>Meet the people who keep Sandwi4 SMP running</p>
+            </div>
+
+            <div class="team-section">
+                <h2>Owners</h2>
+                <div class="team-grid" id="ownerGrid"></div>
+            </div>
+
+            <div class="team-section">
+                <h2>Administrators</h2>
+                <div class="team-grid" id="adminGrid"></div>
+            </div>
+
+            <div class="team-section">
+                <h2>Support Team</h2>
+                <div class="team-grid" id="helperGrid"></div>
+            </div>
+
+            <div class="about-section" style="margin-top: 4rem;">
+                <h2>Join Our Team</h2>
+                <p>Are you interested in joining the Sandwi4 SMP team? We are always looking for dedicated players who are passionate about the community. Whether you're interested in becoming a moderator, helper, or contributing in other ways, we'd love to hear from you.</p>
+                <p>Please reach out to our admin team through Discord or via email. Tell us about your experience and why you'd like to join our team. We value enthusiasm, responsibility, and a genuine passion for helping others enjoy the server.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Sandwi4 SMP</h4>
+                <p>A premium Minecraft SMP community</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="rules.html">Rules</a>
+                <a href="team.html">Team</a>
+                <a href="donate.html">Donate</a>
+                <a href="contacts.html">Contacts</a>
+            </div>
+            <div class="footer-section">
+                <h4>Community</h4>
+                <p>Discord: sandwi4.gg</p>
+                <p>Email: admin@sandwi4.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024-2026 Sandwi4 SMP. All rights reserved. Minecraft is a trademark of Mojang Studios.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const teamData = JSON.parse(localStorage.getItem('teamData')) || [
+                { id: 1, name: 'MitachetoTW', role: 'Owner', desc: 'Founder and Lead Developer', avatar: 'O' },
+                { id: 2, name: 'Kraskata1407', role: 'Owner', desc: 'Server Manager', avatar: 'K' },
+                { id: 3, name: 'FlameBanan4o', role: 'Owner', desc: 'Community Manager', avatar: 'F' },
+                { id: 4, name: 'Patika126', role: 'Admin', desc: 'Moderator and Builder', avatar: 'P' },
+                { id: 5, name: 'MrHamster', role: 'Helper', desc: 'Support Staff', avatar: 'M' }
+            ];
+
+            const renderTeamGrid = (role, containerId) => {
+                const container = document.getElementById(containerId);
+                const filtered = teamData.filter(member => member.role === role);
+                container.innerHTML = filtered.map((member, index) => `
+                    <div class="team-card" style="animation-delay: ${index * 0.1}s;">
+                        <div class="team-avatar">${member.avatar}</div>
+                        <div class="team-name">${member.name}</div>
+                        <div class="team-role">${member.role}</div>
+                        <div class="team-desc">${member.desc}</div>
+                        <div class="team-social">
+                            <a href="#" class="social-icon">DC</a>
+                            <a href="#" class="social-icon">YT</a>
+                        </div>
+                    </div>
+                `).join('');
+            };
+
+            renderTeamGrid('Owner', 'ownerGrid');
+            renderTeamGrid('Admin', 'adminGrid');
+            renderTeamGrid('Helper', 'helperGrid');
+        });
+    </script>
+</body>
+</html>
