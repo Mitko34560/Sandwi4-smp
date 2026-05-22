@@ -1,22 +1,27 @@
 const DEFAULT_SETTINGS = {
-  ip: "play.sandwi4smp.bg",
+  ip: "mc.sandwi4smp.xyz",
   status: "Онлайн",
-  version: "1.20.1 - 1.21.x",
-  season: "Сезон 1",
+  version: "1.21.11 - 26.1",
   newsTitle: "Откриване на Sandwi4 SMP",
   newsText: "Сървърът стартира с survival свят, spawn зона, правила и първи community event. Подготви си кирка, храна и добра идея за база.",
-  adminName: "Отворена позиция",
-  builderName: "Community",
+  ownerName: "Mitacheto",
+  adminName: "Boris_131",
   voteOne: "Портал за публикуване и гласуване за Minecraft сървъри.",
   voteTwo: "Международен server list за SMP общности и vote кампании."
 };
 
 const SETTINGS_KEY = "sandwi4-smp-settings";
+const SETTINGS_VERSION_KEY = "sandwi4-smp-settings-version";
+const SETTINGS_VERSION = "2026-05-23-clean-urls";
 const SESSION_KEY = "sandwi4-vault-session";
 const LOGIN_HASH = "8782d20ced0218074cbce425e6ef92aa4282aba337149bb3732644456a5d37fe";
 
 const readSettings = () => {
   try {
+    if (localStorage.getItem(SETTINGS_VERSION_KEY) !== SETTINGS_VERSION) {
+      localStorage.removeItem(SETTINGS_KEY);
+      localStorage.setItem(SETTINGS_VERSION_KEY, SETTINGS_VERSION);
+    }
     return { ...DEFAULT_SETTINGS, ...JSON.parse(localStorage.getItem(SETTINGS_KEY) || "{}") };
   } catch {
     return DEFAULT_SETTINGS;
@@ -24,6 +29,7 @@ const readSettings = () => {
 };
 
 const saveSettings = (settings) => {
+  localStorage.setItem(SETTINGS_VERSION_KEY, SETTINGS_VERSION);
   localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
 };
 
@@ -109,6 +115,7 @@ const initAdmin = () => {
 
   document.querySelector("[data-reset-settings]")?.addEventListener("click", () => {
     localStorage.removeItem(SETTINGS_KEY);
+    localStorage.setItem(SETTINGS_VERSION_KEY, SETTINGS_VERSION);
     fillForm();
     showToast("Върнати начални стойности");
   });

@@ -8,7 +8,7 @@ Static GitHub Pages website for the Sandwi4 SMP Minecraft server.
 - `server.html` - server information
 - `rules.html` - rules
 - `team.html` - staff
-- `vote.html` - vote/server-list links
+- `vote/index.html` - vote/server-list links, available as `/vote`
 - `sandwi4-vault.html` - hidden admin panel
 
 ## Admin Login
