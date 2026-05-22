@@ -1,93 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="bg">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rules - Sandwi4 SMP</title>
-    <link rel="stylesheet" href="../css/styles.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Правила | Sandwi4 SMP</title>
+  <link rel="icon" href="assets/sandwi4-logo.png">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="navbar-container">
-            <div class="navbar-logo">
-                <span class="logo-text">Sandwi4</span>
-                <span class="logo-smp">SMP</span>
-            </div>
-            <div class="nav-toggle" id="navToggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <ul class="nav-menu" id="navMenu">
-                <li class="nav-item">
-                    <a href="../index.html" class="nav-link" data-page="home">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a href="about.html" class="nav-link" data-page="about">About</a>
-                </li>
-                <li class="nav-item">
-                    <a href="rules.html" class="nav-link active" data-page="rules">Rules</a>
-                </li>
-                <li class="nav-item">
-                    <a href="team.html" class="nav-link" data-page="team">Team</a>
-                </li>
-                <li class="nav-item">
-                    <a href="donate.html" class="nav-link" data-page="donate">Donate</a>
-                </li>
-                <li class="nav-item">
-                    <a href="contacts.html" class="nav-link" data-page="contacts">Contacts</a>
-                </li>
-            </ul>
-        </div>
+  <header class="site-header">
+    <a class="brand" href="index.html"><img src="assets/sandwi4-logo.png" alt="Sandwi4 SMP"><span>Sandwi4 SMP</span></a>
+    <button class="nav-toggle" aria-label="Отвори меню" data-nav-toggle>☰</button>
+    <nav class="site-nav" data-nav>
+      <a href="index.html">Начало</a><a href="server.html">Сървър</a><a href="rules.html" class="active">Правила</a><a href="team.html">Екип</a><a href="vote.html">Vote</a>
     </nav>
-
-    <main class="main-content">
-        <div class="page-container">
-            <div class="page-header">
-                <h1>Server Rules</h1>
-                <p>Keep our community safe and fun for everyone</p>
-            </div>
-
-            <div class="rules-list"></div>
-
-            <div class="about-section" style="margin-top: 4rem;">
-                <h2>Punishments</h2>
-                <p>Rule violations are handled progressively based on the severity and frequency of offenses:</p>
-                <ul>
-                    <li>First offense: Warning in chat or DM</li>
-                    <li>Second offense: 1-3 day temporary ban</li>
-                    <li>Third offense: 7 day temporary ban</li>
-                    <li>Severe offenses: Permanent ban (appeals available after 30 days)</li>
-                </ul>
-                <p style="margin-top: 1.5rem;">The admin team has the final say in all moderation decisions. If you believe a punishment was unjust, you can appeal through our Discord server.</p>
-            </div>
-        </div>
-    </main>
-
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h4>Sandwi4 SMP</h4>
-                <p>A premium Minecraft SMP community</p>
-            </div>
-            <div class="footer-section">
-                <h4>Quick Links</h4>
-                <a href="rules.html">Rules</a>
-                <a href="team.html">Team</a>
-                <a href="donate.html">Donate</a>
-                <a href="contacts.html">Contacts</a>
-            </div>
-            <div class="footer-section">
-                <h4>Community</h4>
-                <p>Discord: sandwi4.gg</p>
-                <p>Email: admin@sandwi4.com</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024-2026 Sandwi4 SMP. All rights reserved. Minecraft is a trademark of Mojang Studios.</p>
-        </div>
-    </footer>
-
-    <script src="../js/app.js"></script>
+  </header>
+  <main class="page">
+    <section class="page-hero reveal">
+      <p class="eyebrow">Fair play</p>
+      <h1>Правила на Sandwi4 SMP</h1>
+      <p>Кратки, ясни и направени, за да пазят survival усещането честно.</p>
+    </section>
+    <section class="rules-list">
+      <article class="rule reveal"><strong>01</strong><div><h2>Без grief и кражби</h2><p>Не руши, не взимай чужди ресурси и не променяй чужди бази без разрешение.</p></div></article>
+      <article class="rule reveal"><strong>02</strong><div><h2>Без cheat клиенти</h2><p>X-ray, fly, kill aura, duping и автоматизации за нечестно предимство водят до ban.</p></div></article>
+      <article class="rule reveal"><strong>03</strong><div><h2>Уважение в чата</h2><p>Без обиди, spam, токсичност и провокации. Споровете се решават през екипа.</p></div></article>
+      <article class="rule reveal"><strong>04</strong><div><h2>Пази performance-а</h2><p>Големи ферми, redstone машини и mobs трябва да са оптимизирани и изключваеми.</p></div></article>
+    </section>
+  </main>
+  <footer class="site-footer"><span>© 2026 Sandwi4 SMP</span><span class="footer-dot">Играем честно</span></footer>
+  <script src="js/site.js"></script>
 </body>
 </html>
