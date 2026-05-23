@@ -12,7 +12,7 @@ const DEFAULT_SETTINGS = {
 
 const SETTINGS_KEY = "sandwi4-smp-settings";
 const SETTINGS_VERSION_KEY = "sandwi4-smp-settings-version";
-const SETTINGS_VERSION = "2026-05-23-clean-urls";
+const SETTINGS_VERSION = "2026-05-23-motion-refresh";
 const SESSION_KEY = "sandwi4-vault-session";
 const LOGIN_HASH = "8782d20ced0218074cbce425e6ef92aa4282aba337149bb3732644456a5d37fe";
 
@@ -126,6 +126,77 @@ const initAdmin = () => {
   });
 };
 
+const initMotion = () => {
+  document.body.classList.add("motion-ready");
+
+  const progress = document.createElement("div");
+  progress.className = "scroll-progress";
+  progress.setAttribute("aria-hidden", "true");
+  document.body.prepend(progress);
+
+  window.addEventListener("scroll", () => {
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const value = max > 0 ? (window.scrollY / max) * 100 : 0;
+    progress.style.setProperty("--progress", `${value}%`);
+  }, { passive: true });
+
+  window.addEventListener("pointermove", (event) => {
+    document.body.style.setProperty("--mouse-x", `${(event.clientX / window.innerWidth) * 100}%`);
+    document.body.style.setProperty("--mouse-y", `${(event.clientY / window.innerHeight) * 100}%`);
+  }, { passive: true });
+
+  const layer = document.createElement("div");
+  layer.className = "pixel-field";
+  layer.setAttribute("aria-hidden", "true");
+  for (let i = 0; i < 26; i += 1) {
+    const pixel = document.createElement("span");
+    pixel.style.setProperty("--x", `${Math.random() * 100}%`);
+    pixel.style.setProperty("--delay", `${Math.random() * 7}s`);
+    pixel.style.setProperty("--size", `${6 + Math.random() * 12}px`);
+    pixel.style.setProperty("--speed", `${7 + Math.random() * 8}s`);
+    layer.append(pixel);
+  }
+  document.body.prepend(layer);
+
+  const cards = document.querySelectorAll(".feature, .member, .vote-card, .detail, .connect-card, .admin-login, .admin-panel, .news-panel, .rule, .timeline");
+  cards.forEach((card) => {
+    card.addEventListener("pointermove", (event) => {
+      const rect = card.getBoundingClientRect();
+      const x = ((event.clientX - rect.left) / rect.width - 0.5) * 10;
+      const y = ((event.clientY - rect.top) / rect.height - 0.5) * -10;
+      card.style.setProperty("--tilt-x", `${y}deg`);
+      card.style.setProperty("--tilt-y", `${x}deg`);
+      card.style.setProperty("--shine-x", `${event.clientX - rect.left}px`);
+      card.style.setProperty("--shine-y", `${event.clientY - rect.top}px`);
+    });
+    card.addEventListener("pointerleave", () => {
+      card.style.setProperty("--tilt-x", "0deg");
+      card.style.setProperty("--tilt-y", "0deg");
+    });
+  });
+
+  document.querySelectorAll(".primary-btn, .ghost-btn, .nav-toggle, .site-nav a").forEach((button) => {
+    button.addEventListener("click", (event) => {
+      const ripple = document.createElement("span");
+      const rect = button.getBoundingClientRect();
+      ripple.className = "ripple";
+      ripple.style.left = `${event.clientX - rect.left}px`;
+      ripple.style.top = `${event.clientY - rect.top}px`;
+      button.append(ripple);
+      setTimeout(() => ripple.remove(), 650);
+    });
+  });
+
+  document.querySelectorAll(".site-nav a").forEach((link) => {
+    const url = new URL(link.href, location.href);
+    const current = location.pathname.replace(/\/index\.html$/, "/");
+    const target = url.pathname.replace(/\/index\.html$/, "/");
+    if (target === current || (current === "/vote/" && target.endsWith("/vote"))) {
+      link.classList.add("active");
+    }
+  });
+};
+
 document.querySelector("[data-nav-toggle]")?.addEventListener("click", () => {
   document.querySelector("[data-nav]")?.classList.toggle("open");
 });
@@ -143,3 +214,4 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll(".reveal").forEach((node) => observer.observe(node));
 applySettings();
 initAdmin();
+initMotion();
