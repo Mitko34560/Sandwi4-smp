@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кандидатстване за Екипа — Sandwi4 SMP</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Кандидатствай за член на екипа (Staff) на Minecraft сървъра Sandwi4 SMP. Попълни формуляра и стани част от нашия екип!">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="assets/logo.jpg">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <header class="site-header" id="main-header">
+        <div class="container header-container">
+            <a href="index.html" class="logo-wrapper" id="nav-logo-link">
+                <img src="assets/logo.jpg" alt="Sandwi4 SMP Лого" class="nav-logo" id="nav-logo-img">
+                <span class="logo-text">Sandwi4 <span class="accent-text">SMP</span></span>
+            </a>
+            
+            <nav class="main-navigation" id="main-nav">
+                <ul class="nav-menu" id="nav-menu-list">
+                    <li><a href="index.html#hero" class="nav-link" id="link-hero">Начало</a></li>
+                    <li><a href="index.html#about" class="nav-link" id="link-about">За сървъра</a></li>
+                    <li><a href="index.html#rules" class="nav-link" id="link-rules">Правила</a></li>
+                    <li><a href="index.html#join" class="nav-link" id="link-join">Как се влиза</a></li>
+                    <li><a href="#" class="nav-link active" id="link-apply">Кандидатствай</a></li>
+                    <li><a href="https://dsc.gg/sandwi4-smp" target="_blank" class="nav-link discord-nav-btn" id="link-discord-join">
+                        <svg class="discord-icon" viewBox="0 0 127.14 96.36" fill="currentColor">
+                            <path d="M107.7,8.07A105.15,105.15,0,0,0,77.26,0a77.19,77.19,0,0,0-3.3,6.83A96.67,96.67,0,0,0,53.22,6.83,77.19,77.19,0,0,0,49.88,0,105.15,105.15,0,0,0,19.44,8.07C3.66,31.58-1.86,54.65,1,77.53A105.73,105.73,0,0,0,32,96.36a77.7,77.7,0,0,0,6.63-10.85,68.43,68.43,0,0,1-10.5-5c.89-.65,1.76-1.34,2.58-2.06a75.48,75.48,0,0,0,72.77,0c.82.72,1.69,1.41,2.58,2.06a68.43,68.43,0,0,1-10.5,5,77.7,77.7,0,0,0,6.63,10.85,105.73,105.73,0,0,0,31.06-18.83C129.83,48.54,123.63,25.86,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53S36.18,40.36,42.45,40.36,53.9,46,53.9,53,48.72,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.24,60,73.24,53S78.41,40.36,84.69,40.36,96.14,46,96.14,53,91,65.69,84.69,65.69Z"/>
+                        </svg>
+                        Discord
+                    </a></li>
+                </ul>
+            </nav>
+            
+            <button class="hamburger-menu" id="mobile-menu-btn" aria-label="Меню">
+                <span class="hamburger-bar"></span>
+                <span class="hamburger-bar"></span>
+                <span class="hamburger-bar"></span>
+            </button>
+        </div>
+    </header>
+    
+    <!-- Application Section -->
+    <main>
+        <section class="apply-section">
+            <div class="container apply-container">
+                <div class="apply-card">
+                    <div class="apply-card-header">
+                        <h2>Стани част от екипа!</h2>
+                        <p>Попълнете формата по-долу с общо 12-те въпроса, за да кандидатствате за Staff член на Sandwi4 SMP. Отговаряйте честно и изчерпателно.</p>
+                    </div>
+                    
+                    <form class="apply-form" id="staff-apply-form">
+                        <!-- Q1: Име и Фамилия -->
+                        <div class="form-group">
+                            <label for="full-name">1. Вашето име *</label>
+                            <input type="text" id="full-name" required placeholder="Иван">
+                        </div>
+                        
+                        <!-- Q2: Minecraft Username -->
+                        <div class="form-group">
+                            <label for="mc-username">2. Minecraft Username (IGN) *</label>
+                            <input type="text" id="mc-username" required placeholder="MitachetoTW">
+                        </div>
+                        
+                        <!-- Q3: Discord Username -->
+                        <div class="form-group">
+                            <label for="discord-username">3. Discord потребителско име *</label>
+                            <input type="text" id="discord-username" required placeholder="mitaka_tw">
+                        </div>
+                        
+                        <!-- Q4: Възраст -->
+                        <div class="form-group">
+                            <label for="age">4. Вашата възраст (години) *</label>
+                            <input type="number" id="age" min="10" max="99" required placeholder="16">
+                        </div>
+                        
+                        <!-- Q5: Ранг -->
+                        <div class="form-group full-width">
+                            <label for="rank">5. За кой ранг кандидатствате? *</label>
+                            <select id="rank" required>
+                                <option value="" disabled selected>Изберете ранг...</option>
+                                <option value="Helper">Хелпър (Helper) — Помага на играчите с въпроси в чата</option>
+                                <option value="Moderator">Модератор (Moderator) — Следи за реда и налага наказания</option>
+                                <option value="Admin">Администратор (Admin) — Грижи се за цялостната структура</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Q6: Опит в MC и сървъра -->
+                        <div class="form-group full-width">
+                            <label for="mc-experience">6. От колко време играете Minecraft и кога се присъединихте към Sandwi4 SMP? *</label>
+                            <textarea id="mc-experience" required placeholder="Играя Minecraft от 5 години, а в Sandwi4 SMP влязох преди 3 месеца..."></textarea>
+                        </div>
+                        
+                        <!-- Q7: Стафф опит -->
+                        <div class="form-group full-width">
+                            <label for="staff-experience">7. Имате ли предишен опит като член на екипа в други сървъри? (Ако да, посочете къде) *</label>
+                            <textarea id="staff-experience" required placeholder="Да, бях хелпър в един малък SMP сървър за около половин година..."></textarea>
+                        </div>
+                        
+                        <!-- Q8: Време за сървъра -->
+                        <div class="form-group">
+                            <label for="online-time">8. Колко време можете да отделяте за сървъра? *</label>
+                            <input type="text" id="online-time" required placeholder="Около 2-3 часа на ден, общо 15-20 часа седмично">
+                        </div>
+                        
+                        <!-- Q9: Микрофон & Дискорд -->
+                        <div class="form-group">
+                            <label for="has-mic">9. Имате ли работещ микрофон и възможност за разговор? *</label>
+                            <select id="has-mic" required>
+                                <option value="" disabled selected>Изберете опция...</option>
+                                <option value="Да">Да, имам микрофон и мога да говоря в Discord</option>
+                                <option value="Не">Не, нямам възможност/микрофон</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Q10: Мотивация -->
+                        <div class="form-group full-width">
+                            <label for="motivation">10. Защо искате да станете част от екипа на Sandwi4 SMP? *</label>
+                            <textarea id="motivation" required placeholder="Искам да помогна за развитието на сървъра, да предотвратявам нарушаването на правилата и да направя престоя на новите играчи по-приятен..."></textarea>
+                        </div>
+                        
+                        <!-- Q11: Конфликтна ситуация (Казус) -->
+                        <div class="form-group full-width">
+                            <label for="case-scenario">11. Как бихте реагирали, ако откриете играч да нарушава правилата (грифинг или токсичност в чата)? *</label>
+                            <textarea id="case-scenario" required placeholder="Първо бих направил доказателство (снимка/клип). Ако е токсичен в чата, ще му дам устно предупреждение, а при повторение ще го заглуша (mute). Ако грифи, ще съобщя на по-висока позиция за бан..."></textarea>
+                        </div>
+                        
+                        <!-- Q12: Уникалност -->
+                        <div class="form-group full-width">
+                            <label for="uniqueness">12. Какво ви отличава от останалите кандидати и защо трябва да изберем точно вас? *</label>
+                            <textarea id="uniqueness" required placeholder="Аз съм много спокоен, обективен и справедлив. Умея да разрешавам конфликти без напрежение и имам желание за работа в екип..."></textarea>
+                        </div>
+                        
+                        <!-- Submit -->
+                        <div class="form-submit-wrapper">
+                            <button type="submit" class="btn btn-primary" id="btn-submit-app">Изпрати Кандидатурата</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Success Toast Notification -->
+    <div class="toast-notification" id="app-success-toast">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+        <span class="toast-text" id="toast-message">Кандидатурата е изпратена успешно!</span>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="site-footer" id="main-footer">
+        <div class="container footer-container">
+            <div class="footer-brand">
+                <a href="index.html" class="logo-wrapper">
+                    <img src="assets/logo.jpg" alt="Sandwi4 SMP Лого" class="footer-logo">
+                    <span class="logo-text">Sandwi4 <span class="accent-text">SMP</span></span>
+                </a>
+                <p class="footer-desc">Премиум Minecraft сървър за оцеляване, изграден от общността за общността. Започни своето приключение сега!</p>
+            </div>
+            
+            <div class="footer-links-group">
+                <h4>Бързи Връзки</h4>
+                <ul>
+                    <li><a href="index.html#hero">Начало</a></li>
+                    <li><a href="index.html#about">За сървъра</a></li>
+                    <li><a href="index.html#rules">Правила</a></li>
+                    <li><a href="index.html#join">Как се влиза</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-socials">
+                <h4>Последвай ни</h4>
+                <div class="social-icons">
+                    <a href="https://dsc.gg/sandwi4-smp" target="_blank" aria-label="Discord">
+                        <svg viewBox="0 0 127.14 96.36" fill="currentColor">
+                            <path d="M107.7,8.07A105.15,105.15,0,0,0,77.26,0a77.19,77.19,0,0,0-3.3,6.83A96.67,96.67,0,0,0,53.22,6.83,77.19,77.19,0,0,0,49.88,0,105.15,105.15,0,0,0,19.44,8.07C3.66,31.58-1.86,54.65,1,77.53A105.73,105.73,0,0,0,32,96.36a77.7,77.7,0,0,0,6.63-10.85,68.43,68.43,0,0,1-10.5-5c.89-.65,1.76-1.34,2.58-2.06a75.48,75.48,0,0,0,72.77,0c.82.72,1.69,1.41,2.58,2.06a68.43,68.43,0,0,1-10.5,5,77.7,77.7,0,0,0,6.63,10.85,105.73,105.73,0,0,0,31.06-18.83C129.83,48.54,123.63,25.86,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53S36.18,40.36,42.45,40.36,53.9,46,53.9,53,48.72,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.24,60,73.24,53S78.41,40.36,84.69,40.36,96.14,46,96.14,53,91,65.69,84.69,65.69Z"/>
+                        </svg>
+                    </a>
+                    <a href="https://youtube.com/" target="_blank" aria-label="YouTube">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path>
+                            <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="container footer-bottom-container">
+                <p>&copy; 2026 Sandwi4 SMP. Всички права запазени. Този сайт не е свързан с Mojang Studios или Microsoft.</p>
+                <p class="developer-credit">Дизайн с 🧡 от MitachetoTW</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Logic script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- DISCORD WEBHOOK INTEGRATION (OPTIONAL) ---
+            // Paste your Discord Webhook URL here to receive applications in your Discord channel!
+            const DISCORD_WEBHOOK_URL = ''; 
+
+            // --- MOBILE MENU TOGGLE ---
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mainNav = document.getElementById('main-nav');
+            if (mobileMenuBtn && mainNav) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    mobileMenuBtn.classList.toggle('open');
+                    mainNav.classList.toggle('open');
+                });
+            }
+
+            // --- FORM SUBMISSION ---
+            const applyForm = document.getElementById('staff-apply-form');
+            const successToast = document.getElementById('app-success-toast');
+            const toastText = document.getElementById('toast-message');
+
+            if (applyForm && successToast) {
+                applyForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+
+                    const submitButton = document.getElementById('btn-submit-app');
+                    submitButton.disabled = true;
+                    submitButton.textContent = 'Изпращане...';
+
+                    // Collect values
+                    const fullName = document.getElementById('full-name').value;
+                    const mcUser = document.getElementById('mc-username').value;
+                    const discordUser = document.getElementById('discord-username').value;
+                    const ageVal = document.getElementById('age').value;
+                    const rankVal = document.getElementById('rank').value;
+                    const mcExp = document.getElementById('mc-experience').value;
+                    const staffExp = document.getElementById('staff-experience').value;
+                    const timeVal = document.getElementById('online-time').value;
+                    const micVal = document.getElementById('has-mic').value;
+                    const motivationVal = document.getElementById('motivation').value;
+                    const caseVal = document.getElementById('case-scenario').value;
+                    const uniqueVal = document.getElementById('uniqueness').value;
+
+                    // Discord Webhook Payload
+                    const payload = {
+                        username: "Sandwi4 SMP Staff Bot",
+                        avatar_url: "https://play.sandwi4smp.com/assets/logo.jpg", // fallback logo url
+                        embeds: [{
+                            title: "Нова кандидатура за Staff екипа!",
+                            color: 15959318, // HSL primary color converted to Decimal (orange)
+                            fields: [
+                                { name: "1. Име и Фамилия", value: fullName, inline: true },
+                                { name: "2. Minecraft IGN", value: mcUser, inline: true },
+                                { name: "3. Discord Username", value: discordUser, inline: true },
+                                { name: "4. Възраст", value: ageVal + " години", inline: true },
+                                { name: "5. Желан Ранг", value: rankVal, inline: true },
+                                { name: "8. Време за отделяне", value: timeVal, inline: true },
+                                { name: "9. Работещ микрофон?", value: micVal, inline: true },
+                                { name: "6. Опит в Minecraft & Сървъра", value: mcExp },
+                                { name: "7. Предишен опит в други екипи", value: staffExp },
+                                { name: "10. Мотивация за присъединяване", value: motivationVal },
+                                { name: "11. Казус (Реакция срещу грифинг/токсичност)", value: caseVal },
+                                { name: "12. Какво го отличава от другите", value: uniqueVal }
+                            ],
+                            timestamp: new Date().toISOString()
+                        }]
+                    };
+
+                    // Create application object for LocalStorage
+                    const application = {
+                        id: Date.now(),
+                        date: new Date().toLocaleDateString('bg-BG') + ' ' + new Date().toLocaleTimeString('bg-BG'),
+                        status: 'new', // new, approved, rejected
+                        data: {
+                            fullName,
+                            mcUser,
+                            discordUser,
+                            ageVal,
+                            rankVal,
+                            mcExp,
+                            staffExp,
+                            timeVal,
+                            micVal,
+                            motivationVal,
+                            caseVal,
+                            uniqueVal
+                        }
+                    };
+
+                    // Save to localStorage
+                    const apps = JSON.parse(localStorage.getItem('smp_applications') || '[]');
+                    apps.push(application);
+                    localStorage.setItem('smp_applications', JSON.stringify(apps));
+
+                    if (DISCORD_WEBHOOK_URL && DISCORD_WEBHOOK_URL.trim() !== '') {
+                        try {
+                            const response = await fetch(DISCORD_WEBHOOK_URL, {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify(payload)
+                            });
+
+                            if (response.ok) {
+                                showToast('Кандидатурата е изпратена успешно в Discord!');
+                                applyForm.reset();
+                            } else {
+                                throw new Error('Failed to submit webhook');
+                            }
+                        } catch (err) {
+                            console.error('Webhook error: ', err);
+                            showToast('Кандидатурата бе записана успешно! (Локално)');
+                            applyForm.reset();
+                        }
+                    } else {
+                        // Webhook URL is empty: show client-side mock submission
+                        console.log('Webhook is empty, simulating submission. Form payload:', payload);
+                        setTimeout(() => {
+                            showToast('Кандидатурата е изпратена успешно!');
+                            applyForm.reset();
+                        }, 800);
+                    }
+
+                    // Reset button state
+                    setTimeout(() => {
+                        submitButton.disabled = false;
+                        submitButton.textContent = 'Изпрати Кандидатурата';
+                    }, 1500);
+                });
+            }
+
+            function showToast(message) {
+                if (toastText && successToast) {
+                    toastText.textContent = message;
+                    successToast.classList.add('show');
+                    
+                    setTimeout(() => {
+                        successToast.classList.remove('show');
+                    }, 4000);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

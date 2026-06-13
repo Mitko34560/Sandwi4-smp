@@ -1,94 +1,360 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="bg">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Sandwi4 SMP</title>
-  <meta name="description" content="Официалният сайт на Sandwi4 SMP - модерен Minecraft survival multiplayer сървър.">
-  <link rel="icon" href="assets/sandwi4-logo.png">
-  <link rel="stylesheet" href="css/style.css?v=full-motion">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sandwi4 SMP — Официален Minecraft Сървър</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Официалният сайт на Sandwi4 SMP! Разгледайте нашия уникален Minecraft сървър за оцеляване (SMP), запознайте се с правилата и се присъединете към нашата приятелска общност.">
+    <meta name="keywords" content="Sandwi4 SMP, Minecraft сървър, майнкрафт сървъри, бг майнкрафт, оцеляване, SMP, minecraft българия">
+    <meta name="author" content="Sandwi4 SMP Team">
+    
+    <!-- Open Graph (Facebook/Discord) -->
+    <meta property="og:title" content="Sandwi4 SMP — Официален Minecraft Сървър">
+    <meta property="og:description" content="Официалният сайт на Sandwi4 SMP! Разгледайте нашия уникален Minecraft сървър за оцеляване (SMP), запознайте се с правилата и се присъединете към нашата приятелска общност.">
+    <meta property="og:image" content="assets/logo.jpg">
+    <meta property="og:type" content="website">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="assets/logo.jpg">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="site-header">
-    <a class="brand" href="index.html" aria-label="Sandwi4 SMP начало">
-      <img src="assets/sandwi4-logo.png" alt="Sandwi4 SMP logo">
-      <span>Sandwi4 SMP</span>
-    </a>
-    <button class="nav-toggle" aria-label="Отвори меню" data-nav-toggle>☰</button>
-    <nav class="site-nav" data-nav>
-      <a href="index.html" class="active">Начало</a>
-      <a href="server.html">Сървър</a>
-      <a href="rules.html">Правила</a>
-      <a href="team.html">Екип</a>
-      <a href="vote">Vote</a>
-      <a href="https://sandwi4smp.tebex.io" target="_blank" rel="noreferrer">Магазин</a>
-    </nav>
-  </header>
-
-  <main>
-    <section class="hero">
-      <div class="hero-copy reveal">
-        <p class="eyebrow">Survival multiplayer</p>
-        <h1>Sandwi4 SMP</h1>
-        <p class="lead">Български Minecraft SMP с чист survival, активна общност, редовни събития и свят, който расте с играчите.</p>
-        <div class="hero-actions">
-          <button class="primary-btn" data-copy-ip>Копирай IP</button>
-          <a class="ghost-btn" href="server.html">Виж статуса</a>
+    <!-- Navbar -->
+    <header class="site-header" id="main-header">
+        <div class="container header-container">
+            <a href="#" class="logo-wrapper" id="nav-logo-link">
+                <img src="assets/logo.jpg" alt="Sandwi4 SMP Лого" class="nav-logo" id="nav-logo-img">
+                <span class="logo-text">Sandwi4 <span class="accent-text">SMP</span></span>
+            </a>
+            
+            <nav class="main-navigation" id="main-nav">
+                <ul class="nav-menu" id="nav-menu-list">
+                    <li><a href="#hero" class="nav-link active" id="link-hero">Начало</a></li>
+                    <li><a href="#about" class="nav-link" id="link-about">За сървъра</a></li>
+                    <li><a href="#rules" class="nav-link" id="link-rules">Правила</a></li>
+                    <li><a href="#join" class="nav-link" id="link-join">Как се влиза</a></li>
+                    <li><a href="apply.html" class="nav-link" id="link-apply">Кандидатствай</a></li>
+                    <li><a href="https://dsc.gg/sandwi4-smp" target="_blank" class="nav-link discord-nav-btn" id="link-discord-join">
+                        <svg class="discord-icon" viewBox="0 0 127.14 96.36" fill="currentColor">
+                            <path d="M107.7,8.07A105.15,105.15,0,0,0,77.26,0a77.19,77.19,0,0,0-3.3,6.83A96.67,96.67,0,0,0,53.22,6.83,77.19,77.19,0,0,0,49.88,0,105.15,105.15,0,0,0,19.44,8.07C3.66,31.58-1.86,54.65,1,77.53A105.73,105.73,0,0,0,32,96.36a77.7,77.7,0,0,0,6.63-10.85,68.43,68.43,0,0,1-10.5-5c.89-.65,1.76-1.34,2.58-2.06a75.48,75.48,0,0,0,72.77,0c.82.72,1.69,1.41,2.58,2.06a68.43,68.43,0,0,1-10.5,5,77.7,77.7,0,0,0,6.63,10.85,105.73,105.73,0,0,0,31.06-18.83C129.83,48.54,123.63,25.86,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53S36.18,40.36,42.45,40.36,53.9,46,53.9,53,48.72,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.24,60,73.24,53S78.41,40.36,84.69,40.36,96.14,46,96.14,53,91,65.69,84.69,65.69Z"/>
+                        </svg>
+                        Discord
+                    </a></li>
+                </ul>
+            </nav>
+            
+            <button class="hamburger-menu" id="mobile-menu-btn" aria-label="Меню">
+                <span class="hamburger-bar"></span>
+                <span class="hamburger-bar"></span>
+                <span class="hamburger-bar"></span>
+            </button>
         </div>
-      </div>
-      <div class="hero-logo reveal">
-        <img src="assets/sandwi4-logo.png" alt="Sandwi4 SMP емблема">
-      </div>
-    </section>
-
-    <section class="stats-band reveal">
-      <div>
-        <strong data-admin-field="version">1.21.11 - 26.1</strong>
-        <span>Версия</span>
-      </div>
-      <div>
-        <strong data-admin-field="status">Онлайн</strong>
-        <span>Статус</span>
-      </div>
-      <div>
-        <strong data-admin-field="ip">mc.sandwi4smp.xyz</strong>
-        <span>IP адрес</span>
-      </div>
-    </section>
-
-    <section class="section-grid">
-      <article class="feature reveal">
-        <span class="icon">⛏</span>
-        <h2>Чист survival</h2>
-        <p>Баланс между класическа Minecraft прогресия, защита от grief и достатъчно свобода за големи бази.</p>
-      </article>
-      <article class="feature reveal">
-        <span class="icon">◆</span>
-        <h2>Икономика</h2>
-        <p>Играчите търгуват, развиват магазини и участват в community пазари без pay-to-win механики.</p>
-      </article>
-      <article class="feature reveal">
-        <span class="icon">✦</span>
-        <h2>Събития</h2>
-        <p>Build battles, boss nights, treasure hunts и сезонни мисии с награди за активните участници.</p>
-      </article>
-    </section>
-
-    <section class="news-panel reveal">
-      <div>
-        <p class="eyebrow">Новини</p>
-        <h2 data-admin-field="newsTitle">Откриване на Sandwi4 SMP</h2>
-      </div>
-      <p data-admin-field="newsText">Сървърът стартира с survival свят, spawn зона, правила и първи community event. Подготви си кирка, храна и добра идея за база.</p>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <span>© 2026 Sandwi4 SMP</span>
-    <span class="footer-dot">Minecraft community project</span>
-  </footer>
-
-  <div class="toast" data-toast>IP адресът е копиран</div>
-  <script src="js/site.js?v=full-motion"></script>
+    </header>
+    
+    <!-- Main Content -->
+    <main>
+        
+        <!-- Hero Section -->
+        <section class="hero-section" id="hero">
+            <div class="hero-bg-overlay"></div>
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <div class="server-status-pill" id="status-pill">
+                        <span class="status-dot online" id="status-indicator-dot"></span>
+                        <span class="status-text" id="status-indicator-text">Зареждане на статуса...</span>
+                    </div>
+                    
+                    <h1 class="hero-title">Sandwi4 <span class="text-gradient">SMP</span></h1>
+                    <p class="hero-subtitle">Твоят нов дом за полу-класическо Minecraft оцеляване. Стани част от общност с дух, развивай се и създавай уникални моменти!</p>
+                    
+                    <!-- IP Widget -->
+                    <div class="ip-copy-widget" id="ip-widget">
+                        <div class="ip-display">
+                            <span class="ip-label">СЪРВЪР IP:</span>
+                            <span class="ip-address" id="server-ip-text">mc.sandwi4smp.xyz</span>
+                        </div>
+                        <button class="ip-copy-btn" id="btn-copy-ip" aria-label="Копирай IP адреса">
+                            <span class="btn-tooltip" id="copy-tooltip">Копирай IP</span>
+                            <svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    
+                    <div class="hero-cta-buttons">
+                        <a href="#join" class="btn btn-primary" id="btn-hero-join">Как да вляза</a>
+                        <a href="#about" class="btn btn-secondary" id="btn-hero-learn">Научи повече</a>
+                    </div>
+                </div>
+                
+                <div class="hero-skin-container" id="skin-showcase">
+                    <div class="skin-glow-bg"></div>
+                    <img src="assets/skin.png" alt="Скинът на собственика на Sandwi4 SMP" class="owner-skin" id="owner-skin-img">
+                </div>
+            </div>
+            
+            <div class="scroll-down-arrow">
+                <a href="#about" aria-label="Превърти надолу">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 5v14M19 12l-7 7-7-7"/>
+                    </svg>
+                </a>
+            </div>
+        </section>
+        
+        <!-- About / Features Section -->
+        <section class="about-section" id="about">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">ХАРАКТЕРИСТИКИ</span>
+                    <h2 class="section-title">Защо да избереш Sandwi4 SMP?</h2>
+                    <p class="section-subtitle">Ние предлагаме невероятно SMP преживяване с перфектен баланс между традиционна игра и полезни допълнения.</p>
+                </div>
+                
+                <div class="features-grid">
+                    <!-- Feature Card 1 -->
+                    <div class="feature-card" id="feat-1">
+                        <div class="feature-icon-box">
+                            <!-- Shield/Claim icon -->
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            </svg>
+                        </div>
+                        <h3>Защита от грифинг</h3>
+                        <p>Твоите постройки са напълно в безопасност с нашата лесна система за клеймване на територии.</p>
+                    </div>
+                    
+                    <!-- Feature Card 2 -->
+                    <div class="feature-card" id="feat-2">
+                        <div class="feature-icon-box">
+                            <!-- Users icon -->
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                        </div>
+                        <h3>Страхотна Общност</h3>
+                        <p>Играй в приветлива атмосфера с активни играчи и винаги отзивчиви администратори.</p>
+                    </div>
+                    
+                    <!-- Feature Card 3 -->
+                    <div class="feature-card" id="feat-3">
+                        <div class="feature-icon-box">
+                            <!-- Coins/Shopping icon -->
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="8" r="7"></circle>
+                                <path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                            </svg>
+                        </div>
+                        <h3>Развита Икономика</h3>
+                        <p>Търгувай с други играчи, създавай свои собствени магазини и натрупай виртуално богатство.</p>
+                    </div>
+                    
+                    <!-- Feature Card 4 -->
+                    <div class="feature-card" id="feat-4">
+                        <div class="feature-icon-box">
+                            <!-- Sword icon -->
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="14.5 17.5 3 6 3 3 6 3 17.5 14.5"></polyline>
+                                <line x1="13" y1="19" x2="19" y2="13"></line>
+                                <line x1="16" y1="16" x2="20" y2="20"></line>
+                                <line x1="19" y1="21" x2="21" y2="19"></line>
+                            </svg>
+                        </div>
+                        <h3>Редовни Събития</h3>
+                        <p>Участвай в седмични ивенти с уникални награди и се изправяй в епични битки и предизвикателства.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Rules Section -->
+        <section class="rules-section" id="rules">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">ПРАВИЛА</span>
+                    <h2 class="section-title">Правилата на Сървъра</h2>
+                    <p class="section-subtitle">За да поддържаме приятна атмосфера за всички, молим да се спазват следните основни правила:</p>
+                </div>
+                
+                <div class="rules-accordion-container">
+                    <!-- Rule 1 -->
+                    <div class="accordion-item" id="rule-item-1">
+                        <button class="accordion-trigger" aria-expanded="false" id="btn-rule-1">
+                            <span class="rule-number">01</span>
+                            <span class="rule-title">Уважение към всички играчи</span>
+                            <span class="accordion-icon">+</span>
+                        </button>
+                        <div class="accordion-content" id="content-rule-1">
+                            <p>Забранено е обиждането, тормозът, расизмът и всякаква форма на токсично поведение в чата или в Discord. Нека бъдем добри един с друг!</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Rule 2 -->
+                    <div class="accordion-item" id="rule-item-2">
+                        <button class="accordion-trigger" aria-expanded="false" id="btn-rule-2">
+                            <span class="rule-number">02</span>
+                            <span class="rule-title">Без грифинг и кражби</span>
+                            <span class="accordion-icon">+</span>
+                        </button>
+                        <div class="accordion-content" id="content-rule-2">
+                            <p>Разрушаването на чужди сгради, модифицирането на чужд терен или взимането на предмети от чужди сандъци без изрично разрешение е строго забранено и води до перманентен бан.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Rule 3 -->
+                    <div class="accordion-item" id="rule-item-3">
+                        <button class="accordion-trigger" aria-expanded="false" id="btn-rule-3">
+                            <span class="rule-number">03</span>
+                            <span class="rule-title">Забрана на читове и модификации</span>
+                            <span class="accordion-icon">+</span>
+                        </button>
+                        <div class="accordion-content" id="content-rule-3">
+                            <p>Забранено е използването на X-Ray, хак клиенти, макроси за автоматична борба/копаене или всякакви модификации, даващи несправедливо предимство пред останалите.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Rule 4 -->
+                    <div class="accordion-item" id="rule-item-4">
+                        <button class="accordion-trigger" aria-expanded="false" id="btn-rule-4">
+                            <span class="rule-number">04</span>
+                            <span class="rule-title">Без спам и реклама</span>
+                            <span class="accordion-icon">+</span>
+                        </button>
+                        <div class="accordion-content" id="content-rule-4">
+                            <p>Забранено е спаменето в чата, писането с изцяло главни букви, както и рекламирането на други сървъри, сайтове или услуги в играта или Discord сървъра.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Join / How to Connect Section -->
+        <section class="join-section" id="join">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">КАК СЕ ВЛИЗА</span>
+                    <h2 class="section-title">Готов ли си да започнеш?</h2>
+                    <p class="section-subtitle">Свързването към сървъра е лесно и бързо. Следвай стъпките по-долу според твоята платформа:</p>
+                </div>
+                
+                <div class="join-steps-container">
+                    <!-- Java Guide -->
+                    <div class="join-card" id="join-java">
+                        <div class="join-card-header">
+                            <div class="platform-badge">JAVA EDITION (PC)</div>
+                        </div>
+                        <div class="join-steps">
+                            <div class="step-item">
+                                <span class="step-num">1</span>
+                                <p>Стартирай Minecraft с версия от <strong>1.21.11 до последна</strong>.</p>
+                            </div>
+                            <div class="step-item">
+                                <span class="step-num">2</span>
+                                <p>Отиди на <strong>Multiplayer</strong> -> <strong>Add Server</strong>.</p>
+                            </div>
+                            <div class="step-item">
+                                <span class="step-num">3</span>
+                                <p>Въведи име <code>Sandwi4 SMP</code> и в полето Server Address напиши: <code>mc.sandwi4smp.xyz</code></p>
+                            </div>
+                            <div class="step-item">
+                                <span class="step-num">4</span>
+                                <p>Натисни <strong>Done</strong> и влезе в сървъра!</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Bedrock Guide -->
+                    <div class="join-card" id="join-bedrock">
+                        <div class="join-card-header">
+                            <div class="platform-badge">BEDROCK (Телефон, Конзола, Win10)</div>
+                        </div>
+                        <div class="join-steps-coming-soon">
+                            <div class="coming-soon-badge">СКОРО</div>
+                            <p>В момента разработваме Bedrock поддръжка за нашия сървър. Очаквайте подробности съвсем скоро в нашия Discord!</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Discord Callout -->
+                <div class="discord-callout-box" id="discord-box">
+                    <div class="discord-callout-content">
+                        <h3>Имаш въпроси или проблеми със свързването?</h3>
+                        <p>Присъедини се към нашия Discord сървър. Там можеш да се свържеш с екипа ни и да намериш други играчи, с които да си партнираш!</p>
+                    </div>
+                    <a href="https://dsc.gg/sandwi4-smp" target="_blank" class="btn btn-discord" id="btn-discord-callout">
+                        <svg viewBox="0 0 127.14 96.36" fill="currentColor">
+                            <path d="M107.7,8.07A105.15,105.15,0,0,0,77.26,0a77.19,77.19,0,0,0-3.3,6.83A96.67,96.67,0,0,0,53.22,6.83,77.19,77.19,0,0,0,49.88,0,105.15,105.15,0,0,0,19.44,8.07C3.66,31.58-1.86,54.65,1,77.53A105.73,105.73,0,0,0,32,96.36a77.7,77.7,0,0,0,6.63-10.85,68.43,68.43,0,0,1-10.5-5c.89-.65,1.76-1.34,2.58-2.06a75.48,75.48,0,0,0,72.77,0c.82.72,1.69,1.41,2.58,2.06a68.43,68.43,0,0,1-10.5,5,77.7,77.7,0,0,0,6.63,10.85,105.73,105.73,0,0,0,31.06-18.83C129.83,48.54,123.63,25.86,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53S36.18,40.36,42.45,40.36,53.9,46,53.9,53,48.72,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.24,60,73.24,53S78.41,40.36,84.69,40.36,96.14,46,96.14,53,91,65.69,84.69,65.69Z"/>
+                        </svg>
+                        Влез в Discord
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+    
+    <!-- Footer -->
+    <footer class="site-footer" id="main-footer">
+        <div class="container footer-container">
+            <div class="footer-brand">
+                <a href="#" class="logo-wrapper">
+                    <img src="assets/logo.jpg" alt="Sandwi4 SMP Лого" class="footer-logo">
+                    <span class="logo-text">Sandwi4 <span class="accent-text">SMP</span></span>
+                </a>
+                <p class="footer-desc">Премиум Minecraft сървър за оцеляване, изграден от общността за общността. Започни своето приключение сега!</p>
+            </div>
+            
+            <div class="footer-links-group">
+                <h4>Бързи Връзки</h4>
+                <ul>
+                    <li><a href="#hero">Начало</a></li>
+                    <li><a href="#about">За сървъра</a></li>
+                    <li><a href="#rules">Правила</a></li>
+                    <li><a href="#join">Как се влиза</a></li>
+                    <li><a href="apply.html">Кандидатствай</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-socials">
+                <h4>Последвай ни</h4>
+                <div class="social-icons">
+                    <a href="https://dsc.gg/sandwi4-smp" target="_blank" aria-label="Discord">
+                        <svg viewBox="0 0 127.14 96.36" fill="currentColor">
+                            <path d="M107.7,8.07A105.15,105.15,0,0,0,77.26,0a77.19,77.19,0,0,0-3.3,6.83A96.67,96.67,0,0,0,53.22,6.83,77.19,77.19,0,0,0,49.88,0,105.15,105.15,0,0,0,19.44,8.07C3.66,31.58-1.86,54.65,1,77.53A105.73,105.73,0,0,0,32,96.36a77.7,77.7,0,0,0,6.63-10.85,68.43,68.43,0,0,1-10.5-5c.89-.65,1.76-1.34,2.58-2.06a75.48,75.48,0,0,0,72.77,0c.82.72,1.69,1.41,2.58,2.06a68.43,68.43,0,0,1-10.5,5,77.7,77.7,0,0,0,6.63,10.85,105.73,105.73,0,0,0,31.06-18.83C129.83,48.54,123.63,25.86,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53S36.18,40.36,42.45,40.36,53.9,46,53.9,53,48.72,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.24,60,73.24,53S78.41,40.36,84.69,40.36,96.14,46,96.14,53,91,65.69,84.69,65.69Z"/>
+                        </svg>
+                    </a>
+                    <a href="https://youtube.com/" target="_blank" aria-label="YouTube">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path>
+                            <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="container footer-bottom-container">
+                <p>&copy; 2026 Sandwi4 SMP. Всички права запазени. Този сайт не е свързан с Mojang Studios или Microsoft.</p>
+                <p class="developer-credit">Дизайн с 🧡 от MitachetoTW</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Scripts -->
+    <script src="script.js"></script>
 </body>
 </html>

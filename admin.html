@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Админ Панел — Sandwi4 SMP</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="robots" content="noindex, nofollow">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="assets/logo.jpg">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- LOGIN WRAPPER -->
+    <div class="admin-login-section" id="login-container">
+        <div class="login-card">
+            <div class="login-card-header">
+                <img src="assets/logo.jpg" alt="Sandwi4 SMP" style="width:60px; height:60px; border-radius:50%; margin:0 auto 16px auto; border:2px solid var(--primary);">
+                <h2>Админ Вход</h2>
+                <p>Sandwi4 SMP Администрация</p>
+            </div>
+            
+            <form id="login-form">
+                <div class="form-group" style="margin-bottom:16px;">
+                    <label for="login-username">Потребителско име</label>
+                    <input type="text" id="login-username" required placeholder="admin">
+                </div>
+                <div class="form-group" style="margin-bottom:24px;">
+                    <label for="login-password">Парола</label>
+                    <input type="password" id="login-password" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="btn btn-primary" style="width:100%;">Влез в панела</button>
+            </form>
+            
+            <div id="login-error" style="color:#f44336; font-size:13px; text-align:center; margin-top:16px; display:none;">
+                Невалидно потребителско име или парола!
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN ADMIN DASHBOARD -->
+    <div id="dashboard-container" style="display:none;">
+        <!-- Header -->
+        <header class="site-header" id="main-header">
+            <div class="container header-container">
+                <div class="logo-wrapper">
+                    <img src="assets/logo.jpg" alt="Sandwi4 SMP" class="nav-logo">
+                    <span class="logo-text">Sandwi4 <span class="accent-text">SMP</span> <span style="font-size:12px; font-weight:normal; background:rgba(255,145,0,0.1); padding:2px 8px; border-radius:10px; margin-left:8px;">АДМИН</span></span>
+                </div>
+                
+                <a href="index.html" class="btn btn-secondary btn-small" style="font-size:13px; padding:6px 14px;">Към сайта</a>
+            </div>
+        </header>
+
+        <!-- Admin Layout Grid -->
+        <div class="admin-layout">
+            <!-- Sidebar -->
+            <aside class="admin-sidebar">
+                <div class="admin-sidebar-nav">
+                    <div class="admin-nav-item active" data-target="sec-apps">
+                        <!-- File/Document Icon -->
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                            <polyline points="10 9 9 9 8 9"></polyline>
+                        </svg>
+                        Кандидатури
+                    </div>
+                    
+                    <div class="admin-nav-item" data-target="sec-users">
+                        <!-- Users Icon -->
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
+                        Потребители
+                    </div>
+                    
+                    <div class="admin-nav-item" data-target="sec-logs">
+                        <!-- Terminal/Log Icon -->
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="4 17 10 11 4 5"></polyline>
+                            <line x1="12" y1="19" x2="20" y2="19"></line>
+                        </svg>
+                        Лог дневник
+                    </div>
+                </div>
+                
+                <div class="admin-sidebar-footer">
+                    <span class="admin-user-info">Влезнал като: <strong id="logged-user-name">admin</strong></span>
+                    <button class="btn btn-secondary btn-small" id="btn-logout" style="width:100%;">Изход</button>
+                </div>
+            </aside>
+
+            <!-- Main Content Area -->
+            <main class="admin-main-content">
+                
+                <!-- SECTION 1: APPLICATIONS -->
+                <section class="admin-content-section active" id="sec-apps">
+                    <div class="admin-section-header">
+                        <h2>Всички кандидатури</h2>
+                        <span id="apps-count-pill" style="background:rgba(255,145,0,0.1); color:var(--primary); font-weight:bold; font-size:14px; padding:6px 16px; border-radius:20px;">0 общо</span>
+                    </div>
+                    
+                    <div class="admin-card-grid" id="apps-list-container">
+                        <!-- Will be populated dynamically by JS -->
+                    </div>
+                </section>
+                
+                <!-- SECTION 2: USERS MANAGER -->
+                <section class="admin-content-section" id="sec-users">
+                    <div class="admin-section-header">
+                        <h2>Управление на потребителите</h2>
+                    </div>
+                    
+                    <div class="user-manager-layout">
+                        <div>
+                            <h3 style="margin-bottom:16px;">Активни акаунти</h3>
+                            <div class="users-list" id="users-list-container">
+                                <!-- Populated dynamically by JS -->
+                            </div>
+                        </div>
+                        
+                        <div class="apply-card" style="padding:32px;">
+                            <h3 style="margin-bottom:20px;">Добави потребител</h3>
+                            <form id="add-user-form">
+                                <div class="form-group" style="margin-bottom:16px;">
+                                    <label for="new-username">Потребителско име</label>
+                                    <input type="text" id="new-username" required placeholder="moderator1">
+                                </div>
+                                <div class="form-group" style="margin-bottom:24px;">
+                                    <label for="new-password">Парола</label>
+                                    <input type="password" id="new-password" required placeholder="••••••••">
+                                </div>
+                                <button type="submit" class="btn btn-primary" style="width:100%;">Създай акаунт</button>
+                            </form>
+                            <div id="add-user-error" style="color:#f44336; font-size:13px; margin-top:12px; text-align:center; display:none;">
+                                Потребителското име вече съществува!
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- SECTION 3: SYSTEM LOGS -->
+                <section class="admin-content-section" id="sec-logs">
+                    <div class="admin-section-header">
+                        <h2>Дневник на промените (Log)</h2>
+                        <button class="btn btn-secondary btn-small" id="btn-clear-logs">Изчисти дневника</button>
+                    </div>
+                    
+                    <div class="logs-console" id="logs-console-container">
+                        <!-- Populated dynamically by JS -->
+                    </div>
+                </section>
+                
+            </main>
+        </div>
+    </div>
+
+    <!-- MODAL DETAILS VIEW -->
+    <div class="modal-overlay" id="app-modal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 id="modal-app-title">Преглед на кандидатура</h3>
+                <button class="btn-close-modal" id="btn-close-modal">&times;</button>
+            </div>
+            <div class="modal-body" id="modal-app-body">
+                <!-- Populated dynamically by JS -->
+            </div>
+            <div class="modal-footer">
+                <div class="modal-footer-left">
+                    <span>Дата: <strong id="modal-app-date">-</strong></span>
+                </div>
+                <div class="modal-footer-actions">
+                    <button class="btn btn-secondary btn-small" id="btn-modal-reject" style="background:rgba(244,67,54,0.1); color:#f44336; border:1px solid rgba(244,67,54,0.2);">Отхвърли</button>
+                    <button class="btn btn-primary btn-small" id="btn-modal-approve" style="background:#4caf50; color:#000;">Одобри</button>
+                    <button class="btn btn-secondary btn-small" id="btn-modal-delete" style="background:none; border:1px solid rgba(255,255,255,0.05); color:var(--text-muted);">Изтрий</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Toast Alert -->
+    <div class="toast-notification" id="admin-success-toast">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+        <span class="toast-text" id="admin-toast-text">Операцията е извършена успешно!</span>
+    </div>
+
+    <!-- ADMIN LOGIC SCRIPT -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- DATA SYNCHRONIZATION ---
+            let applications = [];
+            let adminUsers = [];
+            let logs = [];
+            let loggedInUser = null;
+
+            // Initialize data from LocalStorage
+            function initData() {
+                // Applications
+                applications = JSON.parse(localStorage.getItem('smp_applications') || '[]');
+                
+                // Admin Users
+                const defaultUsers = [{ username: 'admin', password: 'S4ndw!4_SMP#ScuRe_2026!', role: 'Администратор' }];
+                adminUsers = JSON.parse(localStorage.getItem('smp_admin_users') || '[]');
+                
+                // Force update password of main admin account if it exists, or initialize
+                const adminIndex = adminUsers.findIndex(u => u.username.toLowerCase() === 'admin');
+                if (adminIndex !== -1) {
+                    if (adminUsers[adminIndex].password !== 'S4ndw!4_SMP#ScuRe_2026!') {
+                        adminUsers[adminIndex].password = 'S4ndw!4_SMP#ScuRe_2026!';
+                        localStorage.setItem('smp_admin_users', JSON.stringify(adminUsers));
+                    }
+                } else {
+                    adminUsers = defaultUsers;
+                    localStorage.setItem('smp_admin_users', JSON.stringify(adminUsers));
+                }
+
+                // Logs
+                logs = JSON.parse(localStorage.getItem('smp_admin_logs') || '[]');
+                
+                // Check Session Login State
+                loggedInUser = sessionStorage.getItem('smp_logged_in_user');
+                if (loggedInUser) {
+                    showDashboard();
+                } else {
+                    showLogin();
+                }
+            }
+
+            // Write a log entry
+            function writeLog(user, message) {
+                const log = {
+                    time: new Date().toLocaleDateString('bg-BG') + ' ' + new Date().toLocaleTimeString('bg-BG'),
+                    user: user,
+                    message: message
+                };
+                logs.unshift(log); // newest first
+                localStorage.setItem('smp_admin_logs', JSON.stringify(logs));
+                renderLogs();
+            }
+
+            // --- NAVIGATION CONTROLS ---
+            const navItems = document.querySelectorAll('.admin-nav-item');
+            const contentSections = document.querySelectorAll('.admin-content-section');
+
+            navItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const targetSectionId = item.getAttribute('data-target');
+                    
+                    navItems.forEach(nav => nav.classList.remove('active'));
+                    item.classList.add('active');
+
+                    contentSections.forEach(section => {
+                        section.classList.remove('active');
+                        if (section.getAttribute('id') === targetSectionId) {
+                            section.classList.add('active');
+                        }
+                    });
+                });
+            });
+
+            // --- LOGIN HANDLING ---
+            const loginForm = document.getElementById('login-form');
+            const loginError = document.getElementById('login-error');
+            const loginContainer = document.getElementById('login-container');
+            const dashboardContainer = document.getElementById('dashboard-container');
+            const loggedUserName = document.getElementById('logged-user-name');
+
+            loginForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const usernameInput = document.getElementById('login-username').value.trim();
+                const passwordInput = document.getElementById('login-password').value.trim();
+
+                // Validate Credentials
+                const validUser = adminUsers.find(u => u.username.toLowerCase() === usernameInput.toLowerCase() && u.password === passwordInput);
+
+                if (validUser) {
+                    loggedInUser = validUser.username;
+                    sessionStorage.setItem('smp_logged_in_user', loggedInUser);
+                    loginError.style.display = 'none';
+                    
+                    // Log the login event
+                    writeLog(loggedInUser, 'влезе в админ панела');
+                    
+                    showDashboard();
+                    showToast('Влезнахте успешно!');
+                } else {
+                    loginError.style.display = 'block';
+                }
+            });
+
+            function showDashboard() {
+                loginContainer.style.display = 'none';
+                dashboardContainer.style.display = 'block';
+                loggedUserName.textContent = loggedInUser;
+                renderDashboard();
+            }
+
+            function showLogin() {
+                loginContainer.style.display = 'flex';
+                dashboardContainer.style.display = 'none';
+                loginForm.reset();
+            }
+
+            // Logout
+            document.getElementById('btn-logout').addEventListener('click', () => {
+                writeLog(loggedInUser, 'излезе от админ панела');
+                loggedInUser = null;
+                sessionStorage.removeItem('smp_logged_in_user');
+                showLogin();
+            });
+
+            // --- RENDER FUNCTIONS ---
+            function renderDashboard() {
+                renderApps();
+                renderUsers();
+                renderLogs();
+            }
+
+            // Render Applications
+            const appsListContainer = document.getElementById('apps-list-container');
+            const appsCountPill = document.getElementById('apps-count-pill');
+
+            function renderApps() {
+                applications = JSON.parse(localStorage.getItem('smp_applications') || '[]');
+                appsCountPill.textContent = `${applications.length} общо`;
+                appsListContainer.innerHTML = '';
+
+                if (applications.length === 0) {
+                    appsListContainer.innerHTML = '<div style="color:var(--text-secondary); text-align:center; padding:40px;">Няма намерени кандидатури.</div>';
+                    return;
+                }
+
+                // Render latest applications first
+                [...applications].reverse().forEach(app => {
+                    const rowCard = document.createElement('div');
+                    rowCard.className = 'app-row-card';
+                    
+                    let statusLabel = 'Нова';
+                    let statusClass = 'new';
+                    if (app.status === 'approved') {
+                        statusLabel = 'Одобрена';
+                        statusClass = 'approved';
+                    } else if (app.status === 'rejected') {
+                        statusLabel = 'Отхвърлена';
+                        statusClass = 'rejected';
+                    }
+
+                    rowCard.innerHTML = `
+                        <div class="app-info-main">
+                            <span class="status-badge ${statusClass}">${statusLabel}</span>
+                            <div class="app-meta">
+                                <span class="app-meta-title">${escapeHTML(app.data.mcUser)} (${escapeHTML(app.data.fullName)})</span>
+                                <span class="app-meta-sub">Кандидатура за ${escapeHTML(app.data.rankVal)} • ${app.date}</span>
+                            </div>
+                        </div>
+                        <div class="app-actions">
+                            <button class="btn btn-secondary btn-small btn-view-app" data-id="${app.id}">Преглед</button>
+                        </div>
+                    `;
+                    appsListContainer.appendChild(rowCard);
+                });
+
+                // Attach modal event triggers
+                document.querySelectorAll('.btn-view-app').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const appId = parseInt(btn.getAttribute('data-id'));
+                        openAppModal(appId);
+                    });
+                });
+            }
+
+            // Render Users
+            const usersListContainer = document.getElementById('users-list-container');
+            function renderUsers() {
+                adminUsers = JSON.parse(localStorage.getItem('smp_admin_users') || '[]');
+                usersListContainer.innerHTML = '';
+
+                adminUsers.forEach(user => {
+                    const userItem = document.createElement('div');
+                    userItem.className = 'user-item';
+                    
+                    const isDefaultAdmin = user.username.toLowerCase() === 'admin';
+                    const deleteBtnHtml = isDefaultAdmin ? 
+                        `<span style="color:var(--text-muted); font-size:12px;">Основен</span>` :
+                        `<button class="btn btn-secondary btn-small btn-delete-user" data-username="${user.username}" style="padding:4px 10px; color:#f44336; border:1px solid rgba(244,67,54,0.15);">Изтрий</button>`;
+
+                    userItem.innerHTML = `
+                        <div class="user-item-info">
+                            <span class="user-item-name">${escapeHTML(user.username)}</span>
+                            <span class="user-item-role">${escapeHTML(user.role || 'Потребител')}</span>
+                        </div>
+                        <div>
+                            ${deleteBtnHtml}
+                        </div>
+                    `;
+                    usersListContainer.appendChild(userItem);
+                });
+
+                // Attach User delete triggers
+                document.querySelectorAll('.btn-delete-user').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const targetUser = btn.getAttribute('data-username');
+                        if (confirm(`Наистина ли искате да изтриете потребителя ${targetUser}?`)) {
+                            adminUsers = adminUsers.filter(u => u.username !== targetUser);
+                            localStorage.setItem('smp_admin_users', JSON.stringify(adminUsers));
+                            writeLog(loggedInUser, `изтри акаунта на потребител ${targetUser}`);
+                            renderUsers();
+                            showToast('Потребителят е изтрит успешно!');
+                        }
+                    });
+                });
+            }
+
+            // Render Logs
+            const logsConsoleContainer = document.getElementById('logs-console-container');
+            function renderLogs() {
+                logs = JSON.parse(localStorage.getItem('smp_admin_logs') || '[]');
+                logsConsoleContainer.innerHTML = '';
+
+                if (logs.length === 0) {
+                    logsConsoleContainer.innerHTML = '<div style="color:var(--text-muted); font-style:italic;">Няма налични събития в дневника.</div>';
+                    return;
+                }
+
+                logs.forEach(log => {
+                    const logEntry = document.createElement('div');
+                    logEntry.className = 'log-entry';
+                    logEntry.innerHTML = `
+                        <span class="log-time">[${log.time}]</span>
+                        <span class="log-user">@${escapeHTML(log.user)}</span>
+                        <span class="log-msg">${escapeHTML(log.message)}</span>
+                    `;
+                    logsConsoleContainer.appendChild(logEntry);
+                });
+            }
+
+            // Clear Logs Action
+            document.getElementById('btn-clear-logs').addEventListener('click', () => {
+                if (confirm('Наистина ли искате да изтриете всички записи от лог дневника?')) {
+                    logs = [];
+                    localStorage.setItem('smp_admin_logs', JSON.stringify(logs));
+                    writeLog(loggedInUser, 'изчисти лог дневника');
+                    renderLogs();
+                    showToast('Дневникът е изчистен!');
+                }
+            });
+
+            // --- ADD USER HANDLER ---
+            const addUserForm = document.getElementById('add-user-form');
+            const addUserError = document.getElementById('add-user-error');
+
+            addUserForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const newUsername = document.getElementById('new-username').value.trim();
+                const newPassword = document.getElementById('new-password').value.trim();
+
+                // Check username exists
+                const userExists = adminUsers.some(u => u.username.toLowerCase() === newUsername.toLowerCase());
+
+                if (userExists) {
+                    addUserError.style.display = 'block';
+                } else {
+                    addUserError.style.display = 'none';
+                    const newUserObj = {
+                        username: newUsername,
+                        password: newPassword,
+                        role: 'Администратор'
+                    };
+                    adminUsers.push(newUserObj);
+                    localStorage.setItem('smp_admin_users', JSON.stringify(adminUsers));
+                    
+                    writeLog(loggedInUser, `създаде нов акаунт за потребител ${newUsername}`);
+                    addUserForm.reset();
+                    renderUsers();
+                    showToast(`Потребителят ${newUsername} бе добавен!`);
+                }
+            });
+
+            // --- APPLICATION VIEW MODAL DETAILS ---
+            const appModal = document.getElementById('app-modal');
+            const modalBody = document.getElementById('modal-app-body');
+            const modalTitle = document.getElementById('modal-app-title');
+            const modalDate = document.getElementById('modal-app-date');
+            
+            const btnCloseModal = document.getElementById('btn-close-modal');
+            const btnApprove = document.getElementById('btn-modal-approve');
+            const btnReject = document.getElementById('btn-modal-reject');
+            const btnDelete = document.getElementById('btn-modal-delete');
+            
+            let currentOpenAppId = null;
+
+            function openAppModal(appId) {
+                currentOpenAppId = appId;
+                const app = applications.find(a => a.id === appId);
+
+                if (!app) return;
+
+                modalTitle.textContent = `Кандидатура на ${app.data.mcUser}`;
+                modalDate.textContent = app.date;
+
+                const questions = [
+                    "1. Вашето име",
+                    "2. Minecraft Username (IGN)",
+                    "3. Discord потребителско име",
+                    "4. Възраст",
+                    "5. Желан Ранг",
+                    "6. Опит в Minecraft & Сървъра",
+                    "7. Предишен опит в други екипи",
+                    "8. Време за отделяне",
+                    "9. Работа с микрофон & Discord",
+                    "10. Мотивация за присъединяване",
+                    "11. Казус (Реакция срещу нарушения)",
+                    "12. С какво се отличава от другите"
+                ];
+
+                const answers = [
+                    app.data.fullName,
+                    app.data.mcUser,
+                    app.data.discordUser,
+                    app.data.ageVal,
+                    app.data.rankVal,
+                    app.data.mcExp,
+                    app.data.staffExp,
+                    app.data.timeVal,
+                    app.data.micVal,
+                    app.data.motivationVal,
+                    app.data.caseVal,
+                    app.data.uniqueVal
+                ];
+
+                modalBody.innerHTML = '';
+                for (let i = 0; i < questions.length; i++) {
+                    const fieldDiv = document.createElement('div');
+                    fieldDiv.className = 'modal-field';
+                    fieldDiv.innerHTML = `
+                        <div class="modal-field-q">${questions[i]}</div>
+                        <div class="modal-field-a">${escapeHTML(answers[i])}</div>
+                    `;
+                    modalBody.appendChild(fieldDiv);
+                }
+
+                // Show action button states (highlighting current status)
+                btnApprove.style.opacity = (app.status === 'approved') ? '0.5' : '1';
+                btnReject.style.opacity = (app.status === 'rejected') ? '0.5' : '1';
+
+                appModal.classList.add('show');
+            }
+
+            function closeModal() {
+                appModal.classList.remove('show');
+                currentOpenAppId = null;
+            }
+
+            btnCloseModal.addEventListener('click', closeModal);
+            
+            // Close modal by clicking overlay
+            appModal.addEventListener('click', (e) => {
+                if (e.target === appModal) closeModal();
+            });
+
+            // Status Actions: Approve
+            btnApprove.addEventListener('click', () => {
+                if (currentOpenAppId) {
+                    updateAppStatus(currentOpenAppId, 'approved');
+                }
+            });
+
+            // Status Actions: Reject
+            btnReject.addEventListener('click', () => {
+                if (currentOpenAppId) {
+                    updateAppStatus(currentOpenAppId, 'rejected');
+                }
+            });
+
+            function updateAppStatus(appId, newStatus) {
+                applications = JSON.parse(localStorage.getItem('smp_applications') || '[]');
+                const appIndex = applications.findIndex(a => a.id === appId);
+
+                if (appIndex !== -1) {
+                    const oldStatus = applications[appIndex].status;
+                    applications[appIndex].status = newStatus;
+                    localStorage.setItem('smp_applications', JSON.stringify(applications));
+                    
+                    const statusTextBulgarian = newStatus === 'approved' ? 'ОДОБРИ' : 'ОТХВЪРЛИ';
+                    writeLog(loggedInUser, `${statusTextBulgarian} кандидатурата на ${applications[appIndex].data.mcUser}`);
+                    
+                    closeModal();
+                    renderApps();
+                    showToast('Статусът на кандидатурата е обновен!');
+                }
+            }
+
+            // Delete Application Action
+            btnDelete.addEventListener('click', () => {
+                if (currentOpenAppId) {
+                    if (confirm('Наистина ли искате да ИЗТРИЕТЕ тази кандидатура окончателно?')) {
+                        applications = JSON.parse(localStorage.getItem('smp_applications') || '[]');
+                        const app = applications.find(a => a.id === currentOpenAppId);
+                        
+                        applications = applications.filter(a => a.id !== currentOpenAppId);
+                        localStorage.setItem('smp_applications', JSON.stringify(applications));
+                        
+                        if (app) {
+                            writeLog(loggedInUser, `ИЗТРИ кандидатурата на ${app.data.mcUser}`);
+                        }
+                        
+                        closeModal();
+                        renderApps();
+                        showToast('Кандидатурата е изтрита успешно!');
+                    }
+                }
+            });
+
+            // --- TOAST ALERTS ---
+            const toastElement = document.getElementById('admin-success-toast');
+            const toastMsgText = document.getElementById('admin-toast-text');
+
+            function showToast(message) {
+                if (toastElement && toastMsgText) {
+                    toastMsgText.textContent = message;
+                    toastElement.classList.add('show');
+                    setTimeout(() => {
+                        toastElement.classList.remove('show');
+                    }, 3000);
+                }
+            }
+
+            // --- HELPERS ---
+            function escapeHTML(str) {
+                if (typeof str !== 'string' && typeof str !== 'number') return '';
+                return String(str).replace(/[&<>'"]/g, 
+                    tag => ({
+                        '&': '&amp;',
+                        '<': '&lt;',
+                        '>': '&gt;',
+                        "'": '&#39;',
+                        '"': '&quot;'
+                    }[tag] || tag)
+                );
+            }
+
+            // Initialize on start
+            initData();
+        });
+    </script>
+</body>
+</html>
