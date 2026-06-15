@@ -315,7 +315,6 @@
                             if (response.ok) {
                                 showToast('Кандидатурата е изпратена успешно в Discord!');
                                 applyForm.reset();
-                                redirectToAdmin();
                             } else {
                                 throw new Error('Failed to submit webhook');
                             }
@@ -323,7 +322,6 @@
                             console.error('Webhook error: ', err);
                             showToast('Кандидатурата бе записана успешно! (Локално)');
                             applyForm.reset();
-                            redirectToAdmin();
                         }
                     } else {
                         // Webhook URL is empty: show client-side mock submission
@@ -331,7 +329,6 @@
                         setTimeout(() => {
                             showToast('Кандидатурата е изпратена успешно!');
                             applyForm.reset();
-                            redirectToAdmin();
                         }, 800);
                     }
 
@@ -352,12 +349,6 @@
                         successToast.classList.remove('show');
                     }, 4000);
                 }
-            }
-
-            function redirectToAdmin() {
-                setTimeout(() => {
-                    window.location.href = 'admin.html';
-                }, 900);
             }
         });
     </script>

@@ -319,6 +319,20 @@
                 loginForm.reset();
             }
 
+            function refreshApplicationsIfVisible() {
+                if (loggedInUser && dashboardContainer.style.display !== 'none') {
+                    renderApps();
+                }
+            }
+
+            window.addEventListener('storage', (event) => {
+                if (event.key === 'smp_applications') {
+                    refreshApplicationsIfVisible();
+                }
+            });
+
+            window.addEventListener('focus', refreshApplicationsIfVisible);
+
             // Logout
             document.getElementById('btn-logout').addEventListener('click', () => {
                 writeLog(loggedInUser, 'излезе от админ панела');
