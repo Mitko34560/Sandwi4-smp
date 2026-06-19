@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     // --- SERVER IP CONFIGURATION ---
-    const SERVER_IP = 'mc.sandwi4smp.xyz'; // Change this to your actual server IP if different
+    const SERVER_IP = 'mc.sandwi4smp.xyz';
 
     // --- MOBILE MENU TOGGLE ---
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
@@ -136,7 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
             console.warn('Status API failed, falling back to active check status.', error);
             // Fallback: Show as active/online server but player count hidden
             statusDot.className = 'status-dot online';
-            statusText.innerHTML = `СЪРВЪРЪТ Е АКТИВЕН (play.sandwi4smp.com)`;
+            statusText.innerHTML = `СЪРВЪРЪТ Е АКТИВЕН (mc.sandwi4smp.xyz)`;
         }
     }
 

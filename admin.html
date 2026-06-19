@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Админ Панел — Sandwi4 SMP</title>
     
-    <!-- SEO Meta Tags -->
     <meta name="robots" content="noindex, nofollow">
     
     <!-- Google Fonts -->
@@ -21,659 +20,622 @@
 </head>
 <body>
 
-    <!-- LOGIN WRAPPER -->
-    <div class="admin-login-section" id="login-container">
-        <div class="login-card">
+    <!-- LOGIN SCREEN -->
+    <section class="admin-login-section" id="login-section">
+        <div class="login-card" id="login-card">
             <div class="login-card-header">
-                <img src="assets/logo.jpg" alt="Sandwi4 SMP" style="width:60px; height:60px; border-radius:50%; margin:0 auto 16px auto; border:2px solid var(--primary);">
-                <h2>Админ Вход</h2>
-                <p>Sandwi4 SMP Администрация</p>
+                <img src="assets/logo.jpg" alt="Sandwi4 SMP" style="width:64px;height:64px;border-radius:50%;border:2px solid var(--primary);margin:0 auto 16px;display:block;">
+                <h2>Админ <span class="accent-text">Панел</span></h2>
+                <p>Въведи данните си, за да влезеш.</p>
             </div>
-            
-            <form id="login-form">
-                <div class="form-group" style="margin-bottom:16px;">
+            <form id="login-form" autocomplete="off">
+                <div class="form-group" style="margin-bottom:20px;">
                     <label for="login-username">Потребителско име</label>
-                    <input type="text" id="login-username" required placeholder="admin">
+                    <input type="text" id="login-username" name="username" placeholder="Потребител" required>
                 </div>
                 <div class="form-group" style="margin-bottom:24px;">
                     <label for="login-password">Парола</label>
-                    <input type="password" id="login-password" required placeholder="••••••••">
+                    <input type="password" id="login-password" name="password" placeholder="••••••••" required>
                 </div>
-                <button type="submit" class="btn btn-primary" style="width:100%;">Влез в панела</button>
+                <p id="login-error" style="color:#f44336;font-size:13px;text-align:center;margin-bottom:12px;display:none;"></p>
+                <button type="submit" class="btn btn-primary" style="width:100%;" id="btn-login">Влез</button>
             </form>
-            
-            <div id="login-error" style="color:#f44336; font-size:13px; text-align:center; margin-top:16px; display:none;">
-                Невалидно потребителско име или парола!
-            </div>
         </div>
-    </div>
+    </section>
 
-    <!-- MAIN ADMIN DASHBOARD -->
-    <div id="dashboard-container" style="display:none;">
+    <!-- ADMIN DASHBOARD -->
+    <div class="admin-layout" id="admin-dashboard" style="display:none;">
         <!-- Header -->
-        <header class="site-header" id="main-header">
+        <header class="site-header" id="admin-header">
             <div class="container header-container">
-                <div class="logo-wrapper">
-                    <img src="assets/logo.jpg" alt="Sandwi4 SMP" class="nav-logo">
-                    <span class="logo-text">Sandwi4 <span class="accent-text">SMP</span> <span style="font-size:12px; font-weight:normal; background:rgba(255,145,0,0.1); padding:2px 8px; border-radius:10px; margin-left:8px;">АДМИН</span></span>
-                </div>
-                
-                <a href="index.html" class="btn btn-secondary btn-small" style="font-size:13px; padding:6px 14px;">Към сайта</a>
+                <a href="index.html" class="logo-wrapper">
+                    <img src="assets/logo.jpg" alt="Sandwi4 SMP Лого" class="nav-logo">
+                    <span class="logo-text">Sandwi4 <span class="accent-text">SMP</span></span>
+                </a>
+                <nav class="main-navigation">
+                    <ul class="nav-menu">
+                        <li><a href="index.html" class="nav-link">Начало</a></li>
+                        <li><a href="apply.html" class="nav-link">Кандидатствай</a></li>
+                        <li><span class="nav-link" style="cursor:pointer;color:var(--primary);" id="btn-logout-nav">Излез</span></li>
+                    </ul>
+                </nav>
             </div>
         </header>
 
-        <!-- Admin Layout Grid -->
-        <div class="admin-layout">
-            <!-- Sidebar -->
-            <aside class="admin-sidebar">
-                <div class="admin-sidebar-nav">
-                    <div class="admin-nav-item active" data-target="sec-apps">
-                        <!-- File/Document Icon -->
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                            <polyline points="14 2 14 8 20 8"></polyline>
-                            <line x1="16" y1="13" x2="8" y2="13"></line>
-                            <line x1="16" y1="17" x2="8" y2="17"></line>
-                            <polyline points="10 9 9 9 8 9"></polyline>
-                        </svg>
+        <!-- Sidebar -->
+        <aside class="admin-sidebar" id="admin-sidebar">
+            <div>
+                <div class="admin-sidebar-nav" id="sidebar-nav">
+                    <a class="admin-nav-item active" data-tab="applications" id="nav-applications">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
                         Кандидатури
-                    </div>
-                    
-                    <div class="admin-nav-item" data-target="sec-users">
-                        <!-- Users Icon -->
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                            <circle cx="9" cy="7" r="4"></circle>
-                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                        </svg>
+                    </a>
+                    <a class="admin-nav-item" data-tab="users" id="nav-users">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                         Потребители
-                    </div>
-                    
-                    <div class="admin-nav-item" data-target="sec-logs">
-                        <!-- Terminal/Log Icon -->
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <polyline points="4 17 10 11 4 5"></polyline>
-                            <line x1="12" y1="19" x2="20" y2="19"></line>
-                        </svg>
+                    </a>
+                    <a class="admin-nav-item" data-tab="logs" id="nav-logs">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
                         Лог дневник
-                    </div>
+                    </a>
                 </div>
-                
-                <div class="admin-sidebar-footer">
-                    <span class="admin-user-info">Влезнал като: <strong id="logged-user-name">admin</strong></span>
-                    <button class="btn btn-secondary btn-small" id="btn-logout" style="width:100%;">Изход</button>
-                </div>
-            </aside>
+            </div>
+            <div class="admin-sidebar-footer">
+                <span class="admin-user-info" id="sidebar-user-info">—</span>
+                <button class="btn btn-secondary btn-small" style="width:100%;" id="btn-logout-sidebar">Излез</button>
+            </div>
+        </aside>
 
-            <!-- Main Content Area -->
-            <main class="admin-main-content">
-                
-                <!-- SECTION 1: APPLICATIONS -->
-                <section class="admin-content-section active" id="sec-apps">
-                    <div class="admin-section-header">
-                        <h2>Всички кандидатури</h2>
-                        <span id="apps-count-pill" style="background:rgba(255,145,0,0.1); color:var(--primary); font-weight:bold; font-size:14px; padding:6px 16px; border-radius:20px;">0 общо</span>
-                    </div>
-                    
-                    <div class="admin-card-grid" id="apps-list-container">
-                        <!-- Will be populated dynamically by JS -->
-                    </div>
-                </section>
-                
-                <!-- SECTION 2: USERS MANAGER -->
-                <section class="admin-content-section" id="sec-users">
-                    <div class="admin-section-header">
-                        <h2>Управление на потребителите</h2>
-                    </div>
-                    
-                    <div class="user-manager-layout">
-                        <div>
-                            <h3 style="margin-bottom:16px;">Активни акаунти</h3>
-                            <div class="users-list" id="users-list-container">
-                                <!-- Populated dynamically by JS -->
-                            </div>
-                        </div>
-                        
-                        <div class="apply-card" style="padding:32px;">
-                            <h3 style="margin-bottom:20px;">Добави потребител</h3>
-                            <form id="add-user-form">
-                                <div class="form-group" style="margin-bottom:16px;">
-                                    <label for="new-username">Потребителско име</label>
-                                    <input type="text" id="new-username" required placeholder="moderator1">
-                                </div>
-                                <div class="form-group" style="margin-bottom:24px;">
-                                    <label for="new-password">Парола</label>
-                                    <input type="password" id="new-password" required placeholder="••••••••">
-                                </div>
-                                <button type="submit" class="btn btn-primary" style="width:100%;">Създай акаунт</button>
-                            </form>
-                            <div id="add-user-error" style="color:#f44336; font-size:13px; margin-top:12px; text-align:center; display:none;">
-                                Потребителското име вече съществува!
-                            </div>
+        <!-- Main Content Area -->
+        <div class="admin-main-content" id="admin-main">
+
+            <!-- TAB: Applications -->
+            <div class="admin-content-section active" id="tab-applications">
+                <div class="admin-section-header">
+                    <h2>📋 Кандидатури</h2>
+                    <button class="btn btn-secondary btn-small" id="btn-refresh-apps">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;margin-right:6px;"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+                        Обнови
+                    </button>
+                </div>
+                <div class="admin-card-grid" id="applications-list">
+                    <p style="color:var(--text-muted);text-align:center;padding:40px;">Зареждане на кандидатурите...</p>
+                </div>
+            </div>
+
+            <!-- TAB: Users -->
+            <div class="admin-content-section" id="tab-users">
+                <div class="admin-section-header">
+                    <h2>👥 Потребители</h2>
+                </div>
+                <div class="user-manager-layout">
+                    <div>
+                        <h3 style="margin-bottom:16px;font-size:18px;">Списък с потребители</h3>
+                        <div class="users-list" id="users-list">
+                            <p style="color:var(--text-muted);">Зареждане...</p>
                         </div>
                     </div>
-                </section>
-                
-                <!-- SECTION 3: SYSTEM LOGS -->
-                <section class="admin-content-section" id="sec-logs">
-                    <div class="admin-section-header">
-                        <h2>Дневник на промените (Log)</h2>
-                        <button class="btn btn-secondary btn-small" id="btn-clear-logs">Изчисти дневника</button>
+                    <div>
+                        <h3 style="margin-bottom:16px;font-size:18px;">Добави потребител</h3>
+                        <form id="add-user-form" autocomplete="off" style="display:flex;flex-direction:column;gap:16px;">
+                            <div class="form-group">
+                                <label for="new-username">Потребителско име</label>
+                                <input type="text" id="new-username" placeholder="username" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="new-password">Парола</label>
+                                <input type="password" id="new-password" placeholder="••••••••" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="new-role">Права / Роля</label>
+                                <select id="new-role" required>
+                                    <option value="Администратор">Администратор (пълни права)</option>
+                                    <option value="Модератор">Модератор (само преглед)</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-small">Добави</button>
+                        </form>
                     </div>
-                    
-                    <div class="logs-console" id="logs-console-container">
-                        <!-- Populated dynamically by JS -->
-                    </div>
-                </section>
-                
-            </main>
+                </div>
+            </div>
+
+            <!-- TAB: Logs -->
+            <div class="admin-content-section" id="tab-logs">
+                <div class="admin-section-header">
+                    <h2>📜 Лог дневник</h2>
+                    <button class="btn btn-secondary btn-small" id="btn-clear-logs">Изчисти логовете</button>
+                </div>
+                <div class="logs-console" id="logs-console">
+                    <p style="color:var(--text-muted);">Зареждане...</p>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- MODAL DETAILS VIEW -->
+    <!-- APPLICATION DETAIL MODAL -->
     <div class="modal-overlay" id="app-modal">
         <div class="modal-card">
             <div class="modal-header">
-                <h3 id="modal-app-title">Преглед на кандидатура</h3>
+                <h3 id="modal-title">Кандидатура</h3>
                 <button class="btn-close-modal" id="btn-close-modal">&times;</button>
             </div>
-            <div class="modal-body" id="modal-app-body">
-                <!-- Populated dynamically by JS -->
+            <div class="modal-body" id="modal-body">
+                <!-- Dynamic content -->
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer" id="modal-footer">
                 <div class="modal-footer-left">
-                    <span>Дата: <strong id="modal-app-date">-</strong></span>
+                    <span id="modal-status-info">—</span>
                 </div>
-                <div class="modal-footer-actions">
-                    <button class="btn btn-secondary btn-small" id="btn-modal-reject" style="background:rgba(244,67,54,0.1); color:#f44336; border:1px solid rgba(244,67,54,0.2);">Отхвърли</button>
-                    <button class="btn btn-primary btn-small" id="btn-modal-approve" style="background:#4caf50; color:#000;">Одобри</button>
-                    <button class="btn btn-secondary btn-small" id="btn-modal-delete" style="background:none; border:1px solid rgba(255,255,255,0.05); color:var(--text-muted);">Изтрий</button>
+                <div class="modal-footer-actions" id="modal-actions">
+                    <button class="btn btn-primary btn-small" id="modal-btn-approve">✅ Одобри</button>
+                    <button class="btn btn-secondary btn-small" id="modal-btn-reject" style="border-color:#f44336;color:#f44336;">❌ Отхвърли</button>
+                    <button class="btn btn-secondary btn-small" id="modal-btn-delete" style="border-color:#ff5722;color:#ff5722;">🗑️ Изтрий</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Success Toast Alert -->
-    <div class="toast-notification" id="admin-success-toast">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <polyline points="20 6 9 17 4 12"></polyline>
+    <!-- Toast -->
+    <div class="toast-notification" id="toast">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+            <polyline points="22 4 12 14.01 9 11.01"></polyline>
         </svg>
-        <span class="toast-text" id="admin-toast-text">Операцията е извършена успешно!</span>
+        <span class="toast-text" id="toast-text">Действието е извършено.</span>
     </div>
 
-    <!-- ADMIN LOGIC SCRIPT -->
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // --- DATA SYNCHRONIZATION ---
-            let applications = [];
-            let adminUsers = [];
-            let logs = [];
-            let loggedInUser = null;
+    document.addEventListener('DOMContentLoaded', () => {
 
-            // Initialize data from LocalStorage
-            function initData() {
-                // Applications
-                applications = JSON.parse(localStorage.getItem('smp_applications') || '[]');
-                
-                // Admin Users
-                const defaultUsers = [{ username: 'admin', password: 'S4ndw!4_SMP#ScuRe_2026!', role: 'Администратор' }];
-                adminUsers = JSON.parse(localStorage.getItem('smp_admin_users') || '[]');
-                
-                // Force update password of main admin account if it exists, or initialize
-                const adminIndex = adminUsers.findIndex(u => u.username.toLowerCase() === 'admin');
-                if (adminIndex !== -1) {
-                    if (adminUsers[adminIndex].password !== 'S4ndw!4_SMP#ScuRe_2026!') {
-                        adminUsers[adminIndex].password = 'S4ndw!4_SMP#ScuRe_2026!';
-                        localStorage.setItem('smp_admin_users', JSON.stringify(adminUsers));
+        // =============================================
+        // DEFAULT USERS (hardcoded fallback)
+        // =============================================
+        const DEFAULT_USERS = [
+            { username: 'admin', password: 'S4ndw!4_SMP#ScuRe_2026!', role: 'Администратор' },
+            { username: 'Banan4o', password: 'Banan4o123Sand@wi4', role: 'Администратор' },
+            { username: 'Krasi', password: 'Krasicheto123Sandik@4', role: 'Администратор' }
+        ];
+
+        // =============================================
+        // API WRAPPER (auto-detect backend)
+        // =============================================
+        const API = {
+            baseUrl: null,
+            mode: 'localStorage',
+
+            async detect() {
+                try {
+                    const r = await fetch('api.php?action=get_applications', { method: 'GET', signal: AbortSignal.timeout(2000) });
+                    if (r.ok) { this.mode = 'php'; console.log('[API] PHP backend detected'); return; }
+                } catch(e) {}
+                try {
+                    const r = await fetch('/api/applications', { method: 'GET', signal: AbortSignal.timeout(2000) });
+                    if (r.ok) { this.mode = 'node'; console.log('[API] Node.js backend detected'); return; }
+                } catch(e) {}
+                console.log('[API] No backend, using localStorage fallback');
+            },
+
+            // --- Applications ---
+            async getApplications() {
+                if (this.mode === 'php') return fetch('api.php?action=get_applications').then(r => r.json());
+                if (this.mode === 'node') return fetch('/api/applications').then(r => r.json());
+                return JSON.parse(localStorage.getItem('sandwi4_applications') || '[]');
+            },
+            async updateApplication(id, status) {
+                if (this.mode === 'php') return fetch('api.php?action=update_application', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({id, status}) }).then(r=>r.json());
+                if (this.mode === 'node') return fetch('/api/applications', { method:'PUT', headers:{'Content-Type':'application/json'}, body:JSON.stringify({id, status}) }).then(r=>r.json());
+                const apps = JSON.parse(localStorage.getItem('sandwi4_applications') || '[]');
+                apps.forEach(a => { if (a.id === id) a.status = status; });
+                localStorage.setItem('sandwi4_applications', JSON.stringify(apps));
+                return { success: true };
+            },
+            async deleteApplication(id) {
+                if (this.mode === 'php') return fetch(`api.php?action=delete_application&id=${id}`).then(r=>r.json());
+                if (this.mode === 'node') return fetch(`/api/applications/${id}`, { method:'DELETE' }).then(r=>r.json());
+                let apps = JSON.parse(localStorage.getItem('sandwi4_applications') || '[]');
+                apps = apps.filter(a => a.id !== id);
+                localStorage.setItem('sandwi4_applications', JSON.stringify(apps));
+                return { success: true };
+            },
+
+            // --- Users ---
+            async getUsers() {
+                if (this.mode === 'php') return fetch('api.php?action=get_users').then(r => r.json());
+                if (this.mode === 'node') return fetch('/api/users').then(r => r.json());
+                // localStorage fallback: merge defaults
+                let users = JSON.parse(localStorage.getItem('sandwi4_users') || '[]');
+                let updated = false;
+                DEFAULT_USERS.forEach(du => {
+                    if (!users.find(u => u.username.toLowerCase() === du.username.toLowerCase())) {
+                        users.push(du);
+                        updated = true;
                     }
-                } else {
-                    adminUsers = defaultUsers;
-                    localStorage.setItem('smp_admin_users', JSON.stringify(adminUsers));
-                }
-
-                // Logs
-                logs = JSON.parse(localStorage.getItem('smp_admin_logs') || '[]');
-                
-                // Check Session Login State
-                loggedInUser = sessionStorage.getItem('smp_logged_in_user');
-                if (loggedInUser) {
-                    showDashboard();
-                } else {
-                    showLogin();
-                }
-            }
-
-            // Write a log entry
-            function writeLog(user, message) {
-                const log = {
-                    time: new Date().toLocaleDateString('bg-BG') + ' ' + new Date().toLocaleTimeString('bg-BG'),
-                    user: user,
-                    message: message
-                };
-                logs.unshift(log); // newest first
-                localStorage.setItem('smp_admin_logs', JSON.stringify(logs));
-                renderLogs();
-            }
-
-            // --- NAVIGATION CONTROLS ---
-            const navItems = document.querySelectorAll('.admin-nav-item');
-            const contentSections = document.querySelectorAll('.admin-content-section');
-
-            navItems.forEach(item => {
-                item.addEventListener('click', () => {
-                    const targetSectionId = item.getAttribute('data-target');
-                    
-                    navItems.forEach(nav => nav.classList.remove('active'));
-                    item.classList.add('active');
-
-                    contentSections.forEach(section => {
-                        section.classList.remove('active');
-                        if (section.getAttribute('id') === targetSectionId) {
-                            section.classList.add('active');
-                        }
-                    });
                 });
-            });
+                if (updated) localStorage.setItem('sandwi4_users', JSON.stringify(users));
+                return users;
+            },
+            async addUser(data) {
+                if (this.mode === 'php') return fetch('api.php?action=add_user', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(data) }).then(r=>r.json());
+                if (this.mode === 'node') return fetch('/api/users', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(data) }).then(r=>r.json());
+                const users = JSON.parse(localStorage.getItem('sandwi4_users') || '[]');
+                users.push(data);
+                localStorage.setItem('sandwi4_users', JSON.stringify(users));
+                return { success: true };
+            },
+            async deleteUser(username) {
+                if (this.mode === 'php') return fetch(`api.php?action=delete_user&username=${username}`).then(r=>r.json());
+                if (this.mode === 'node') return fetch(`/api/users/${username}`, { method:'DELETE' }).then(r=>r.json());
+                let users = JSON.parse(localStorage.getItem('sandwi4_users') || '[]');
+                users = users.filter(u => u.username.toLowerCase() !== username.toLowerCase());
+                localStorage.setItem('sandwi4_users', JSON.stringify(users));
+                return { success: true };
+            },
 
-            // --- LOGIN HANDLING ---
-            const loginForm = document.getElementById('login-form');
-            const loginError = document.getElementById('login-error');
-            const loginContainer = document.getElementById('login-container');
-            const dashboardContainer = document.getElementById('dashboard-container');
-            const loggedUserName = document.getElementById('logged-user-name');
-
-            loginForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const usernameInput = document.getElementById('login-username').value.trim();
-                const passwordInput = document.getElementById('login-password').value.trim();
-
-                // Validate Credentials
-                const validUser = adminUsers.find(u => u.username.toLowerCase() === usernameInput.toLowerCase() && u.password === passwordInput);
-
-                if (validUser) {
-                    loggedInUser = validUser.username;
-                    sessionStorage.setItem('smp_logged_in_user', loggedInUser);
-                    loginError.style.display = 'none';
-                    
-                    // Log the login event
-                    writeLog(loggedInUser, 'влезе в админ панела');
-                    
-                    showDashboard();
-                    showToast('Влезнахте успешно!');
-                } else {
-                    loginError.style.display = 'block';
-                }
-            });
-
-            function showDashboard() {
-                loginContainer.style.display = 'none';
-                dashboardContainer.style.display = 'block';
-                loggedUserName.textContent = loggedInUser;
-                renderDashboard();
+            // --- Logs ---
+            async getLogs() {
+                if (this.mode === 'php') return fetch('api.php?action=get_logs').then(r => r.json());
+                if (this.mode === 'node') return fetch('/api/logs').then(r => r.json());
+                return JSON.parse(localStorage.getItem('sandwi4_logs') || '[]');
+            },
+            async addLog(entry) {
+                if (this.mode === 'php') return fetch('api.php?action=add_log', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(entry) }).then(r=>r.json());
+                if (this.mode === 'node') return fetch('/api/logs', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(entry) }).then(r=>r.json());
+                const logs = JSON.parse(localStorage.getItem('sandwi4_logs') || '[]');
+                logs.unshift(entry);
+                localStorage.setItem('sandwi4_logs', JSON.stringify(logs));
+                return { success: true };
+            },
+            async clearLogs() {
+                if (this.mode === 'php') return fetch('api.php?action=clear_logs').then(r=>r.json());
+                if (this.mode === 'node') return fetch('/api/logs', { method:'DELETE' }).then(r=>r.json());
+                localStorage.setItem('sandwi4_logs', '[]');
+                return { success: true };
             }
+        };
 
-            function showLogin() {
-                loginContainer.style.display = 'flex';
-                dashboardContainer.style.display = 'none';
-                loginForm.reset();
+        // =============================================
+        // SESSION STATE
+        // =============================================
+        let currentUser = null; // { username, role }
+        let allApplications = [];
+        let currentModalAppId = null;
+
+        // =============================================
+        // TOAST
+        // =============================================
+        function showToast(msg) {
+            const t = document.getElementById('toast');
+            document.getElementById('toast-text').textContent = msg;
+            t.classList.add('show');
+            setTimeout(() => t.classList.remove('show'), 3000);
+        }
+
+        // =============================================
+        // LOG HELPER
+        // =============================================
+        function addLogEntry(message) {
+            const entry = {
+                time: new Date().toLocaleString('bg-BG'),
+                user: currentUser ? currentUser.username : 'Система',
+                message
+            };
+            API.addLog(entry);
+        }
+
+        // =============================================
+        // PERMISSION ENFORCEMENT
+        // =============================================
+        function enforcePermissions() {
+            if (!currentUser) return;
+            const isAdmin = currentUser.role === 'Администратор';
+
+            // Hide Users tab for Moderators
+            const navUsers = document.getElementById('nav-users');
+            if (navUsers) navUsers.style.display = isAdmin ? '' : 'none';
+
+            // Hide clear logs for Moderators
+            const btnClearLogs = document.getElementById('btn-clear-logs');
+            if (btnClearLogs) btnClearLogs.style.display = isAdmin ? '' : 'none';
+        }
+
+        function enforceModalPermissions() {
+            if (!currentUser) return;
+            const isAdmin = currentUser.role === 'Администратор';
+            const actions = document.getElementById('modal-actions');
+            if (actions) actions.style.display = isAdmin ? '' : 'none';
+        }
+
+        // =============================================
+        // LOGIN
+        // =============================================
+        const loginSection = document.getElementById('login-section');
+        const dashboard = document.getElementById('admin-dashboard');
+        const loginForm = document.getElementById('login-form');
+        const loginError = document.getElementById('login-error');
+
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const username = document.getElementById('login-username').value.trim();
+            const password = document.getElementById('login-password').value;
+
+            loginError.style.display = 'none';
+
+            const users = await API.getUsers();
+            const found = users.find(u => u.username === username && u.password === password);
+
+            if (found) {
+                currentUser = { username: found.username, role: found.role || 'Администратор' };
+                loginSection.style.display = 'none';
+                dashboard.style.display = 'grid';
+                document.getElementById('sidebar-user-info').textContent = `👤 ${currentUser.username} (${currentUser.role})`;
+
+                addLogEntry(`${currentUser.username} влезе в системата.`);
+                enforcePermissions();
+                loadApplications();
+                loadLogs();
+            } else {
+                loginError.textContent = 'Невалидно потребителско име или парола.';
+                loginError.style.display = 'block';
             }
-
-            function refreshApplicationsIfVisible() {
-                if (loggedInUser && dashboardContainer.style.display !== 'none') {
-                    renderApps();
-                }
-            }
-
-            window.addEventListener('storage', (event) => {
-                if (event.key === 'smp_applications') {
-                    refreshApplicationsIfVisible();
-                }
-            });
-
-            window.addEventListener('focus', refreshApplicationsIfVisible);
-
-            // Logout
-            document.getElementById('btn-logout').addEventListener('click', () => {
-                writeLog(loggedInUser, 'излезе от админ панела');
-                loggedInUser = null;
-                sessionStorage.removeItem('smp_logged_in_user');
-                showLogin();
-            });
-
-            // --- RENDER FUNCTIONS ---
-            function renderDashboard() {
-                renderApps();
-                renderUsers();
-                renderLogs();
-            }
-
-            // Render Applications
-            const appsListContainer = document.getElementById('apps-list-container');
-            const appsCountPill = document.getElementById('apps-count-pill');
-
-            function renderApps() {
-                applications = JSON.parse(localStorage.getItem('smp_applications') || '[]');
-                appsCountPill.textContent = `${applications.length} общо`;
-                appsListContainer.innerHTML = '';
-
-                if (applications.length === 0) {
-                    appsListContainer.innerHTML = '<div style="color:var(--text-secondary); text-align:center; padding:40px;">Няма намерени кандидатури.</div>';
-                    return;
-                }
-
-                // Render latest applications first
-                [...applications].reverse().forEach(app => {
-                    const rowCard = document.createElement('div');
-                    rowCard.className = 'app-row-card';
-                    
-                    let statusLabel = 'Нова';
-                    let statusClass = 'new';
-                    if (app.status === 'approved') {
-                        statusLabel = 'Одобрена';
-                        statusClass = 'approved';
-                    } else if (app.status === 'rejected') {
-                        statusLabel = 'Отхвърлена';
-                        statusClass = 'rejected';
-                    }
-
-                    rowCard.innerHTML = `
-                        <div class="app-info-main">
-                            <span class="status-badge ${statusClass}">${statusLabel}</span>
-                            <div class="app-meta">
-                                <span class="app-meta-title">${escapeHTML(app.data.mcUser)} (${escapeHTML(app.data.fullName)})</span>
-                                <span class="app-meta-sub">Кандидатура за ${escapeHTML(app.data.rankVal)} • ${app.date}</span>
-                            </div>
-                        </div>
-                        <div class="app-actions">
-                            <button class="btn btn-secondary btn-small btn-view-app" data-id="${app.id}">Преглед</button>
-                        </div>
-                    `;
-                    appsListContainer.appendChild(rowCard);
-                });
-
-                // Attach modal event triggers
-                document.querySelectorAll('.btn-view-app').forEach(btn => {
-                    btn.addEventListener('click', () => {
-                        const appId = parseInt(btn.getAttribute('data-id'));
-                        openAppModal(appId);
-                    });
-                });
-            }
-
-            // Render Users
-            const usersListContainer = document.getElementById('users-list-container');
-            function renderUsers() {
-                adminUsers = JSON.parse(localStorage.getItem('smp_admin_users') || '[]');
-                usersListContainer.innerHTML = '';
-
-                adminUsers.forEach(user => {
-                    const userItem = document.createElement('div');
-                    userItem.className = 'user-item';
-                    
-                    const isDefaultAdmin = user.username.toLowerCase() === 'admin';
-                    const deleteBtnHtml = isDefaultAdmin ? 
-                        `<span style="color:var(--text-muted); font-size:12px;">Основен</span>` :
-                        `<button class="btn btn-secondary btn-small btn-delete-user" data-username="${user.username}" style="padding:4px 10px; color:#f44336; border:1px solid rgba(244,67,54,0.15);">Изтрий</button>`;
-
-                    userItem.innerHTML = `
-                        <div class="user-item-info">
-                            <span class="user-item-name">${escapeHTML(user.username)}</span>
-                            <span class="user-item-role">${escapeHTML(user.role || 'Потребител')}</span>
-                        </div>
-                        <div>
-                            ${deleteBtnHtml}
-                        </div>
-                    `;
-                    usersListContainer.appendChild(userItem);
-                });
-
-                // Attach User delete triggers
-                document.querySelectorAll('.btn-delete-user').forEach(btn => {
-                    btn.addEventListener('click', () => {
-                        const targetUser = btn.getAttribute('data-username');
-                        if (confirm(`Наистина ли искате да изтриете потребителя ${targetUser}?`)) {
-                            adminUsers = adminUsers.filter(u => u.username !== targetUser);
-                            localStorage.setItem('smp_admin_users', JSON.stringify(adminUsers));
-                            writeLog(loggedInUser, `изтри акаунта на потребител ${targetUser}`);
-                            renderUsers();
-                            showToast('Потребителят е изтрит успешно!');
-                        }
-                    });
-                });
-            }
-
-            // Render Logs
-            const logsConsoleContainer = document.getElementById('logs-console-container');
-            function renderLogs() {
-                logs = JSON.parse(localStorage.getItem('smp_admin_logs') || '[]');
-                logsConsoleContainer.innerHTML = '';
-
-                if (logs.length === 0) {
-                    logsConsoleContainer.innerHTML = '<div style="color:var(--text-muted); font-style:italic;">Няма налични събития в дневника.</div>';
-                    return;
-                }
-
-                logs.forEach(log => {
-                    const logEntry = document.createElement('div');
-                    logEntry.className = 'log-entry';
-                    logEntry.innerHTML = `
-                        <span class="log-time">[${log.time}]</span>
-                        <span class="log-user">@${escapeHTML(log.user)}</span>
-                        <span class="log-msg">${escapeHTML(log.message)}</span>
-                    `;
-                    logsConsoleContainer.appendChild(logEntry);
-                });
-            }
-
-            // Clear Logs Action
-            document.getElementById('btn-clear-logs').addEventListener('click', () => {
-                if (confirm('Наистина ли искате да изтриете всички записи от лог дневника?')) {
-                    logs = [];
-                    localStorage.setItem('smp_admin_logs', JSON.stringify(logs));
-                    writeLog(loggedInUser, 'изчисти лог дневника');
-                    renderLogs();
-                    showToast('Дневникът е изчистен!');
-                }
-            });
-
-            // --- ADD USER HANDLER ---
-            const addUserForm = document.getElementById('add-user-form');
-            const addUserError = document.getElementById('add-user-error');
-
-            addUserForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const newUsername = document.getElementById('new-username').value.trim();
-                const newPassword = document.getElementById('new-password').value.trim();
-
-                // Check username exists
-                const userExists = adminUsers.some(u => u.username.toLowerCase() === newUsername.toLowerCase());
-
-                if (userExists) {
-                    addUserError.style.display = 'block';
-                } else {
-                    addUserError.style.display = 'none';
-                    const newUserObj = {
-                        username: newUsername,
-                        password: newPassword,
-                        role: 'Администратор'
-                    };
-                    adminUsers.push(newUserObj);
-                    localStorage.setItem('smp_admin_users', JSON.stringify(adminUsers));
-                    
-                    writeLog(loggedInUser, `създаде нов акаунт за потребител ${newUsername}`);
-                    addUserForm.reset();
-                    renderUsers();
-                    showToast(`Потребителят ${newUsername} бе добавен!`);
-                }
-            });
-
-            // --- APPLICATION VIEW MODAL DETAILS ---
-            const appModal = document.getElementById('app-modal');
-            const modalBody = document.getElementById('modal-app-body');
-            const modalTitle = document.getElementById('modal-app-title');
-            const modalDate = document.getElementById('modal-app-date');
-            
-            const btnCloseModal = document.getElementById('btn-close-modal');
-            const btnApprove = document.getElementById('btn-modal-approve');
-            const btnReject = document.getElementById('btn-modal-reject');
-            const btnDelete = document.getElementById('btn-modal-delete');
-            
-            let currentOpenAppId = null;
-
-            function openAppModal(appId) {
-                currentOpenAppId = appId;
-                const app = applications.find(a => a.id === appId);
-
-                if (!app) return;
-
-                modalTitle.textContent = `Кандидатура на ${app.data.mcUser}`;
-                modalDate.textContent = app.date;
-
-                const questions = [
-                    "1. Вашето име",
-                    "2. Minecraft Username (IGN)",
-                    "3. Discord потребителско име",
-                    "4. Възраст",
-                    "5. Желан Ранг",
-                    "6. Опит в Minecraft & Сървъра",
-                    "7. Предишен опит в други екипи",
-                    "8. Време за отделяне",
-                    "9. Работа с микрофон & Discord",
-                    "10. Мотивация за присъединяване",
-                    "11. Казус (Реакция срещу нарушения)",
-                    "12. С какво се отличава от другите"
-                ];
-
-                const answers = [
-                    app.data.fullName,
-                    app.data.mcUser,
-                    app.data.discordUser,
-                    app.data.ageVal,
-                    app.data.rankVal,
-                    app.data.mcExp,
-                    app.data.staffExp,
-                    app.data.timeVal,
-                    app.data.micVal,
-                    app.data.motivationVal,
-                    app.data.caseVal,
-                    app.data.uniqueVal
-                ];
-
-                modalBody.innerHTML = '';
-                for (let i = 0; i < questions.length; i++) {
-                    const fieldDiv = document.createElement('div');
-                    fieldDiv.className = 'modal-field';
-                    fieldDiv.innerHTML = `
-                        <div class="modal-field-q">${questions[i]}</div>
-                        <div class="modal-field-a">${escapeHTML(answers[i])}</div>
-                    `;
-                    modalBody.appendChild(fieldDiv);
-                }
-
-                // Show action button states (highlighting current status)
-                btnApprove.style.opacity = (app.status === 'approved') ? '0.5' : '1';
-                btnReject.style.opacity = (app.status === 'rejected') ? '0.5' : '1';
-
-                appModal.classList.add('show');
-            }
-
-            function closeModal() {
-                appModal.classList.remove('show');
-                currentOpenAppId = null;
-            }
-
-            btnCloseModal.addEventListener('click', closeModal);
-            
-            // Close modal by clicking overlay
-            appModal.addEventListener('click', (e) => {
-                if (e.target === appModal) closeModal();
-            });
-
-            // Status Actions: Approve
-            btnApprove.addEventListener('click', () => {
-                if (currentOpenAppId) {
-                    updateAppStatus(currentOpenAppId, 'approved');
-                }
-            });
-
-            // Status Actions: Reject
-            btnReject.addEventListener('click', () => {
-                if (currentOpenAppId) {
-                    updateAppStatus(currentOpenAppId, 'rejected');
-                }
-            });
-
-            function updateAppStatus(appId, newStatus) {
-                applications = JSON.parse(localStorage.getItem('smp_applications') || '[]');
-                const appIndex = applications.findIndex(a => a.id === appId);
-
-                if (appIndex !== -1) {
-                    const oldStatus = applications[appIndex].status;
-                    applications[appIndex].status = newStatus;
-                    localStorage.setItem('smp_applications', JSON.stringify(applications));
-                    
-                    const statusTextBulgarian = newStatus === 'approved' ? 'ОДОБРИ' : 'ОТХВЪРЛИ';
-                    writeLog(loggedInUser, `${statusTextBulgarian} кандидатурата на ${applications[appIndex].data.mcUser}`);
-                    
-                    closeModal();
-                    renderApps();
-                    showToast('Статусът на кандидатурата е обновен!');
-                }
-            }
-
-            // Delete Application Action
-            btnDelete.addEventListener('click', () => {
-                if (currentOpenAppId) {
-                    if (confirm('Наистина ли искате да ИЗТРИЕТЕ тази кандидатура окончателно?')) {
-                        applications = JSON.parse(localStorage.getItem('smp_applications') || '[]');
-                        const app = applications.find(a => a.id === currentOpenAppId);
-                        
-                        applications = applications.filter(a => a.id !== currentOpenAppId);
-                        localStorage.setItem('smp_applications', JSON.stringify(applications));
-                        
-                        if (app) {
-                            writeLog(loggedInUser, `ИЗТРИ кандидатурата на ${app.data.mcUser}`);
-                        }
-                        
-                        closeModal();
-                        renderApps();
-                        showToast('Кандидатурата е изтрита успешно!');
-                    }
-                }
-            });
-
-            // --- TOAST ALERTS ---
-            const toastElement = document.getElementById('admin-success-toast');
-            const toastMsgText = document.getElementById('admin-toast-text');
-
-            function showToast(message) {
-                if (toastElement && toastMsgText) {
-                    toastMsgText.textContent = message;
-                    toastElement.classList.add('show');
-                    setTimeout(() => {
-                        toastElement.classList.remove('show');
-                    }, 3000);
-                }
-            }
-
-            // --- HELPERS ---
-            function escapeHTML(str) {
-                if (typeof str !== 'string' && typeof str !== 'number') return '';
-                return String(str).replace(/[&<>'"]/g, 
-                    tag => ({
-                        '&': '&amp;',
-                        '<': '&lt;',
-                        '>': '&gt;',
-                        "'": '&#39;',
-                        '"': '&quot;'
-                    }[tag] || tag)
-                );
-            }
-
-            // Initialize on start
-            initData();
         });
+
+        // =============================================
+        // LOGOUT
+        // =============================================
+        function logout() {
+            if (currentUser) addLogEntry(`${currentUser.username} излезе от системата.`);
+            currentUser = null;
+            dashboard.style.display = 'none';
+            loginSection.style.display = '';
+            document.getElementById('login-username').value = '';
+            document.getElementById('login-password').value = '';
+        }
+
+        document.getElementById('btn-logout-sidebar').addEventListener('click', logout);
+        document.getElementById('btn-logout-nav').addEventListener('click', logout);
+
+        // =============================================
+        // TAB NAVIGATION
+        // =============================================
+        const navItems = document.querySelectorAll('.admin-nav-item[data-tab]');
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                navItems.forEach(n => n.classList.remove('active'));
+                item.classList.add('active');
+
+                document.querySelectorAll('.admin-content-section').forEach(s => s.classList.remove('active'));
+                const tabId = 'tab-' + item.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+
+                if (tabId === 'tab-applications') loadApplications();
+                if (tabId === 'tab-users') loadUsers();
+                if (tabId === 'tab-logs') loadLogs();
+            });
+        });
+
+        // =============================================
+        // APPLICATIONS
+        // =============================================
+        async function loadApplications() {
+            const container = document.getElementById('applications-list');
+            try {
+                allApplications = await API.getApplications();
+            } catch(e) {
+                allApplications = [];
+            }
+
+            if (!allApplications || allApplications.length === 0) {
+                container.innerHTML = '<p style="color:var(--text-muted);text-align:center;padding:40px;">Няма кандидатури все още.</p>';
+                return;
+            }
+
+            container.innerHTML = allApplications.map(app => {
+                let statusClass = 'new';
+                let statusLabel = app.status || 'Нова';
+                if (statusLabel === 'Одобрена') statusClass = 'approved';
+                if (statusLabel === 'Отхвърлена') statusClass = 'rejected';
+
+                return `
+                <div class="app-row-card" data-id="${app.id}">
+                    <div class="app-info-main">
+                        <div class="app-meta">
+                            <span class="app-meta-title">${escHtml(app.name || 'Неизвестен')}</span>
+                            <span class="app-meta-sub">IGN: ${escHtml(app.ign || '—')} · Discord: ${escHtml(app.discord || '—')} · ${escHtml(app.submittedAt || '')}</span>
+                        </div>
+                    </div>
+                    <div class="app-actions">
+                        <span class="status-badge ${statusClass}">${escHtml(statusLabel)}</span>
+                        <button class="btn btn-primary btn-small btn-view-app" data-id="${app.id}">Преглед</button>
+                    </div>
+                </div>`;
+            }).join('');
+
+            // Attach click listeners
+            container.querySelectorAll('.btn-view-app').forEach(btn => {
+                btn.addEventListener('click', () => openAppModal(btn.getAttribute('data-id')));
+            });
+        }
+
+        document.getElementById('btn-refresh-apps').addEventListener('click', () => {
+            loadApplications();
+            showToast('Кандидатурите са обновени.');
+        });
+
+        // =============================================
+        // APPLICATION MODAL
+        // =============================================
+        const modal = document.getElementById('app-modal');
+        const modalBody = document.getElementById('modal-body');
+        const modalTitle = document.getElementById('modal-title');
+        const modalStatusInfo = document.getElementById('modal-status-info');
+
+        const QUESTION_LABELS = {
+            name: '1. Вашето име',
+            ign: '2. Minecraft IGN',
+            discord: '3. Discord потребителско име',
+            age: '4. Възраст',
+            rank: '5. Кандидатстван ранг',
+            experience: '6. Опит с Minecraft',
+            pastStaff: '7. Предишен стаф опит',
+            hours: '8. Часове дневно',
+            mic: '9. Микрофон',
+            motivation: '10. Мотивация',
+            situation: '11. Реакция при нарушение',
+            unique: '12. Уникалност'
+        };
+
+        function openAppModal(id) {
+            const app = allApplications.find(a => a.id === id);
+            if (!app) return;
+
+            currentModalAppId = id;
+            modalTitle.textContent = `Кандидатура от ${app.name || 'Неизвестен'}`;
+            modalStatusInfo.textContent = `Статус: ${app.status || 'Нова'} · Дата: ${app.submittedAt || '—'}`;
+
+            let html = '';
+            for (const [key, label] of Object.entries(QUESTION_LABELS)) {
+                html += `
+                <div class="modal-field">
+                    <div class="modal-field-q">${escHtml(label)}</div>
+                    <div class="modal-field-a">${escHtml(app[key] || '—')}</div>
+                </div>`;
+            }
+            modalBody.innerHTML = html;
+
+            enforceModalPermissions();
+            modal.classList.add('show');
+        }
+
+        document.getElementById('btn-close-modal').addEventListener('click', () => modal.classList.remove('show'));
+        modal.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('show'); });
+
+        // Approve
+        document.getElementById('modal-btn-approve').addEventListener('click', async () => {
+            if (!currentModalAppId) return;
+            await API.updateApplication(currentModalAppId, 'Одобрена');
+            addLogEntry(`Одобри кандидатура #${currentModalAppId}`);
+            showToast('Кандидатурата е одобрена! ✅');
+            modal.classList.remove('show');
+            loadApplications();
+        });
+
+        // Reject
+        document.getElementById('modal-btn-reject').addEventListener('click', async () => {
+            if (!currentModalAppId) return;
+            await API.updateApplication(currentModalAppId, 'Отхвърлена');
+            addLogEntry(`Отхвърли кандидатура #${currentModalAppId}`);
+            showToast('Кандидатурата е отхвърлена. ❌');
+            modal.classList.remove('show');
+            loadApplications();
+        });
+
+        // Delete
+        document.getElementById('modal-btn-delete').addEventListener('click', async () => {
+            if (!currentModalAppId) return;
+            if (!confirm('Сигурен ли си, че искаш да изтриеш тази кандидатура?')) return;
+            await API.deleteApplication(currentModalAppId);
+            addLogEntry(`Изтри кандидатура #${currentModalAppId}`);
+            showToast('Кандидатурата е изтрита. 🗑️');
+            modal.classList.remove('show');
+            loadApplications();
+        });
+
+        // =============================================
+        // USERS
+        // =============================================
+        async function loadUsers() {
+            const container = document.getElementById('users-list');
+            let users;
+            try { users = await API.getUsers(); } catch(e) { users = []; }
+
+            if (!users || users.length === 0) {
+                container.innerHTML = '<p style="color:var(--text-muted);">Няма потребители.</p>';
+                return;
+            }
+
+            container.innerHTML = users.map(u => `
+                <div class="user-item">
+                    <div class="user-item-info">
+                        <span class="user-item-name">${escHtml(u.username)}</span>
+                        <span class="user-item-role">${escHtml(u.role || 'Администратор')}</span>
+                    </div>
+                    <button class="btn btn-secondary btn-small btn-delete-user" data-username="${escHtml(u.username)}" style="border-color:#f44336;color:#f44336;font-size:12px;">Изтрий</button>
+                </div>
+            `).join('');
+
+            container.querySelectorAll('.btn-delete-user').forEach(btn => {
+                btn.addEventListener('click', async () => {
+                    const uname = btn.getAttribute('data-username');
+                    if (!confirm(`Изтрий потребител "${uname}"?`)) return;
+                    await API.deleteUser(uname);
+                    addLogEntry(`Изтри потребител: ${uname}`);
+                    showToast(`Потребителят "${uname}" е изтрит.`);
+                    loadUsers();
+                });
+            });
+        }
+
+        // Add User Form
+        document.getElementById('add-user-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const username = document.getElementById('new-username').value.trim();
+            const password = document.getElementById('new-password').value;
+            const role = document.getElementById('new-role').value;
+
+            if (!username || !password) return;
+
+            await API.addUser({ username, password, role });
+            addLogEntry(`Добави нов потребител: ${username} (${role})`);
+            showToast(`Потребителят "${username}" е добавен.`);
+            document.getElementById('add-user-form').reset();
+            loadUsers();
+        });
+
+        // =============================================
+        // LOGS
+        // =============================================
+        async function loadLogs() {
+            const container = document.getElementById('logs-console');
+            let logs;
+            try { logs = await API.getLogs(); } catch(e) { logs = []; }
+
+            if (!logs || logs.length === 0) {
+                container.innerHTML = '<p style="color:var(--text-muted);">Няма записи в дневника.</p>';
+                return;
+            }
+
+            container.innerHTML = logs.map(l => `
+                <div class="log-entry">
+                    <span class="log-time">[${escHtml(l.time || '')}]</span>
+                    <span class="log-user">${escHtml(l.user || '—')}</span>
+                    <span class="log-msg">${escHtml(l.message || '')}</span>
+                </div>
+            `).join('');
+        }
+
+        document.getElementById('btn-clear-logs').addEventListener('click', async () => {
+            if (!confirm('Сигурен ли си, че искаш да изчистиш всички логове?')) return;
+            await API.clearLogs();
+            addLogEntry('Изчисти всички логове.');
+            showToast('Логовете са изчистени.');
+            loadLogs();
+        });
+
+        // =============================================
+        // UTILITY
+        // =============================================
+        function escHtml(str) {
+            const div = document.createElement('div');
+            div.textContent = str;
+            return div.innerHTML;
+        }
+
+        // =============================================
+        // INIT
+        // =============================================
+        API.detect();
+
+    });
     </script>
 </body>
 </html>

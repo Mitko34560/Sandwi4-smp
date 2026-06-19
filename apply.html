@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Кандидатстване за Екипа — Sandwi4 SMP</title>
+    <title>Кандидатстване за Стаф — Sandwi4 SMP</title>
     
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Кандидатствай за член на екипа (Staff) на Minecraft сървъра Sandwi4 SMP. Попълни формуляра и стани част от нашия екип!">
+    <meta name="description" content="Кандидатствай за член на екипа (Staff) на Minecraft сървъра Sandwi4 SMP. Попълни формуляра и стани част от нас!">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -34,7 +34,7 @@
                     <li><a href="index.html#about" class="nav-link" id="link-about">За сървъра</a></li>
                     <li><a href="index.html#rules" class="nav-link" id="link-rules">Правила</a></li>
                     <li><a href="index.html#join" class="nav-link" id="link-join">Как се влиза</a></li>
-                    <li><a href="#" class="nav-link active" id="link-apply">Кандидатствай</a></li>
+                    <li><a href="apply.html" class="nav-link active" id="link-apply">Кандидатствай</a></li>
                     <li><a href="https://dsc.gg/sandwi4-smp" target="_blank" class="nav-link discord-nav-btn" id="link-discord-join">
                         <svg class="discord-icon" viewBox="0 0 127.14 96.36" fill="currentColor">
                             <path d="M107.7,8.07A105.15,105.15,0,0,0,77.26,0a77.19,77.19,0,0,0-3.3,6.83A96.67,96.67,0,0,0,53.22,6.83,77.19,77.19,0,0,0,49.88,0,105.15,105.15,0,0,0,19.44,8.07C3.66,31.58-1.86,54.65,1,77.53A105.73,105.73,0,0,0,32,96.36a77.7,77.7,0,0,0,6.63-10.85,68.43,68.43,0,0,1-10.5-5c.89-.65,1.76-1.34,2.58-2.06a75.48,75.48,0,0,0,72.77,0c.82.72,1.69,1.41,2.58,2.06a68.43,68.43,0,0,1-10.5,5,77.7,77.7,0,0,0,6.63,10.85,105.73,105.73,0,0,0,31.06-18.83C129.83,48.54,123.63,25.86,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53S36.18,40.36,42.45,40.36,53.9,46,53.9,53,48.72,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.24,60,73.24,53S78.41,40.36,84.69,40.36,96.14,46,96.14,53,91,65.69,84.69,65.69Z"/>
@@ -52,101 +52,113 @@
         </div>
     </header>
     
-    <!-- Application Section -->
+    <!-- Main Content -->
     <main>
-        <section class="apply-section">
+        <section class="apply-section" id="apply">
             <div class="container apply-container">
                 <div class="apply-card">
                     <div class="apply-card-header">
-                        <h2>Стани част от екипа!</h2>
-                        <p>Попълнете формата по-долу с общо 12-те въпроса, за да кандидатствате за Staff член на Sandwi4 SMP. Отговаряйте честно и изчерпателно.</p>
+                        <h2>Кандидатстване за <span class="accent-text">Стаф</span></h2>
+                        <p>Попълни формуляра по-долу, за да кандидатстваш за член на екипа. Моля, бъди честен и подробен в отговорите си.</p>
                     </div>
                     
-                    <form class="apply-form" id="staff-apply-form">
-                        <!-- Q1: Име и Фамилия -->
-                        <div class="form-group">
-                            <label for="full-name">1. Вашето име *</label>
-                            <input type="text" id="full-name" required placeholder="Иван">
+                    <form class="apply-form" id="staff-application-form" autocomplete="off">
+                        <!-- Q1: Име -->
+                        <div class="form-group" id="fg-name">
+                            <label for="q-name">1. Вашето име *</label>
+                            <input type="text" id="q-name" name="name" placeholder="Иван" required>
                         </div>
                         
-                        <!-- Q2: Minecraft Username -->
-                        <div class="form-group">
-                            <label for="mc-username">2. Minecraft Username (IGN) *</label>
-                            <input type="text" id="mc-username" required placeholder="MitachetoTW">
+                        <!-- Q2: Minecraft IGN -->
+                        <div class="form-group" id="fg-ign">
+                            <label for="q-ign">2. Minecraft IGN (In-Game Name) *</label>
+                            <input type="text" id="q-ign" name="ign" placeholder="Steve123" required>
                         </div>
                         
-                        <!-- Q3: Discord Username -->
-                        <div class="form-group">
-                            <label for="discord-username">3. Discord потребителско име *</label>
-                            <input type="text" id="discord-username" required placeholder="mitaka_tw">
+                        <!-- Q3: Discord -->
+                        <div class="form-group" id="fg-discord">
+                            <label for="q-discord">3. Discord потребителско име *</label>
+                            <input type="text" id="q-discord" name="discord" placeholder="username#1234" required>
                         </div>
                         
                         <!-- Q4: Възраст -->
-                        <div class="form-group">
-                            <label for="age">4. Вашата възраст (години) *</label>
-                            <input type="number" id="age" min="10" max="99" required placeholder="16">
+                        <div class="form-group" id="fg-age">
+                            <label for="q-age">4. На колко години си? *</label>
+                            <input type="number" id="q-age" name="age" placeholder="16" min="10" max="99" required>
                         </div>
                         
                         <!-- Q5: Ранг -->
-                        <div class="form-group full-width">
-                            <label for="rank">5. За кой ранг кандидатствате? *</label>
-                            <select id="rank" required>
-                                <option value="" disabled selected>Изберете ранг...</option>
-                                <option value="Helper">Хелпър (Helper) — Помага на играчите с въпроси в чата</option>
-                                <option value="Moderator">Модератор (Moderator) — Следи за реда и налага наказания</option>
-                                <option value="Admin">Администратор (Admin) — Грижи се за цялостната структура</option>
+                        <div class="form-group" id="fg-rank">
+                            <label for="q-rank">5. За какъв ранг кандидатстваш? *</label>
+                            <select id="q-rank" name="rank" required>
+                                <option value="" disabled selected>Избери ранг...</option>
+                                <option value="Helper">Helper</option>
+                                <option value="Moderator">Moderator</option>
+                                <option value="Admin">Admin</option>
                             </select>
                         </div>
                         
-                        <!-- Q6: Опит в MC и сървъра -->
-                        <div class="form-group full-width">
-                            <label for="mc-experience">6. От колко време играете Minecraft и кога се присъединихте към Sandwi4 SMP? *</label>
-                            <textarea id="mc-experience" required placeholder="Играя Minecraft от 5 години, а в Sandwi4 SMP влязох преди 3 месеца..."></textarea>
+                        <!-- Q6: Опит в Minecraft -->
+                        <div class="form-group" id="fg-experience">
+                            <label for="q-experience">6. Колко опит имаш с Minecraft? *</label>
+                            <select id="q-experience" name="experience" required>
+                                <option value="" disabled selected>Избери...</option>
+                                <option value="Под 1 година">Под 1 година</option>
+                                <option value="1-2 години">1-2 години</option>
+                                <option value="2-4 години">2-4 години</option>
+                                <option value="4+ години">4+ години</option>
+                            </select>
                         </div>
                         
-                        <!-- Q7: Стафф опит -->
-                        <div class="form-group full-width">
-                            <label for="staff-experience">7. Имате ли предишен опит като член на екипа в други сървъри? (Ако да, посочете къде) *</label>
-                            <textarea id="staff-experience" required placeholder="Да, бях хелпър в един малък SMP сървър за около половин година..."></textarea>
+                        <!-- Q7: Предишен стаф опит -->
+                        <div class="form-group full-width" id="fg-past-staff">
+                            <label for="q-past-staff">7. Имаш ли предишен опит като стаф в Minecraft сървър? Опиши. *</label>
+                            <textarea id="q-past-staff" name="pastStaff" placeholder="Опиши предишния си опит, ако имаш такъв. Ако нямаш, напиши 'Нямам'." rows="3" required></textarea>
                         </div>
                         
-                        <!-- Q8: Време за сървъра -->
-                        <div class="form-group">
-                            <label for="online-time">8. Колко време можете да отделяте за сървъра? *</label>
-                            <input type="text" id="online-time" required placeholder="Около 2-3 часа на ден, общо 15-20 часа седмично">
+                        <!-- Q8: Часове на ден -->
+                        <div class="form-group" id="fg-hours">
+                            <label for="q-hours">8. Колко часа дневно можеш да отделяш на сървъра? *</label>
+                            <input type="text" id="q-hours" name="hours" placeholder="2-3 часа на ден" required>
                         </div>
                         
-                        <!-- Q9: Микрофон & Дискорд -->
-                        <div class="form-group">
-                            <label for="has-mic">9. Имате ли работещ микрофон и възможност за разговор? *</label>
-                            <select id="has-mic" required>
-                                <option value="" disabled selected>Изберете опция...</option>
-                                <option value="Да">Да, имам микрофон и мога да говоря в Discord</option>
-                                <option value="Не">Не, нямам възможност/микрофон</option>
+                        <!-- Q9: Микрофон -->
+                        <div class="form-group" id="fg-mic">
+                            <label for="q-mic">9. Имаш ли работещ микрофон? *</label>
+                            <select id="q-mic" name="mic" required>
+                                <option value="" disabled selected>Избери...</option>
+                                <option value="Да">Да</option>
+                                <option value="Не">Не</option>
                             </select>
                         </div>
                         
                         <!-- Q10: Мотивация -->
-                        <div class="form-group full-width">
-                            <label for="motivation">10. Защо искате да станете част от екипа на Sandwi4 SMP? *</label>
-                            <textarea id="motivation" required placeholder="Искам да помогна за развитието на сървъра, да предотвратявам нарушаването на правилата и да направя престоя на новите играчи по-приятен..."></textarea>
+                        <div class="form-group full-width" id="fg-motivation">
+                            <label for="q-motivation">10. Защо искаш да бъдеш част от нашия екип? *</label>
+                            <textarea id="q-motivation" name="motivation" placeholder="Разкажи ни защо искаш да станеш стаф..." rows="4" required></textarea>
                         </div>
                         
-                        <!-- Q11: Конфликтна ситуация (Казус) -->
-                        <div class="form-group full-width">
-                            <label for="case-scenario">11. Как бихте реагирали, ако откриете играч да нарушава правилата (грифинг или токсичност в чата)? *</label>
-                            <textarea id="case-scenario" required placeholder="Първо бих направил доказателство (снимка/клип). Ако е токсичен в чата, ще му дам устно предупреждение, а при повторение ще го заглуша (mute). Ако грифи, ще съобщя на по-висока позиция за бан..."></textarea>
+                        <!-- Q11: Ситуация с нарушение -->
+                        <div class="form-group full-width" id="fg-situation">
+                            <label for="q-situation">11. Как би реагирал, ако видиш играч да нарушава правилата? *</label>
+                            <textarea id="q-situation" name="situation" placeholder="Опиши стъпките, които би предприел..." rows="4" required></textarea>
                         </div>
                         
                         <!-- Q12: Уникалност -->
-                        <div class="form-group full-width">
-                            <label for="uniqueness">12. Какво ви отличава от останалите кандидати и защо трябва да изберем точно вас? *</label>
-                            <textarea id="uniqueness" required placeholder="Аз съм много спокоен, обективен и справедлив. Умея да разрешавам конфликти без напрежение и имам желание за работа в екип..."></textarea>
+                        <div class="form-group full-width" id="fg-unique">
+                            <label for="q-unique">12. Какво те прави уникален и по-различен от останалите кандидати? *</label>
+                            <textarea id="q-unique" name="unique" placeholder="Какво те отличава от другите кандидати..." rows="4" required></textarea>
                         </div>
                         
                         <!-- Submit -->
                         <div class="form-submit-wrapper">
-                            <button type="submit" class="btn btn-primary" id="btn-submit-app">Изпрати Кандидатурата</button>
+                            <button type="submit" class="btn btn-primary" id="btn-submit-app">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px;margin-right:8px;">
+                                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                                </svg>
+                                Изпрати Кандидатурата
+                            </button>
                         </div>
                     </form>
                 </div>
@@ -154,12 +166,13 @@
         </section>
     </main>
     
-    <!-- Success Toast Notification -->
-    <div class="toast-notification" id="app-success-toast">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="20 6 9 17 4 12"></polyline>
+    <!-- Toast Notification -->
+    <div class="toast-notification" id="toast-success">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+            <polyline points="22 4 12 14.01 9 11.01"></polyline>
         </svg>
-        <span class="toast-text" id="toast-message">Кандидатурата е изпратена успешно!</span>
+        <span class="toast-text" id="toast-text">Кандидатурата е изпратена успешно!</span>
     </div>
     
     <!-- Footer -->
@@ -180,6 +193,7 @@
                     <li><a href="index.html#about">За сървъра</a></li>
                     <li><a href="index.html#rules">Правила</a></li>
                     <li><a href="index.html#join">Как се влиза</a></li>
+                    <li><a href="apply.html">Кандидатствай</a></li>
                 </ul>
             </div>
             
@@ -189,12 +203,6 @@
                     <a href="https://dsc.gg/sandwi4-smp" target="_blank" aria-label="Discord">
                         <svg viewBox="0 0 127.14 96.36" fill="currentColor">
                             <path d="M107.7,8.07A105.15,105.15,0,0,0,77.26,0a77.19,77.19,0,0,0-3.3,6.83A96.67,96.67,0,0,0,53.22,6.83,77.19,77.19,0,0,0,49.88,0,105.15,105.15,0,0,0,19.44,8.07C3.66,31.58-1.86,54.65,1,77.53A105.73,105.73,0,0,0,32,96.36a77.7,77.7,0,0,0,6.63-10.85,68.43,68.43,0,0,1-10.5-5c.89-.65,1.76-1.34,2.58-2.06a75.48,75.48,0,0,0,72.77,0c.82.72,1.69,1.41,2.58,2.06a68.43,68.43,0,0,1-10.5,5,77.7,77.7,0,0,0,6.63,10.85,105.73,105.73,0,0,0,31.06-18.83C129.83,48.54,123.63,25.86,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53S36.18,40.36,42.45,40.36,53.9,46,53.9,53,48.72,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.24,60,73.24,53S78.41,40.36,84.69,40.36,96.14,46,96.14,53,91,65.69,84.69,65.69Z"/>
-                        </svg>
-                    </a>
-                    <a href="https://youtube.com/" target="_blank" aria-label="YouTube">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path>
-                            <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
                         </svg>
                     </a>
                 </div>
@@ -209,148 +217,162 @@
         </div>
     </footer>
     
-    <!-- Logic script -->
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // --- DISCORD WEBHOOK INTEGRATION (OPTIONAL) ---
-            // Paste your Discord Webhook URL here to receive applications in your Discord channel!
-            const DISCORD_WEBHOOK_URL = ''; 
+    document.addEventListener('DOMContentLoaded', () => {
+        // --- MOBILE MENU ---
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mainNav = document.getElementById('main-nav');
+        if (mobileMenuBtn && mainNav) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenuBtn.classList.toggle('open');
+                mainNav.classList.toggle('open');
+            });
+        }
 
-            // --- MOBILE MENU TOGGLE ---
-            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-            const mainNav = document.getElementById('main-nav');
-            if (mobileMenuBtn && mainNav) {
-                mobileMenuBtn.addEventListener('click', () => {
-                    mobileMenuBtn.classList.toggle('open');
-                    mainNav.classList.toggle('open');
-                });
-            }
+        // --- API WRAPPER (auto-detect backend) ---
+        const API = {
+            baseUrl: null,
+            mode: 'localStorage', // 'php', 'node', 'localStorage'
 
-            // --- FORM SUBMISSION ---
-            const applyForm = document.getElementById('staff-apply-form');
-            const successToast = document.getElementById('app-success-toast');
-            const toastText = document.getElementById('toast-message');
+            async detect() {
+                // Try PHP backend
+                try {
+                    const r = await fetch('api.php?action=get_applications', { method: 'GET', signal: AbortSignal.timeout(2000) });
+                    if (r.ok) { this.baseUrl = 'api.php'; this.mode = 'php'; console.log('[API] PHP backend detected'); return; }
+                } catch(e) {}
 
-            if (applyForm && successToast) {
-                applyForm.addEventListener('submit', async (e) => {
-                    e.preventDefault();
+                // Try Node.js backend
+                try {
+                    const r = await fetch('/api/applications', { method: 'GET', signal: AbortSignal.timeout(2000) });
+                    if (r.ok) { this.baseUrl = '/api'; this.mode = 'node'; console.log('[API] Node.js backend detected'); return; }
+                } catch(e) {}
 
-                    const submitButton = document.getElementById('btn-submit-app');
-                    submitButton.disabled = true;
-                    submitButton.textContent = 'Изпращане...';
+                console.log('[API] No backend detected, using localStorage fallback');
+            },
 
-                    // Collect values
-                    const fullName = document.getElementById('full-name').value;
-                    const mcUser = document.getElementById('mc-username').value;
-                    const discordUser = document.getElementById('discord-username').value;
-                    const ageVal = document.getElementById('age').value;
-                    const rankVal = document.getElementById('rank').value;
-                    const mcExp = document.getElementById('mc-experience').value;
-                    const staffExp = document.getElementById('staff-experience').value;
-                    const timeVal = document.getElementById('online-time').value;
-                    const micVal = document.getElementById('has-mic').value;
-                    const motivationVal = document.getElementById('motivation').value;
-                    const caseVal = document.getElementById('case-scenario').value;
-                    const uniqueVal = document.getElementById('uniqueness').value;
-
-                    // Discord Webhook Payload
-                    const payload = {
-                        username: "Sandwi4 SMP Staff Bot",
-                        avatar_url: "https://play.sandwi4smp.com/assets/logo.jpg", // fallback logo url
-                        embeds: [{
-                            title: "Нова кандидатура за Staff екипа!",
-                            color: 15959318, // HSL primary color converted to Decimal (orange)
-                            fields: [
-                                { name: "1. Име и Фамилия", value: fullName, inline: true },
-                                { name: "2. Minecraft IGN", value: mcUser, inline: true },
-                                { name: "3. Discord Username", value: discordUser, inline: true },
-                                { name: "4. Възраст", value: ageVal + " години", inline: true },
-                                { name: "5. Желан Ранг", value: rankVal, inline: true },
-                                { name: "8. Време за отделяне", value: timeVal, inline: true },
-                                { name: "9. Работещ микрофон?", value: micVal, inline: true },
-                                { name: "6. Опит в Minecraft & Сървъра", value: mcExp },
-                                { name: "7. Предишен опит в други екипи", value: staffExp },
-                                { name: "10. Мотивация за присъединяване", value: motivationVal },
-                                { name: "11. Казус (Реакция срещу грифинг/токсичност)", value: caseVal },
-                                { name: "12. Какво го отличава от другите", value: uniqueVal }
-                            ],
-                            timestamp: new Date().toISOString()
-                        }]
-                    };
-
-                    // Create application object for LocalStorage
-                    const application = {
-                        id: Date.now(),
-                        date: new Date().toLocaleDateString('bg-BG') + ' ' + new Date().toLocaleTimeString('bg-BG'),
-                        status: 'new', // new, approved, rejected
-                        data: {
-                            fullName,
-                            mcUser,
-                            discordUser,
-                            ageVal,
-                            rankVal,
-                            mcExp,
-                            staffExp,
-                            timeVal,
-                            micVal,
-                            motivationVal,
-                            caseVal,
-                            uniqueVal
-                        }
-                    };
-
-                    // Save to localStorage
-                    const apps = JSON.parse(localStorage.getItem('smp_applications') || '[]');
-                    apps.push(application);
-                    localStorage.setItem('smp_applications', JSON.stringify(apps));
-
-                    if (DISCORD_WEBHOOK_URL && DISCORD_WEBHOOK_URL.trim() !== '') {
-                        try {
-                            const response = await fetch(DISCORD_WEBHOOK_URL, {
-                                method: 'POST',
-                                headers: { 'Content-Type': 'application/json' },
-                                body: JSON.stringify(payload)
-                            });
-
-                            if (response.ok) {
-                                showToast('Кандидатурата е изпратена успешно в Discord!');
-                                applyForm.reset();
-                            } else {
-                                throw new Error('Failed to submit webhook');
-                            }
-                        } catch (err) {
-                            console.error('Webhook error: ', err);
-                            showToast('Кандидатурата бе записана успешно! (Локално)');
-                            applyForm.reset();
-                        }
-                    } else {
-                        // Webhook URL is empty: show client-side mock submission
-                        console.log('Webhook is empty, simulating submission. Form payload:', payload);
-                        setTimeout(() => {
-                            showToast('Кандидатурата е изпратена успешно!');
-                            applyForm.reset();
-                        }, 800);
-                    }
-
-                    // Reset button state
-                    setTimeout(() => {
-                        submitButton.disabled = false;
-                        submitButton.textContent = 'Изпрати Кандидатурата';
-                    }, 1500);
-                });
-            }
-
-            function showToast(message) {
-                if (toastText && successToast) {
-                    toastText.textContent = message;
-                    successToast.classList.add('show');
-                    
-                    setTimeout(() => {
-                        successToast.classList.remove('show');
-                    }, 4000);
+            async addApplication(data) {
+                if (this.mode === 'php') {
+                    return fetch('api.php?action=add_application', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(data)
+                    }).then(r => r.json());
+                } else if (this.mode === 'node') {
+                    return fetch('/api/applications', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(data)
+                    }).then(r => r.json());
+                } else {
+                    // localStorage fallback
+                    const apps = JSON.parse(localStorage.getItem('sandwi4_applications') || '[]');
+                    apps.push(data);
+                    localStorage.setItem('sandwi4_applications', JSON.stringify(apps));
+                    return { success: true };
                 }
             }
-        });
+        };
+
+        // Detect backend on load
+        API.detect();
+
+        // --- DISCORD WEBHOOK (optional - set your webhook URL below) ---
+        const DISCORD_WEBHOOK_URL = ''; // Paste your Discord Webhook URL here
+
+        async function sendToDiscord(data) {
+            if (!DISCORD_WEBHOOK_URL) return;
+            try {
+                const embed = {
+                    title: '📋 Нова кандидатура за Стаф!',
+                    color: 0xF38616,
+                    fields: [
+                        { name: 'Име', value: data.name, inline: true },
+                        { name: 'IGN', value: data.ign, inline: true },
+                        { name: 'Discord', value: data.discord, inline: true },
+                        { name: 'Възраст', value: String(data.age), inline: true },
+                        { name: 'Ранг', value: data.rank, inline: true },
+                        { name: 'Опит с MC', value: data.experience, inline: true },
+                        { name: 'Предишен стаф опит', value: data.pastStaff },
+                        { name: 'Часове дневно', value: data.hours, inline: true },
+                        { name: 'Микрофон', value: data.mic, inline: true },
+                        { name: 'Мотивация', value: data.motivation },
+                        { name: 'Ситуация с нарушение', value: data.situation },
+                        { name: 'Уникалност', value: data.unique }
+                    ],
+                    timestamp: new Date().toISOString(),
+                    footer: { text: 'Sandwi4 SMP Staff Applications' }
+                };
+                await fetch(DISCORD_WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ embeds: [embed] })
+                });
+            } catch (e) {
+                console.warn('[Discord] Webhook failed:', e);
+            }
+        }
+
+        // --- FORM SUBMISSION ---
+        const form = document.getElementById('staff-application-form');
+        const toast = document.getElementById('toast-success');
+        const toastText = document.getElementById('toast-text');
+        const submitBtn = document.getElementById('btn-submit-app');
+
+        if (form) {
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                // Disable button
+                submitBtn.disabled = true;
+                submitBtn.style.opacity = '0.6';
+                submitBtn.innerHTML = '<span style="margin-right:8px;">⏳</span> Изпращане...';
+
+                const formData = {
+                    id: Date.now().toString(36) + Math.random().toString(36).substr(2, 5),
+                    name: document.getElementById('q-name').value.trim(),
+                    ign: document.getElementById('q-ign').value.trim(),
+                    discord: document.getElementById('q-discord').value.trim(),
+                    age: document.getElementById('q-age').value.trim(),
+                    rank: document.getElementById('q-rank').value,
+                    experience: document.getElementById('q-experience').value,
+                    pastStaff: document.getElementById('q-past-staff').value.trim(),
+                    hours: document.getElementById('q-hours').value.trim(),
+                    mic: document.getElementById('q-mic').value,
+                    motivation: document.getElementById('q-motivation').value.trim(),
+                    situation: document.getElementById('q-situation').value.trim(),
+                    unique: document.getElementById('q-unique').value.trim(),
+                    status: 'Нова',
+                    submittedAt: new Date().toLocaleString('bg-BG')
+                };
+
+                try {
+                    await API.addApplication(formData);
+                    await sendToDiscord(formData);
+
+                    // Show success toast
+                    toastText.textContent = 'Кандидатурата е изпратена успешно! 🎉';
+                    toast.classList.add('show');
+                    setTimeout(() => toast.classList.remove('show'), 4000);
+
+                    // Reset form
+                    form.reset();
+                } catch (err) {
+                    console.error('Submission failed:', err);
+                    toastText.textContent = 'Грешка при изпращане. Опитай отново.';
+                    toast.classList.add('show');
+                    setTimeout(() => toast.classList.remove('show'), 4000);
+                }
+
+                // Re-enable button
+                submitBtn.disabled = false;
+                submitBtn.style.opacity = '1';
+                submitBtn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px;margin-right:8px;">
+                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg> Изпрати Кандидатурата`;
+            });
+        }
+    });
     </script>
 </body>
 </html>
